@@ -9,23 +9,34 @@ enum ArtworkDiagnostics {
         do {
             guard let catalog = UnitCatalog.shared else { throw APIError(message: "Missing unit catalog") }
             var rendered: [[String: Any]] = []
-            for (id, name) in [("100004203", "Ludmille"), ("100000102", "Rain"), ("100000202", "Lasswell")] {
+            let baseline = ["100004203": "Ludmille", "100000102": "Rain", "100000202": "Lasswell"]
+            let ids = catalog.units.keys.sorted().filter { catalog.artworkURL(masterID: $0) != nil }
+            let declaredImages = catalog.units.values.filter { $0.artwork != nil }.count
+            guard ids.count == declaredImages, declaredImages >= 3 else {
+                throw APIError(message: "Bundled sprite count does not match the catalog")
+            }
+            let renderIDs = Set(Array(baseline.keys) + Array(ids.filter { baseline[$0] == nil }.prefix(4)))
+            var decoded = 0
+            for id in ids {
                 let row = catalog.display(masterID: id, backendName: nil, rarity: nil, isAward: false)
-                guard row.name == name, let url = row.artworkURL,
-                      let image = UIImage(contentsOfFile: url.path), image.size.width > 0 else {
+                guard baseline[id] == nil || baseline[id] == row.name,
+                      let url = row.artworkURL, let image = UIImage(contentsOfFile: url.path), image.size.width > 0 else {
                     throw APIError(message: "Metadata/image mismatch for " + id)
                 }
-                let renderer = ImageRenderer(content: UnitRowView(unit: row, inventoryDetail: "Read-only artwork check")
-                    .padding().frame(width: 380).background(Color.white))
-                guard renderer.uiImage != nil else { throw APIError(message: "SwiftUI render failed for " + id) }
-                rendered.append(["unit_id": id, "name": row.name, "width": image.size.width,
-                                 "height": image.size.height, "swiftui_rendered": true])
+                decoded += 1
+                if renderIDs.contains(id) {
+                    let renderer = ImageRenderer(content: UnitRowView(unit: row, inventoryDetail: "Read-only artwork check")
+                        .padding().frame(width: 380).background(Color.white))
+                    guard renderer.uiImage != nil else { throw APIError(message: "SwiftUI render failed for " + id) }
+                    rendered.append(["unit_id": id, "name": row.name, "width": image.size.width,
+                                     "height": image.size.height, "swiftui_rendered": true])
+                }
             }
             guard catalog.artworkURL(masterID: "100004204") == nil else {
                 throw APIError(message: "Different form received a same-name sprite")
             }
             report = ["status": "passed", "named_ids": catalog.namedCount, "artwork_ids": catalog.artworkCount,
-                      "rendered_units": rendered, "same_name_other_form_has_no_art": true,
+                      "rendered_units": rendered, "decoded_images": decoded, "same_name_other_form_has_no_art": true,
                       "campaign_accessed": false, "network_used": false]
         } catch { report = ["status": "failed", "error": error.localizedDescription] }
         do {

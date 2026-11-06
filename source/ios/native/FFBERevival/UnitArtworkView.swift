@@ -43,12 +43,19 @@ struct UnitRowView: View {
 // Explicit visual test screen, never a summon and never writes inventory.
 struct UnitArtworkPreview: View {
     @State private var validation = "Checking local artwork…"
+    private var previewIDs: [String] {
+        let baseline = ["100004203", "100000102", "100000202"]
+        let additional = UnitCatalog.shared?.units.keys.sorted().filter {
+            !baseline.contains($0) && UnitCatalog.shared?.artworkURL(masterID: $0) != nil
+        }.prefix(4) ?? []
+        return Array(additional) + baseline + ["100004204"]
+    }
     var body: some View {
         NavigationStack {
             List {
                 Text("Asset verification only · these are not summon results.").font(.caption)
                 Text("Validation: " + validation).font(.caption)
-                ForEach(["100004203", "100000102", "100000202", "100004204"], id: \.self) { id in
+                ForEach(previewIDs, id: \.self) { id in
                     UnitRowView(unit: UnitCatalog.display(masterID: id, backendName: nil, rarity: nil, isAward: false), inventoryDetail: nil)
                 }
             }.navigationTitle("Artwork verification")

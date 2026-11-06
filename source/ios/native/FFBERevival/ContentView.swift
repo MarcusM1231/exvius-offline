@@ -54,7 +54,7 @@ struct ContentView: View {
                             }
                             if state.demo_metadata {
                                 Text(UnitCatalog.shared?.mode == "preservation"
-                                     ? "Demo gameplay data · Global-targeted names · 3 artwork IDs"
+                                     ? "Demo gameplay data · Global-targeted names · \(UnitCatalog.shared?.artworkCount ?? 0) artwork IDs"
                                      : "Demo metadata · placeholder units · real backend transactions")
                                     .font(.caption).foregroundStyle(.secondary)
                             }

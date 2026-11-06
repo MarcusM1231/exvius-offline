@@ -1,23 +1,30 @@
-"""Build-time import of pinned metadata and three static PNGs. Never opens saves."""
+"""Build-time import of pinned metadata and exact-ID static PNGs. Never opens saves."""
 import argparse
 import hashlib
 import json
 from pathlib import Path
 import shutil
 import struct
-import subprocess
 import sys
 import tempfile
-import time
 import zlib
 
 sys.dont_write_bytecode = True
 from cpk_reader import index
+from png_validation import png_info
 
 IOS = Path(__file__).resolve().parents[1]
 LOCK = Path(__file__).with_name('content.lock.json')
 DEFAULT_SOURCE = IOS / '.local/unit-content/sources'
-DEFAULT_OUTPUT = IOS / '.local/unit-content/UnitContent'
+PNG_CACHE = IOS / '.local/unit-content/png-cache'
+
+def default_output():
+    lock = json.loads(LOCK.read_text())
+    if lock.get('range_sources'):
+        return IOS / '.local/unit-content/versions' / hashlib.sha256(LOCK.read_bytes()).hexdigest()[:16] / 'UnitContent'
+    return IOS / '.local/unit-content/UnitContent'
+
+DEFAULT_OUTPUT = default_output()
 
 
 def sha(body):
@@ -25,7 +32,11 @@ def sha(body):
 
 
 def load_lock():
-    return json.loads(LOCK.read_text(encoding='utf-8'))
+    lock = json.loads(LOCK.read_text(encoding='utf-8'))
+    ids = [row['unit_id'] for row in lock['artwork']]
+    if len(ids) != len(set(ids)):
+        raise ValueError('Duplicate artwork unit ID in content lock')
+    return lock
 
 
 def validate_source(body, entry):
@@ -33,25 +44,12 @@ def validate_source(body, entry):
         raise ValueError('Pinned source checksum mismatch: ' + entry['name'])
 
 
-def download_member(entry, destination):
-    """Only bounded byte ranges. Abort if the server ignores Range; no full ZIP fallback."""
+def download_member(entry, destination, client=None):
+    """Read only one pinned member using the same throttled, bounded client."""
+    from range_client import RangeClient
+    client = client or RangeClient()
     def read(offset, length):
-        if length > 1024 * 1024 or offset < 0 or offset + length > entry['archive_size']:
-            raise ValueError('Refusing unexpected archive range')
-        with tempfile.TemporaryDirectory() as temp:
-            headers = Path(temp) / 'headers'
-            result = subprocess.run(['/usr/bin/curl', '--fail', '--silent', '--show-error', '--location',
-                '--max-time', '60', '--max-filesize', str(1024 * 1024), '--range',
-                '%s-%s' % (offset, offset + length - 1), '--dump-header', str(headers), entry['url'] + '?phase5b-range=' + str(time.time_ns())],
-                capture_output=True, timeout=70)
-            if result.returncode:
-                raise RuntimeError(result.stderr.decode(errors='replace'))
-            import re
-            ranges = re.findall(r'content-range:\s*([^\r\n]+)', headers.read_text(), re.I)
-            expected = 'bytes %s-%s/%s' % (offset, offset + length - 1, entry['archive_size'])
-            if not ranges or ranges[-1] != expected or len(result.stdout) != length:
-                raise ValueError('Server did not return the exact requested range')
-            return result.stdout
+        return client.read(entry, offset, length)
     header = read(entry['offset'], 30)
     if header[:4] != b'PK\x03\x04':
         raise ValueError('Invalid ZIP local header')
@@ -69,7 +67,6 @@ def download_member(entry, destination):
         body = compressed
     validate_source(body, entry)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    # A fresh temporary file is renamed only after validation. Never replace another input.
     with tempfile.NamedTemporaryFile(dir=destination.parent, delete=False) as temporary:
         temporary.write(body)
         pending = Path(temporary.name)
@@ -134,22 +131,7 @@ def build_catalog(source):
 
 
 def validate_png(body):
-    if not body.startswith(b'\x89PNG\r\n\x1a\n'):
-        raise ValueError('Expected original PNG')
-    position = 8
-    saw_end = False
-    while position < len(body):
-        size = struct.unpack_from('>I', body, position)[0]
-        chunk = body[position + 4:position + 8 + size]
-        expected = struct.unpack_from('>I', body, position + 8 + size)[0]
-        if zlib.crc32(chunk) != expected:
-            raise ValueError('PNG chunk checksum mismatch')
-        position += size + 12
-        if chunk[:4] == b'IEND':
-            saw_end = True
-            break
-    if not saw_end or position != len(body):
-        raise ValueError('Incomplete PNG')
+    return png_info(body)
 
 
 def verify_bundle(root):
@@ -172,13 +154,13 @@ def verify_bundle(root):
     return receipt
 
 
-def import_content(source=DEFAULT_SOURCE, output=DEFAULT_OUTPUT, download=False):
-    source, output = Path(source), Path(output)
+def import_content(source=DEFAULT_SOURCE, output=None, download=False, client=None):
+    source, output = Path(source), Path(output or default_output())
     lock = load_lock()
     for entry in lock['members']:
         path = source / entry['name']
         if not path.exists() and download:
-            download_member(entry, path)
+            download_member(entry, path, client)
         if not path.exists():
             raise FileNotFoundError('Missing pinned input: %s. Run import_content.py --download, or pass --source-cache.' % path)
         validate_source(path.read_bytes(), entry)
@@ -189,15 +171,21 @@ def import_content(source=DEFAULT_SOURCE, output=DEFAULT_OUTPUT, download=False)
         (stage / 'sprites').mkdir(parents=True)
         indexes = {}
         for art in lock['artwork']:
-            path = source / art['cpk_member']
-            if path not in indexes:
-                indexes[path] = index(path)
-            entry = next(e for e in indexes[path]['entries'] if e['name'] == art['file'])
             if art['file'] != 'unit_ills_' + art['unit_id'] + '.png' or art['unit_id'] not in catalog['units']:
                 raise ValueError('Unverified master-ID artwork mapping')
-            if entry['size'] != entry['unpacked']:
-                raise ValueError('Static PNG requires unsupported decompression')
-            body = path.read_bytes()[entry['offset']:entry['offset'] + entry['size']]
+            if 'range_source' in art:
+                path = PNG_CACHE / (art['sha256'] + '.png')
+                if not path.exists():
+                    raise FileNotFoundError('Missing pinned PNG; run import_content.py --download: ' + str(path))
+                body = path.read_bytes()
+            else:
+                path = source / art['cpk_member']
+                if path not in indexes:
+                    indexes[path] = index(path)
+                entry = next(e for e in indexes[path]['entries'] if e['name'] == art['file'])
+                if entry['size'] != entry['unpacked']:
+                    raise ValueError('Static PNG requires unsupported decompression')
+                body = path.read_bytes()[entry['offset']:entry['offset'] + entry['size']]
             if sha(body) != art['sha256']:
                 raise ValueError('Extracted sprite checksum mismatch')
             validate_png(body)
@@ -223,12 +211,19 @@ def import_content(source=DEFAULT_SOURCE, output=DEFAULT_OUTPUT, download=False)
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-cache', type=Path, default=DEFAULT_SOURCE)
-    parser.add_argument('--output', type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument('--download', action='store_true', help='Fetch only five pinned ZIP members if missing')
+    parser.add_argument('--output', type=Path)
+    parser.add_argument('--download', action='store_true', help='Fetch only missing pinned metadata/CPK/PNG ranges')
     args = parser.parse_args()
-    result = import_content(args.source_cache, args.output, args.download)
+    client = None
+    if args.download:
+        from range_client import RangeClient
+        client = RangeClient()
+        if load_lock().get('range_sources'):
+            from batch_artwork import fetch_locked_images
+            fetch_locked_images(load_lock(), client, PNG_CACHE)
+    result = import_content(args.source_cache, args.output, args.download, client)
     print(json.dumps({k: result[k] for k in ('master_ids', 'named_ids', 'artwork_ids')}, indent=2))
-    print('Validated content:', args.output)
+    print('Validated content:', args.output or default_output())
 
 
 if __name__ == '__main__':

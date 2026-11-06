@@ -5,13 +5,19 @@ import ImageIO
 struct UnitContentSmoke {
     static func main() throws {
         let catalog = try UnitCatalog(directory: URL(fileURLWithPath: CommandLine.arguments[1]))
-        precondition(catalog.namedCount == 3089 && catalog.artworkCount == 3)
+        precondition(catalog.namedCount == 3089 && catalog.artworkCount >= 3)
+        precondition(catalog.artworkCount == catalog.units.values.filter { $0.artwork != nil }.count)
         for (id, name) in [("100004203", "Ludmille"), ("100000102", "Rain"), ("100000202", "Lasswell")] {
             let display = catalog.display(masterID: id, backendName: "Fixture unit", rarity: nil, isAward: false)
             precondition(display.name == name)
             guard let url = display.artworkURL, let source = CGImageSourceCreateWithURL(url as CFURL, nil),
                   let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else { fatalError("Sprite did not decode") }
             precondition(image.width > 0 && image.height > 0)
+        }
+        for id in catalog.units.keys where catalog.artworkURL(masterID: id) != nil {
+            guard let url = catalog.artworkURL(masterID: id),
+                  let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+                  CGImageSourceCreateImageAtIndex(source, 0, nil) != nil else { fatalError("Expanded sprite did not decode") }
         }
         let exactForm = catalog.display(masterID: "100004204", backendName: "Ludmille", rarity: 4, isAward: true)
         precondition(exactForm.name == "Ludmille" && exactForm.artworkURL == nil) // Same name, different ID.

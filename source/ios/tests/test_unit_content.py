@@ -49,7 +49,8 @@ class UnitContentTests(unittest.TestCase):
 
     def test_exact_id_artwork_and_unmodified_png_checksums(self):
         lock = load_lock()
-        self.assertEqual(len(lock['artwork']), 3)
+        self.assertGreaterEqual(len(lock['artwork']), 3)
+        self.assertEqual(self.receipt['artwork_ids'], len(lock['artwork']))
         for art in lock['artwork']:
             relative = self.catalog['units'][art['unit_id']]['artwork']
             self.assertEqual(relative, 'sprites/' + art['unit_id'] + '.png')
