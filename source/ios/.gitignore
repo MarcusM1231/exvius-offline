@@ -8,3 +8,8 @@ DerivedData/
 *.xcframework/
 *.mobileprovision
 
+xcuserdata/
+*.xcuserstate
+.local-build.log
+native/Signing.local.xcconfig
+.DS_Store

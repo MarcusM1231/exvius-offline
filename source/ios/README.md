@@ -1,8 +1,12 @@
 # iOS development
 
-This directory contains early architecture work and a desktop backend smoke test.
-It is not an iOS application or a completed port. The existing Android implementation
-and Python gameplay logic are unchanged.
+This directory contains backend verification, a summoning facade, a development HTTP
+API, and a native SwiftUI summon app with bundled Python. It is not a completed port. The existing Android
+implementation and Python gameplay logic are unchanged.
+
+Start with [the offline backend guide](docs/offline-backend.md) for runtime setup,
+architecture, builds and iPhone checks. The [HTTP development guide](docs/native-prototype.md)
+remains available for Phase 3 debugging.
 
 ## Layout
 
@@ -20,7 +24,8 @@ It calls the existing summon backend; it does not depend on Memorial's summon UI
 `prototype/demo_data.py` supplies explicit placeholder metadata when real tables
 are absent. `tests/test_summon_service.py` verifies transactions and persistence.
 
-Native bridge code and an Xcode project are later milestones. Do not store IPAs, extracted clients, game assets,
+The Xcode project and embedded bridge are in `native/`; `embedded/` contains the
+JSON boundary to the existing service. Runtime downloads stay under ignored `.local/`. Do not store IPAs, extracted clients, game assets,
 signing identities, or executable dependencies in this source directory. Keep personal
 inputs outside the repository; `.local/` is ignored for optional local experiments.
 

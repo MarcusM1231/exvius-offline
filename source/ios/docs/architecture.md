@@ -4,7 +4,12 @@
 
 Target: a personal, sideloaded iPhone game with all gameplay and saves on-device.
 A development computer may build/sign the app but must not host its gameplay engine.
-This phase adds documentation and desktop verification only.
+Phase 1 established desktop verification; Phase 2 added the summon facade.
+Phase 3 adds SwiftUI → URLSession → Mac HTTP API → the same SummonService.
+Phase 4 implements the on-device summon slice using a bundled CPython runtime and
+a SwiftUI/Objective-C bridge. See [offline-backend.md](offline-backend.md) for
+architecture, dependency scope, validation and device checks. HTTP remains an
+optional development transport; the full battle/request pipeline is not embedded.
 
 The Android baseline wraps the original Global 9.0.0 client. The separately inspected
 Memorial IPA identifies as Japanese 11.1.0; its main ARM64 executable has cryptid 0,
@@ -110,7 +115,8 @@ do not investigate Memorial's summon interface. The desktop vertical slice is in
 `../prototype/` and documented in `summoning.md`. Memorial is not a dependency of it.
 Client capability investigation, if needed later, concerns battle and mission paths.
 
-Next embed Python and demonstrate: list banners -> summon -> currency deduction
+The Phase 4 offline summon slice implements this gate using synthetic metadata;
+repeat device acceptance before expanding to preserved metadata and battles: list banners -> summon -> currency deduction
 and unit grant -> save -> terminate -> relaunch -> recover the same state, offline,
 using our own native UI. Follow separately with one playable battle. Desktop
 smoke success is a prerequisite, not evidence that these iOS gates have passed.

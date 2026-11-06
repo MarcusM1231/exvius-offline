@@ -2,7 +2,8 @@
 
 ## Interface and ownership
 
-The temporary frontend is a terminal menu, not a web server. It calls the Python
+Phase 2 provided a terminal menu; Phase 3 adds a native SwiftUI frontend through
+the local development API described in [native-prototype.md](native-prototype.md). It calls the Python
 facade directly. Nothing connects to or repackages the Memorial client.
 
 ```text
@@ -37,7 +38,7 @@ All return plain JSON-compatible values. A native Objective-C++ bridge can expos
 the same operations without a listener. Use one data root per interpreter and one
 service/writer per campaign. Methods serialize on a reentrant lock; returned data
 does not expose mutable player state to the UI. Cross-process concurrent writers
-and HTTP retry/idempotency protocols are outside this terminal-only slice.
+remain unsupported. Phase 3 HTTP retry behavior is documented in the native guide.
 
 Primary and secondary are offer identifiers, not arbitrary repeat multipliers.
 The real backend charges the offer once (500 lapis for a single, 5000 for eleven
@@ -132,11 +133,10 @@ rollback, and invalid identifiers/offers. Only disk-save failure is mocked; RNG,
 banner expansion, currency operations, and unit granting run the actual backend.
 Temporary test campaigns stay under ignored .local and are cleaned on exit.
 
-## Next native milestone
+## Native milestones
 
-Embed CPython in a minimal SwiftUI/Objective-C++ host and call this facade using
-JSON-compatible values on a serialized worker with correct GIL ownership. Display
-the two banners, current balance, and awarded IDs/names, then prove force-close
-and cold-launch persistence on the iPhone. This requires no Memorial summon UI.
-Use real preserved metadata before claiming playable unit compatibility. Battle
-frontend integration is a separate later milestone.
+Phase 4 embeds CPython for the demo summon slice through a serialized JSON bridge;
+see [offline-backend.md](offline-backend.md). The native flow has executed in the
+Simulator and on an iPhone 16 Pro, including real summons and force-quit/relaunch
+persistence. Use real preserved metadata before claiming playable unit compatibility.
+Battle frontend integration is a separate later milestone.
