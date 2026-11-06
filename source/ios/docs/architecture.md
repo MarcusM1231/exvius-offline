@@ -1,5 +1,9 @@
 # Backend reuse architecture
 
+Phase 5B adds a bundled display catalog indexed by exact returned master IDs.
+It leaves Python engine metadata and transactions intact; see
+[unit-content.md](unit-content.md) for import, rarity and save-preservation details.
+
 ## Scope and current evidence
 
 Target: a personal, sideloaded iPhone game with all gameplay and saves on-device.

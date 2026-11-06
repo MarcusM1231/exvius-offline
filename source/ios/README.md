@@ -4,6 +4,11 @@ This directory contains backend verification, a summoning facade, a development 
 API, and a native SwiftUI summon app with bundled Python. It is not a completed port. The existing Android
 implementation and Python gameplay logic are unchanged.
 
+For the current names/artwork build, first follow [the unit-content guide](docs/unit-content.md).
+It imports the pinned small Global-targeted sample into ignored local build resources.
+The native screens have real names for all 423 demo IDs and exact-ID sprites for
+Ludmille, Rain and Lasswell. Other forms use a labeled missing-art placeholder.
+
 Start with [the offline backend guide](docs/offline-backend.md) for runtime setup,
 architecture, builds and iPhone checks. The [HTTP development guide](docs/native-prototype.md)
 remains available for Phase 3 debugging.

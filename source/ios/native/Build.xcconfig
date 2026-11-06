@@ -1,0 +1,3 @@
+// Shared defaults; personal signing overrides stay local and untracked.
+PRODUCT_BUNDLE_IDENTIFIER = com.example.ffberevival.dev
+#include? "Signing.local.xcconfig"

@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "origin": "Global-targeted preservation archives; release may contain original, repaired or Memorial-derived recovery. Not proof of byte-identical Global CDN provenance.",
+  "members": [
+    {
+      "archive": "data-001",
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+      "archive_size": 1215128698,
+      "archive_sha256": "6063469eb90e52d3512e9176c5fdb9435db322004130d989e0d587a0b58d170c",
+      "name": "static/mst_decoded/F_UNIT_MST.ndjson",
+      "size": 4582800,
+      "compressed": 347335,
+      "offset": 431498642,
+      "crc32": 1223103272,
+      "method": 8,
+      "sha256": "e5c6920421a08519107954978e271a7d6520f3522b6d1424bcd90d4c314549d6"
+    },
+    {
+      "archive": "data-001",
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+      "archive_size": 1215128698,
+      "archive_sha256": "6063469eb90e52d3512e9176c5fdb9435db322004130d989e0d587a0b58d170c",
+      "name": "static/text_decoded/F_TEXT_UNITS_NAME.ndjson",
+      "size": 210464,
+      "compressed": 24906,
+      "offset": 438929531,
+      "crc32": 3231961098,
+      "method": 8,
+      "sha256": "decbcc5c6e69a56a44e7e810e32d57ce6573ee041b18490c702da75314144858"
+    },
+    {
+      "archive": "data-001",
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+      "archive_size": 1215128698,
+      "archive_sha256": "6063469eb90e52d3512e9176c5fdb9435db322004130d989e0d587a0b58d170c",
+      "name": "static/mst_decoded/F_UNIT_CLASS_UP_MST.ndjson",
+      "size": 271947,
+      "compressed": 18939,
+      "offset": 430826125,
+      "crc32": 3619325531,
+      "method": 8,
+      "sha256": "e5faa4c3926c21dc11ca9b8f90bf72c5e2ea63ff046289fba6c9d3ccbfe50ef8"
+    },
+    {
+      "archive": "data-008",
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-008.zip",
+      "archive_size": 1462913449,
+      "archive_sha256": "b8aed747faab4f6565bb62dce14ee013f95c35ae8426b5c990b929f577415480",
+      "name": "native/common_lang/sd/unit/Ver5_unit2_common_tutorial.cpk",
+      "size": 156344,
+      "compressed": 156344,
+      "offset": 886768807,
+      "crc32": 342469613,
+      "method": 0,
+      "sha256": "d63d5102e9b4d72fcaa5724db38dbb9f6268692ad78f0b14fc3bb721220ea82f"
+    },
+    {
+      "archive": "data-008",
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-008.zip",
+      "archive_size": 1462913449,
+      "archive_sha256": "b8aed747faab4f6565bb62dce14ee013f95c35ae8426b5c990b929f577415480",
+      "name": "native/common_lang/sd/unit/Ver8_unit1_common_tutorial.cpk",
+      "size": 203200,
+      "compressed": 203200,
+      "offset": 886925258,
+      "crc32": 2320746929,
+      "method": 0,
+      "sha256": "3a5652e0e5ee9f330a2e39dd66223a2b3e39a2ed4108f1e8cdeb9acf9c1b55f2"
+    }
+  ],
+  "artwork": [
+    {
+      "unit_id": "100004203",
+      "cpk_member": "native/common_lang/sd/unit/Ver5_unit2_common_tutorial.cpk",
+      "file": "unit_ills_100004203.png",
+      "sha256": "274f4879e734251d326d632fd56d78d0672658cd6e1c7500ee566fc2840a2205"
+    },
+    {
+      "unit_id": "100000102",
+      "cpk_member": "native/common_lang/sd/unit/Ver8_unit1_common_tutorial.cpk",
+      "file": "unit_ills_100000102.png",
+      "sha256": "37de8e0626907955782fe8679951939e20fcd366f2679844ab5ace888b616f6e"
+    },
+    {
+      "unit_id": "100000202",
+      "cpk_member": "native/common_lang/sd/unit/Ver8_unit1_common_tutorial.cpk",
+      "file": "unit_ills_100000202.png",
+      "sha256": "0c516b0e060d249d59e2bf62d7576b9ff80ad039682d3bfa1bf5cdccfb5b58f5"
+    }
+  ]
+}
