@@ -163,8 +163,9 @@ final class SummonModel: ObservableObject {
             needsRefresh = true
         }
     }
-    func summon(_ banner: Banner, offer: Offer, using backend: any SummonBackend, identity: String) async {
-        guard !busy, !needsRefresh, connectedIdentity == identity else { return }
+    @discardableResult
+    func summon(_ banner: Banner, offer: Offer, using backend: any SummonBackend, identity: String) async -> Bool {
+        guard !busy, !needsRefresh, connectedIdentity == identity else { return false }
         busy = true
         defer { busy = false }
         error = nil
@@ -172,9 +173,11 @@ final class SummonModel: ObservableObject {
             let response = try await backend.summon(bannerID: banner.id, offer: offer.offer)
             campaign = response.state
             results = response.result.awards
+            return true
         } catch {
             self.error = error.localizedDescription + " Refresh saved state before another summon."
             needsRefresh = true
+            return false
         }
     }
     // Preserve the Phase 3 client entry points and contract checks.

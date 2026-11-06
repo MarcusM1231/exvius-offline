@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("backendAddress") private var address = "http://127.0.0.1:8765"
     @AppStorage("summonBackendMode") private var mode = "offline"
     @State private var pythonProof = "Not run yet"
@@ -8,6 +9,20 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
+            GlobalSummonScreen(model: model, refresh: { await refresh() }) { banner, offer in
+                await summon(banner, offer: offer)
+            }.id(identity).tabItem { Label("Summon", systemImage: "sparkles") }
+            NavigationStack {
+                List(model.campaign?.units ?? []) { unit in
+                    UnitRowView(unit: UnitCatalog.display(masterID: unit.master_id, backendName: unit.name,
+                                                          rarity: unit.granted_rarity, isAward: false),
+                                inventoryDetail: "Level \(unit.level) · Copy #\(unit.instance_id)")
+                }
+                .overlay {
+                    if model.campaign == nil { Text("Refresh to load your collection.").foregroundStyle(.secondary) }
+                }
+                .navigationTitle("Collection (\(model.campaign?.units.count ?? 0))")
+            }.tabItem { Label("Collection", systemImage: "person.3") }
             NavigationStack {
                 List {
                     Section("Embedded Python proof") {
@@ -87,20 +102,10 @@ struct ContentView: View {
                                         inventoryDetail: nil)
                         }
                     }
-                }.navigationTitle("FFBE Revival")
-            }.tabItem { Label("Summon", systemImage: "sparkles") }
-            NavigationStack {
-                List(model.campaign?.units ?? []) { unit in
-                    UnitRowView(unit: UnitCatalog.display(masterID: unit.master_id, backendName: unit.name,
-                                                          rarity: unit.granted_rarity, isAward: false),
-                                inventoryDetail: "Level \(unit.level) · Copy #\(unit.instance_id)")
-                }
-                .overlay {
-                    if model.campaign == nil { Text("Refresh to load your collection.").foregroundStyle(.secondary) }
-                }
-                .navigationTitle("Collection (\(model.campaign?.units.count ?? 0))")
-            }.tabItem { Label("Collection", systemImage: "person.3") }
+                }.navigationTitle("Developer Tools")
+            }.tabItem { Label("Developer", systemImage: "wrench.and.screwdriver") }
         }
+        .preferredColorScheme(.dark)
         .task {
             let arguments = ProcessInfo.processInfo.arguments
             if arguments.contains("--python-proof") {
@@ -110,6 +115,11 @@ struct ContentView: View {
             } else {
                 pythonProof = await PythonDiagnostics.proof()
                 await refresh()
+            }
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase == .active && !ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("--offline-self-test") }) {
+                Task { await refresh() }
             }
         }
         .onChange(of: address) { _ in model.addressChanged() }
@@ -127,8 +137,8 @@ struct ContentView: View {
         do { await model.refresh(using: try backend(), identity: identity) }
         catch { model.error = error.localizedDescription }
     }
-    private func summon(_ banner: Banner, offer: Offer) async {
-        do { await model.summon(banner, offer: offer, using: try backend(), identity: identity) }
-        catch { model.error = error.localizedDescription }
+    private func summon(_ banner: Banner, offer: Offer) async -> Bool {
+        do { return await model.summon(banner, offer: offer, using: try backend(), identity: identity) }
+        catch { model.error = error.localizedDescription; return false }
     }
 }

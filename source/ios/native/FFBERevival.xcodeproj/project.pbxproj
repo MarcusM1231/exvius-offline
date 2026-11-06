@@ -49,15 +49,17 @@
 			<string>PBXGroup</string>
 			<key>children</key>
 			<array>
-				<string>000000000000000000000014</string>
-				<string>000000000000000000000015</string>
-				<string>000000000000000000000016</string>
-				<string>000000000000000000000017</string>
-				<string>000000000000000000000018</string>
-				<string>000000000000000000000019</string>
-				<string>00000000000000000000001A</string>
-				<string>00000000000000000000001B</string>
-				<string>00000000000000000000001C</string>
+				<string>000000000000000000000064</string>
+				<string>000000000000000000000065</string>
+				<string>000000000000000000000066</string>
+				<string>000000000000000000000067</string>
+				<string>000000000000000000000068</string>
+				<string>000000000000000000000069</string>
+				<string>00000000000000000000006A</string>
+				<string>00000000000000000000006B</string>
+				<string>00000000000000000000006C</string>
+				<string>00000000000000000000006D</string>
+				<string>00000000000000000000006E</string>
 				<string>000000000000000000000012</string>
 				<string>00000000000000000000003D</string>
 				<string>000000000000000000000003</string>
@@ -126,15 +128,17 @@
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>000000000000000000000028</string>
-				<string>000000000000000000000029</string>
-				<string>00000000000000000000002A</string>
-				<string>00000000000000000000002B</string>
-				<string>00000000000000000000002C</string>
-				<string>00000000000000000000002D</string>
-				<string>00000000000000000000002E</string>
-				<string>00000000000000000000002F</string>
-				<string>000000000000000000000030</string>
+				<string>0000000000000000000000C8</string>
+				<string>0000000000000000000000C9</string>
+				<string>0000000000000000000000CA</string>
+				<string>0000000000000000000000CB</string>
+				<string>0000000000000000000000CC</string>
+				<string>0000000000000000000000CD</string>
+				<string>0000000000000000000000CE</string>
+				<string>0000000000000000000000CF</string>
+				<string>0000000000000000000000D0</string>
+				<string>0000000000000000000000D1</string>
+				<string>0000000000000000000000D2</string>
 			</array>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
@@ -150,7 +154,7 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>000000000000000000000014</key>
+		<key>000000000000000000000064</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -161,14 +165,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>000000000000000000000028</key>
+		<key>0000000000000000000000C8</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>000000000000000000000014</string>
+			<string>000000000000000000000064</string>
 		</dict>
-		<key>000000000000000000000015</key>
+		<key>000000000000000000000065</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -179,14 +183,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>000000000000000000000029</key>
+		<key>0000000000000000000000C9</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>000000000000000000000015</string>
+			<string>000000000000000000000065</string>
 		</dict>
-		<key>000000000000000000000016</key>
+		<key>000000000000000000000066</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -197,14 +201,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00000000000000000000002A</key>
+		<key>0000000000000000000000CA</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>000000000000000000000016</string>
+			<string>000000000000000000000066</string>
 		</dict>
-		<key>000000000000000000000017</key>
+		<key>000000000000000000000067</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -215,14 +219,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00000000000000000000002B</key>
+		<key>0000000000000000000000CB</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>000000000000000000000017</string>
+			<string>000000000000000000000067</string>
 		</dict>
-		<key>000000000000000000000018</key>
+		<key>000000000000000000000068</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -233,14 +237,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00000000000000000000002C</key>
+		<key>0000000000000000000000CC</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>000000000000000000000018</string>
+			<string>000000000000000000000068</string>
 		</dict>
-		<key>000000000000000000000019</key>
+		<key>000000000000000000000069</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -251,14 +255,50 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00000000000000000000002D</key>
+		<key>0000000000000000000000CD</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>000000000000000000000019</string>
+			<string>000000000000000000000069</string>
 		</dict>
-		<key>00000000000000000000001A</key>
+		<key>00000000000000000000006A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/SummonInterface.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000CE</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000006A</string>
+		</dict>
+		<key>00000000000000000000006B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/SummonInterfaceDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000CF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000006B</string>
+		</dict>
+		<key>00000000000000000000006C</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -269,14 +309,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00000000000000000000002E</key>
+		<key>0000000000000000000000D0</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>00000000000000000000001A</string>
+			<string>00000000000000000000006C</string>
 		</dict>
-		<key>00000000000000000000001B</key>
+		<key>00000000000000000000006D</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -287,14 +327,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00000000000000000000002F</key>
+		<key>0000000000000000000000D1</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>00000000000000000000001B</string>
+			<string>00000000000000000000006D</string>
 		</dict>
-		<key>00000000000000000000001C</key>
+		<key>00000000000000000000006E</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -305,12 +345,12 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>000000000000000000000030</key>
+		<key>0000000000000000000000D2</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
-			<string>00000000000000000000001C</string>
+			<string>00000000000000000000006E</string>
 		</dict>
 		<key>00000000000000000000003D</key>
 		<dict>
@@ -491,6 +531,8 @@
 				<string>YES</string>
 				<key>FFBE_UNIT_CONTENT</key>
 				<string>preservation</string>
+				<key>FFBE_SUMMON_UI</key>
+				<string>original</string>
 				<key>SWIFT_OPTIMIZATION_LEVEL</key>
 				<string>-Onone</string>
 			</dict>
@@ -539,6 +581,8 @@
 				<string>YES</string>
 				<key>FFBE_UNIT_CONTENT</key>
 				<string>preservation</string>
+				<key>FFBE_SUMMON_UI</key>
+				<string>original</string>
 				<key>SWIFT_OPTIMIZATION_LEVEL</key>
 				<string>-O</string>
 			</dict>

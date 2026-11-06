@@ -121,6 +121,17 @@ def main():
             subprocess.run(['/usr/bin/codesign', '--force', '--sign', identity, '--timestamp=none', str(framework)], check=True)
     package_code(app / 'PythonApp')
     package_content(app / 'UnitContent', os.environ.get('FFBE_UNIT_CONTENT', 'preservation'))
+    sys.path.insert(0, str(IOS / 'content_tools'))
+    from import_summon_ui import verify, output
+    ui = app / 'SummonUI'
+    if ui.exists(): shutil.rmtree(ui)
+    if os.environ.get('FFBE_SUMMON_UI', 'original') == 'fallback':
+        ui.mkdir()
+    else:
+        try: verify()
+        except (OSError, ValueError) as error:
+            raise RuntimeError('Run python3 source/ios/content_tools/import_summon_ui.py first, or use FFBE_SUMMON_UI=fallback') from error
+        shutil.copytree(output(), ui)
     print('Packaged Python 3.13.11 for', platform, architectures, 'with', len(list(home.rglob('*.fwork'))), 'extension frameworks')
 
 
