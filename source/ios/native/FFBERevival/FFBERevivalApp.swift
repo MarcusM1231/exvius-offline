@@ -4,7 +4,13 @@ import SwiftUI
 struct FFBERevivalApp: App {
     var body: some Scene {
         WindowGroup {
-            if ProcessInfo.processInfo.arguments.contains("--unit-animation-gallery") {
+            if ProcessInfo.processInfo.arguments.contains("--unit-attack-diagnostics") {
+                UnitAttackDiagnostics()
+            } else if ProcessInfo.processInfo.arguments.contains("--unit-action-diagnostics") {
+                UnitActionDiagnostics()
+            } else if ProcessInfo.processInfo.arguments.contains("--unit-action-preview") {
+                NavigationStack { UnitActionResearchView() }
+            } else if ProcessInfo.processInfo.arguments.contains("--unit-animation-gallery") {
                 NavigationStack { UnitAnimationGallery() }
             } else if ProcessInfo.processInfo.arguments.contains("--unit-animation-diagnostics") {
                 UnitAnimationDiagnostics()

@@ -55,3 +55,20 @@ def compose(texture, parts, offset=(0,0), canvas=(512,512), origin=(256,384)):
         if not (0<=dx<dx+w<=canvas[0] and 0<=dy<dy+h<=canvas[1]): raise ValueError('Composition canvas bounds')
         out.alpha_composite(part,(dx,dy))
     return out
+
+
+def staging_bounds(selected, sequence):
+    """Exact union of transformed part rectangles; shared source-space unit anchor."""
+    boxes=[]
+    for row in sequence:
+        for p in selected[row['composition']]:
+            w,h=p['width'],p['height']
+            if p['rotation']%180:w,h=h,w
+            x=p['x']+row['offset_x'];y=p['y']+row['offset_y']
+            boxes.append((x,y,x+w,y+h))
+    if not boxes:raise ValueError('Empty action bounds')
+    box=(min(b[0] for b in boxes),min(b[1] for b in boxes),max(b[2] for b in boxes),max(b[3] for b in boxes))
+    w,h=box[2]-box[0],box[3]-box[1]
+    if w>2048 or h>1024 or max(abs(v) for v in box)>4096:raise ValueError('Attack staging dimensions exceed bounded policy')
+    if w*h*len(sequence)*4>33554432:raise ValueError('Attack decoded clip exceeds 32 MiB budget')
+    return box

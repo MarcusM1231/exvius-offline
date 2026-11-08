@@ -5,6 +5,7 @@ struct UnitAnimationEntry: Decodable, Identifiable {
     let master_id: String
     let name: String
     let supported: [String]
+    let unsupported: [String:String]?
     let reason: String
     let is_target: Bool
     var id: String {master_id}
@@ -26,11 +27,13 @@ struct UnitAnimationGallery: View {
     var filtered:[UnitAnimationEntry] {UnitAnimationLibrary.entries.filter {search.isEmpty || $0.master_id.contains(search) || $0.name.localizedCaseInsensitiveContains(search)}}
     var body: some View {
         List {
+            NavigationLink("Developer action / sequence comparison") { UnitActionResearchView() }
             Section {
                 let targets=UnitAnimationLibrary.entries.filter(\.is_target)
                 let supported=targets.filter {$0.supported.contains("idle")}.count
                 Text("\(supported) supported exact IDs / \(targets.count) target IDs")
-                Text("\(String(format:"%.1f",Double(supported)/Double(max(1,targets.count))*100))% target coverage · idle is the production default").font(.caption)
+                Text("\(String(format:"%.1f",Double(supported)/Double(max(1,targets.count))*100))% idle coverage · finite attack → idle when supported").font(.caption)
+                Text("\(targets.filter {$0.supported.contains("atk")}.count) target IDs with validated attacks").font(.caption)
                 Text("Includes the 423 target IDs and two preserved research forms. No campaign access or Lapis cost.").font(.caption)
             }
             ForEach(filtered) {entry in

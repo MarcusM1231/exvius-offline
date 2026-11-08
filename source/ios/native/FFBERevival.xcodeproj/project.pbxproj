@@ -78,6 +78,11 @@
 				<string>00000000000000000000007E</string>
 				<string>00000000000000000000007F</string>
 				<string>000000000000000000000080</string>
+				<string>000000000000000000000081</string>
+				<string>000000000000000000000082</string>
+				<string>000000000000000000000083</string>
+				<string>000000000000000000000084</string>
+				<string>000000000000000000000085</string>
 				<string>000000000000000000000012</string>
 				<string>00000000000000000000003D</string>
 				<string>000000000000000000000003</string>
@@ -175,6 +180,11 @@
 				<string>0000000000000000000000E2</string>
 				<string>0000000000000000000000E3</string>
 				<string>0000000000000000000000E4</string>
+				<string>0000000000000000000000E5</string>
+				<string>0000000000000000000000E6</string>
+				<string>0000000000000000000000E7</string>
+				<string>0000000000000000000000E8</string>
+				<string>0000000000000000000000E9</string>
 			</array>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
@@ -449,7 +459,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/PythonDiagnostics.swift</string>
+			<string>FFBERevival/ObtainedUnitMotion.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -467,7 +477,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/RevealResearchPreview.swift</string>
+			<string>FFBERevival/PythonDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -485,7 +495,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/SummonCharacterReveal.swift</string>
+			<string>FFBERevival/RevealResearchPreview.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -503,7 +513,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/SummonCrystalPresentation.swift</string>
+			<string>FFBERevival/SummonCharacterReveal.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -521,7 +531,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/SummonInterface.swift</string>
+			<string>FFBERevival/SummonCrystalPresentation.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -539,7 +549,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/SummonInterfaceDiagnostics.swift</string>
+			<string>FFBERevival/SummonInterface.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -557,7 +567,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/TapSummonDiagnostics.swift</string>
+			<string>FFBERevival/SummonInterfaceDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -575,7 +585,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/TapSummonState.swift</string>
+			<string>FFBERevival/TapSummonDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -593,7 +603,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitAnimationClock.swift</string>
+			<string>FFBERevival/TapSummonState.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -611,7 +621,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitAnimationDiagnostics.swift</string>
+			<string>FFBERevival/UnitActionDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -629,7 +639,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitAnimationGallery.swift</string>
+			<string>FFBERevival/UnitActionResearch.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -647,7 +657,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitAnimationView.swift</string>
+			<string>FFBERevival/UnitActionSequence.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -665,7 +675,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitArtworkView.swift</string>
+			<string>FFBERevival/UnitAnimationClock.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -683,7 +693,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitContent.swift</string>
+			<string>FFBERevival/UnitAnimationDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -699,9 +709,9 @@
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>Bridge/PythonBridge.m</string>
+			<string>FFBERevival/UnitAnimationGallery.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -711,6 +721,96 @@
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
 			<string>000000000000000000000080</string>
+		</dict>
+		<key>000000000000000000000081</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitAnimationView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E5</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000081</string>
+		</dict>
+		<key>000000000000000000000082</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitArtworkView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000082</string>
+		</dict>
+		<key>000000000000000000000083</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitAttackDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E7</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000083</string>
+		</dict>
+		<key>000000000000000000000084</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitContent.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E8</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000084</string>
+		</dict>
+		<key>000000000000000000000085</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Bridge/PythonBridge.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E9</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000085</string>
 		</dict>
 		<key>00000000000000000000003D</key>
 		<dict>

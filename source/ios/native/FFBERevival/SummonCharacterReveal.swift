@@ -58,6 +58,7 @@ enum CharacterSpritePixels {
     @Published private(set) var sprite: UIImage?
     private(set) var display: UnitDisplay?
     @Published private(set) var animation: UnitAnimationClip?
+    let unitMotion = ObtainedUnitMotion()
     private(set) var animationStart = 0.0
     private(set) var hasStarted = false
     private(set) var callbackCount = 0
@@ -81,9 +82,10 @@ enum CharacterSpritePixels {
         guard let award = state.current else { return false }
         let unit = UnitCatalog.display(masterID: award.unit_id, backendName: award.name, rarity: award.granted_rarity, isAward: true)
         // Release the previous clip before decoding the next exact-ID animation.
-        animation = nil; sprite = nil
+        animation = nil; sprite = nil; unitMotion.clear()
         guard unit.masterID == award.unit_id else { return false }
-        animation = UnitAnimationClip.load(masterID: award.unit_id)
+        unitMotion.load(masterID:award.unit_id)
+        animation = unitMotion.idle
         if let url = unit.artworkURL, let original = UIImage(contentsOfFile: url.path) {
             sprite = CharacterSpritePixels.anchored(original)
         }
@@ -110,7 +112,7 @@ enum CharacterSpritePixels {
         callbackCount += 1; invalidate()
         let callback = onCompletion; onCompletion = nil
         // Free decoded resources before crossing back to the results presenter.
-        animation = nil; sprite = nil; display = nil; images = [:]
+        animation = nil; sprite = nil; unitMotion.clear(); display = nil; images = [:]
         callback?(reason,state.receipt.awards)
     }
     func suspend() { state.suspend(); invalidate() }
@@ -207,9 +209,9 @@ struct SummonCharacterReveal: View {
                     .blendMode(.plusLighter).opacity(material*(0.88+0.08*sin(state.motionTime*1.3)))
                     .position(x: width/2,y: baseline+3)
             }
-            if let clip = controller.animation {
-                let scale = min(3.2,min(width*0.65/Double(clip.metadata.width),height*0.72/Double(clip.metadata.height)))
-                UnitAnimationView(clip:clip,elapsed:reduceMotion ? 0 : max(0,state.motionTime-controller.animationStart),scale:scale)
+            if let playback = controller.unitMotion.sample(at:max(0,state.motionTime-controller.animationStart),reducedMotion:reduceMotion) {
+                let framing = controller.unitMotion.framing(width:width,height:height,baseline:baseline)
+                UnitAnimationView(clip:playback.clip,elapsed:playback.time,scale:framing.scale,horizontalAnchor:framing.anchor)
                     .frame(width:width,height:baseline)
                     .scaleEffect(reduceMotion ? 1 : 0.90+0.10*material,anchor:.bottom)
                     .opacity(material).position(x:width/2,y:baseline/2+(reduceMotion ? 0 : 12*(1-material)))

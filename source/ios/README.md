@@ -84,3 +84,7 @@ Phase 6D-3A: [falling crystal entrance and TOUCH SCREEN](docs/falling-crystal-en
 Phase 6D-4: [original unit animations and personal Lapis control](docs/unit-animations.md).
 
 Phase 6D-4B: [expanded animation recovery and searchable gallery](docs/unit-animation-expansion.md).
+
+Phase 6D-4C: [original summon action investigation and isolated sequence comparisons](docs/summon-action-investigation.md). That phase retained production idle; Phase 6D-4D below adds validated attacks.
+
+Phase 6D-4D attack recovery and production routing: [architecture and rebuild guide](docs/obtained-attack-integration.md).

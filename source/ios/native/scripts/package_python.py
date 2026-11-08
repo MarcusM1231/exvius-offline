@@ -174,14 +174,22 @@ def main():
         shutil.copytree(entrance_output(), entrance)
     except (OSError, ValueError):
         print('Optional entrance prompt/cloud unavailable; native prompt and existing crystal remain usable')
-    from import_unit_animations import verify as verify_animations, output as animation_output
+    from import_unit_attacks import verify as verify_animations, output as animation_output
     animations = app / 'UnitAnimations'
     if animations.exists(): shutil.rmtree(animations)
     try:
         verify_animations()
         shutil.copytree(animation_output(), animations)
     except (OSError, ValueError):
-        print('Optional unit animations unavailable; exact-ID static artwork remains the fallback')
+        raise RuntimeError('Production animation bundle missing or invalid; run import_unit_attacks.py. Existing app remains installed.')
+    from import_unit_action_research import verify as verify_actions, output as action_output
+    actions = app / 'UnitActionResearch'
+    if actions.exists(): shutil.rmtree(actions)
+    try:
+        verify_actions()
+        shutil.copytree(action_output(), actions)
+    except (OSError, ValueError):
+        print('Optional Developer action research unavailable; production animation bundle is independent')
     print('Packaged Python 3.13.11 for', platform, architectures, 'with', len(list(home.rglob('*.fwork'))), 'extension frameworks')
 
 
