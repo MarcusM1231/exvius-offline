@@ -3,7 +3,7 @@ import Foundation
 struct Cost: Decodable {
     let kind: String
     let amount: Int?
-    var label: String { "\(amount ?? 0) \(kind)" }
+    var label: String { if kind == "ticket" { return "Ticket required" }; return "\(amount ?? 0) \(["lapis":"Lapis","lapis_free":"Free Lapis","lapis_paid":"Paid Lapis","friend_point":"Friend Points","gil":"Gil","item":"items","important":"tickets","free":"Free"][kind] ?? kind)" }
 }
 struct Offer: Decodable, Identifiable {
     let offer: String
@@ -139,8 +139,10 @@ struct API {
         }
         base = url
     }
-    func request<T: Decodable>(_ path: String, body: [String: String]? = nil) async throws -> T {
-        var request = URLRequest(url: base.appendingPathComponent(path))
+    func request<T: Decodable>(_ path: String, body: [String: String]? = nil, query: [String: String] = [:]) async throws -> T {
+        var components = URLComponents(url: base.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+        if !query.isEmpty { components.queryItems = query.sorted(by: {$0.key < $1.key}).map { URLQueryItem(name: $0.key, value: $0.value) } }
+        var request = URLRequest(url: components.url!)
         request.timeoutInterval = 20
         request.cachePolicy = .reloadIgnoringLocalCacheData
         if let body {
@@ -159,6 +161,8 @@ struct API {
 }
 
 protocol SummonBackend {
+    func menu() async throws -> MenuCatalog
+    func quote(bannerID: String, offer: String) async throws -> MenuQuote
     func banners() async throws -> BannersResponse
     func state() async throws -> Campaign
     func summon(bannerID: String, offer: String) async throws -> SummonResponse
@@ -167,6 +171,8 @@ protocol SummonBackend {
 struct HTTPBackend: SummonBackend {
     private let api: API
     init(address: String) throws { api = try API(address: address) }
+    func menu() async throws -> MenuCatalog { try await api.request("v1/menu") }
+    func quote(bannerID: String, offer: String) async throws -> MenuQuote { try await api.request("v1/quote", query: ["banner_id":bannerID,"offer":offer]) }
     func banners() async throws -> BannersResponse { try await api.request("v1/banners") }
     func state() async throws -> Campaign { try await api.request("v1/state") }
     func summon(bannerID: String, offer: String) async throws -> SummonResponse {
@@ -177,6 +183,8 @@ struct HTTPBackend: SummonBackend {
 @MainActor
 final class SummonModel: ObservableObject {
     @Published var banners: [Banner] = []
+    @Published var menuCatalog: MenuCatalog?
+    @Published var menuError: String?
     @Published var campaign: Campaign?
     @Published var results: [Award] = []
     @Published var busy = false
@@ -199,6 +207,8 @@ final class SummonModel: ObservableObject {
             if let receipt = committedSummon, receipt.backendIdentity != identity || !CommittedSummon.sameAwards(receipt.awards, results) { committedSummon = nil }
             connectedIdentity = identity
             needsRefresh = false
+            do { menuCatalog = try await backend.menu(); menuError = nil }
+            catch { menuCatalog = nil; menuError = error.localizedDescription }
         } catch {
             self.error = error.localizedDescription
             needsRefresh = true
@@ -226,6 +236,13 @@ final class SummonModel: ObservableObject {
             return false
         }
     }
+    func quote(_ bannerID: String, offer: String, using backend: any SummonBackend, identity: String) async -> MenuQuote? {
+        guard !busy, !needsRefresh, connectedIdentity == identity else { return nil }
+        busy = true
+        defer { busy = false }
+        do { return try await backend.quote(bannerID: bannerID, offer: offer) }
+        catch { self.error = error.localizedDescription; return nil }
+    }
     // Preserve the Phase 3 client entry points and contract checks.
     func refresh(_ address: String) async {
         do { await refresh(using: try HTTPBackend(address: address), identity: address) }
@@ -237,10 +254,37 @@ final class SummonModel: ObservableObject {
     }
     func addressChanged() {
         campaign = nil
+        menuCatalog = nil
         banners = []
         results = []
         connectedIdentity = nil
         committedSummon = nil
         needsRefresh = true
     }
+}
+
+
+struct MenuGroup: Decodable, Identifiable { let id: String, label: String }
+struct MenuRate: Decodable { let rarity: Int; let weight: Double }
+struct MenuTicket: Decodable, Identifiable { let id: String, item_id: String; let balance: Int; let enabled: Bool }
+struct MenuQuote: Decodable, Identifiable {
+    let banner_id: String, offer: String, detail_id: String
+    let draws: Int, balance: Int, step: Int, steps: Int, lap: Int, usage: Int, purchase_limit: Int
+    let cost: Cost
+    let supported: Bool, eligible: Bool
+    let reason: String, guarantee: String, ticket_group: String
+    let tickets: [MenuTicket]
+    var id: String { offer }
+    var transactionOffer: Offer { Offer(offer: offer,cost: cost,draws: draws) }
+}
+struct MenuBanner: Decodable, Identifiable {
+    let id: String, name: String, category: String, notice: String, description: String, availability: String
+    let groups: [String], featured: [String], offers: [MenuQuote], rates: [MenuRate]
+    let playable: Bool
+}
+struct MenuCatalog: Decodable { let banners: [MenuBanner]; let groups: [MenuGroup] }
+
+extension SummonBackend {
+    func menu() async throws -> MenuCatalog { throw APIError(message: "Update the development backend for banner browsing.") }
+    func quote(bannerID: String, offer: String) async throws -> MenuQuote { throw APIError(message: "Live offer quotes are unavailable.") }
 }

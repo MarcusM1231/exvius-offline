@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "scope": "Developer-only read-only snapshot; no campaign/player/RNG access",
+  "source_hashes": {
+    "source/server/gacha_catalogue.json": "ffc270fe7174e85da8b987b7b3c0f3f148b368229fa0bd0a1cf625a379f8e73b",
+    "source/server/gacha_community.json": "fd5273d310faeb06c2fcdddc86c505ca4fe4b927edb16fc609e8d1d55f875210",
+    "source/server/gacha_named.json": "63073d88b85e1c9a93763bc3f9715379411f21a4b2661b2605fc83c04a526b40",
+    "source/server/gacha_authored.json": "3c71fe4f180cbfa31a451b8367637088d3dc3096fc3eeb8d5bd193a4cedffbfa",
+    "source/server/gacha_standard.json": "78265aeda90e46d197d660364e9e6304f4097db54019ef16bdff46205152ec13",
+    "source/server/ffbe_gacha.py": "06c5a2574de8f788abf1e5d35b73ab3723870c5f4f31ce57464a25ac4d684010",
+    "source/server/gacha_archive.py": "14a089503556475d4527dcfc351ea7365a9e219c7fcbf91642e16ee84d10c6be",
+    "source/server/ffbe_config.py": "0bc397032c915385bf1805e243ebcf26debfc6e1ec40fabfb85b142aaa84715c",
+    "source/ios/prototype/summon_service.py": "924d4e53906a0af994e90a19c9b9c7b6c98a6cc40c56375dfcdd710358903956",
+    "source/ios/prototype/demo_data.py": "bce6814becd8f0fb7e04c7297d5f349cc7a3f0a760e60abef8cdcf5d2a08b6fc",
+    "source/ios/content_tools/content.lock.json": "1bb958b0dcf6ef4d7a66e34a3e0c1b3f6b412b217ae70b677858f53b21163e1d"
+  },
+  "art_lock_sha256": "4831b51b52d5f4ecdc291ea721d4d1ae20d6368f10c0ebddf5fef939a10c669b",
+  "presentation_catalog_sha256": "2e4c564ccf650eadadab8f3d2bbc3e67535410c165515da7a72c9d83ac1c32ab",
+  "record_count": 745
+}

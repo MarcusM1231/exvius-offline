@@ -4,7 +4,11 @@ import SwiftUI
 struct FFBERevivalApp: App {
     var body: some Scene {
         WindowGroup {
-            if ProcessInfo.processInfo.arguments.contains("--unit-attack-diagnostics") {
+            if ProcessInfo.processInfo.arguments.contains("--banner-menu-test") {
+                BannerMenuDiagnostics()
+            } else if ProcessInfo.processInfo.arguments.contains("--banner-research-preview") {
+                NavigationStack { BannerResearchPreview() }
+            } else if ProcessInfo.processInfo.arguments.contains("--unit-attack-diagnostics") {
                 UnitAttackDiagnostics()
             } else if ProcessInfo.processInfo.arguments.contains("--unit-action-diagnostics") {
                 UnitActionDiagnostics()

@@ -1196,7 +1196,7 @@ def expand_pool(banner: dict) -> list:
         else:
             per = rate / len(units)
             for u in units:
-                out.append({"unit_id": u, "rarity": tier.get("rarity"), "rate": per})
+                out.append({"unit_id": u, "rarity": (unit_mst(u) or {}).get("9fW0TePj", tier.get("rarity")) if tier.get("units") else tier.get("rarity"), "rate": per})
     return _only_named(out)
 
 
@@ -4092,7 +4092,7 @@ class PlayerState:
             return None
         reward_pool = banner.get('reward_pool')
         bonus_before, bonus_dirty = (copy.deepcopy(self.data), self.dirty) if bonus_rewards or reward_pool else (None, None)
-        pool = copy.deepcopy(reward_pool) if reward_pool else expand_pool(banner)
+        pool = copy.deepcopy(reward_pool) if reward_pool else expand_pool(dict(banner, pool=step["pool"]) if step.get("pool") else banner)
         if not pool:
             return None
         if reward_pool:

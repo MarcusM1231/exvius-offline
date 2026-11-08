@@ -114,6 +114,8 @@ struct GlobalSummonScreen: View {
     @ObservedObject var model: SummonModel
     let summon: (Banner, Offer) async -> Bool
     let refresh: () async -> Void
+    let quote: ((Banner, Offer) async -> MenuQuote?)?
+    @State private var pendingQuote: MenuQuote?
     @State private var selected: Banner?
     @State private var pending: Offer?
     @State private var showResults = false
@@ -124,8 +126,8 @@ struct GlobalSummonScreen: View {
     @State private var crystalCover: CommittedSummon?
     @State private var presentedAwards: [Award]?
     init(model: SummonModel, initialBanner: Banner? = nil, results: Bool = false,
-         refresh: @escaping () async -> Void = {}, summon: @escaping (Banner, Offer) async -> Bool) {
-        self.model = model; self.summon = summon; self.refresh = refresh
+         refresh: @escaping () async -> Void = {}, quote: ((Banner, Offer) async -> MenuQuote?)? = nil, summon: @escaping (Banner, Offer) async -> Bool) {
+        self.model = model; self.summon = summon; self.refresh = refresh; self.quote = quote
         _selected = State(initialValue: initialBanner)
         _showResults = State(initialValue: results)
         _presentedAwards = State(initialValue: results ? model.results : nil)
@@ -133,14 +135,16 @@ struct GlobalSummonScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                if selected != nil || showResults {
+                if showResults {
                     Button { selected = nil; showResults = false } label: { Label("Banners", systemImage: "chevron.left") }
                         .disabled(model.busy)
                 } else { Text("SUMMON").font(.system(.title2, design: .serif).bold()).foregroundStyle(gold) }
                 Spacer()
                 SummonArt(id: "lapis").scaledToFit().frame(width: 22, height: 26)
                 Text("\(lapis)").monospacedDigit().bold().accessibilityIdentifier("lapis-balance")
-            }.padding(.horizontal, 16).padding(.vertical, 12).background { SummonArt(id: "line").overlay(ink.opacity(0.3)) }
+            }.padding(.horizontal, 16).padding(.vertical, 12).background {
+                OriginalMenuArt(id:"header-background").overlay(alignment:.bottom) {OriginalMenuArt(id:"header-decoration").scaledToFit()}
+            }
             if model.busy { ProgressView("Saving summon…").tint(gold).padding(8) }
             if let error = model.error {
                 VStack(spacing: 8) {
@@ -157,22 +161,22 @@ struct GlobalSummonScreen: View {
                     showResults = false; selected = nil
                 }
             } else {
-                GeometryReader { geometry in
-                    let scale = min(geometry.size.width, 760) / 640
-                    ScrollView {
-                        ZStack(alignment: .topLeading) {
-                            if let banner = selected { detail(banner) } else { banners }
-                        }.frame(width: 640, height: selected == nil ? max(640, Double(model.banners.count)*190+260) : 850)
-                            .scaleEffect(scale, anchor: .topLeading)
-                            .frame(width: 640*scale, height: (selected == nil ? max(640,Double(model.banners.count)*190+260) : 850)*scale, alignment: .topLeading)
-                            .frame(maxWidth: .infinity)
-                    }
-                }
+                OriginalBannerMenu(model: model, initialID: selected?.id, choose: { banner, offer in
+                    guard !requestInFlight, !model.busy, !model.needsRefresh else { return }
+                    let live = if let quote { await quote(banner,offer) } else { model.menuCatalog?.banners.first(where: {$0.id==banner.id})?.offers.first(where: {$0.offer==offer.offer}) }
+                    guard let live else { model.error = "Could not refresh this summon offer."; return }
+                    pendingQuote = live
+                    selected = banner
+                    confirmationDismissed = false
+                    pending = live.transactionOffer
+                }, latest: {
+                    presentedAwards = model.results; showResults = true
+                })
             }
         }.background(ink).foregroundStyle(.white)
-            .sheet(item: $pending, onDismiss: { confirmationDismissed = true; presentCommittedIfReady() }) { offer in
+            .fullScreenCover(item: $pending, onDismiss: { confirmationDismissed = true; presentCommittedIfReady() }) { offer in
                 if let banner = selected {
-                    SummonConfirmation(banner: banner, offer: offer, balance: lapis, busy: model.busy) {
+                    SummonConfirmation(banner: banner, offer: offer, balance: pendingQuote?.balance ?? lapis, busy: model.busy, quote: pendingQuote) {
                         guard !requestInFlight else { return }
                         requestInFlight = true
                         let priorReceipt = model.committedSummon?.id
@@ -258,26 +262,27 @@ struct SummonConfirmation: View {
     let offer: Offer
     let balance: Int
     let busy: Bool
+    var quote: MenuQuote? = nil
     let confirm: () -> Void
     @Environment(\.dismiss) private var dismiss
     var body: some View {
-        ScrollView {
-        VStack(spacing: 22) {
-            Text("Confirm Summon").font(.system(.title2, design: .serif).bold()).foregroundStyle(gold)
-            Text(banner.name).font(.headline).multilineTextAlignment(.center)
-            Text("Summon ×\(offer.draws)")
-            Text("Cost: \(offer.cost?.label ?? "Free")").font(.title3.bold())
-            Text("Lapis balance: \(balance)").monospacedDigit()
-            if offer.cost?.kind == "lapis", let amount = offer.cost?.amount, amount > balance {
-                Text("Insufficient Lapis for this summon.").font(.caption).foregroundStyle(gold)
-            }
-            Button("Confirm · \(offer.cost?.label ?? "Free")", action: confirm)
-                .buttonStyle(.borderedProminent).tint(.brown).disabled(busy)
-                .accessibilityIdentifier("confirm-summon")
-            Button("Cancel") { dismiss() }.foregroundStyle(gold)
-        }.padding(28).frame(maxWidth: .infinity)
-        }.background { SummonArt(id: "window").overlay(ink.opacity(0.35)) }
-            .foregroundStyle(.white).presentationDetents([.height(470),.large])
+        ZStack {
+            Color.black.opacity(0.92).ignoresSafeArea()
+            ScrollView {
+                VStack(spacing:22) {
+                    Text("CONFIRM SUMMON").font(.system(.title2,design:.serif).bold()).foregroundStyle(gold)
+                    Text(banner.name).font(.headline).multilineTextAlignment(.center)
+                    Text("Summon ×\(offer.draws)").font(.title2)
+                    Text("Cost: \(offer.cost?.label ?? "Free")").font(.title3.bold())
+                    Text("Lapis balance: \(balance)").monospacedDigit()
+                    if let quote {Text(quote.guarantee).font(.callout);if !quote.reason.isEmpty {Text(quote.reason).foregroundStyle(gold)}}
+                    OriginalMenuButton(title:"Confirm · \(offer.cost?.label ?? "Free")",enabled:!busy && (quote?.eligible ?? ((offer.cost?.amount ?? 0)<=balance)),action:confirm)
+                        .accessibilityIdentifier("confirm-summon")
+                    OriginalMenuButton(title:"Cancel") {dismiss()}
+                }.padding(28).frame(maxWidth:480)
+                    .background {OriginalMenuArt(id:"window")}
+            }.frame(maxWidth:520,maxHeight:560).padding(20)
+        }.foregroundStyle(.white)
     }
 }
 

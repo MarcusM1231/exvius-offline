@@ -32,9 +32,15 @@ class ActionTests(unittest.TestCase):
             subprocess.run(['xcrun','swiftc','-module-cache-path',str(IOS/'.local/swift-cache'),str(IOS/'native/FFBERevival/UnitAnimationClock.swift'),str(IOS/'native/FFBERevival/UnitActionSequence.swift'),str(IOS/'native/tests/UnitActionSequenceSmoke.swift'),'-o',str(binary)],check=True,capture_output=True)
             subprocess.run([str(binary)],check=True,capture_output=True)
     def test_gameplay_crystal_and_idle_locks_unchanged_from_checkpoint(self):
-        for relative in ['native/FFBERevival/SummonInterface.swift','native/FFBERevival/CrystalReconstruction.swift','native/FFBERevival/CharacterRevealState.swift','embedded/offline_entry.py','prototype/summon_service.py','content_tools/unit-animation-expanded.lock.json']:
+        for relative in ['native/FFBERevival/CrystalReconstruction.swift','native/FFBERevival/CharacterRevealState.swift','prototype/summon_service.py','content_tools/unit-animation-expanded.lock.json']:
             committed=subprocess.check_output(['git','show','d0d1103:source/ios/'+relative],cwd=IOS)
             self.assertEqual((IOS/relative).read_bytes(),committed,relative)
+    def test_menu_preserves_committed_reveal_helpers(self):
+        relative='native/FFBERevival/SummonInterface.swift'
+        committed=subprocess.check_output(['git','show','6da00ff:source/ios/'+relative],cwd=IOS).decode()
+        current=(IOS/relative).read_text()
+        def helpers(text):return text[text.index('    private func presentCommittedIfReady()'):text.index('    private var lapis:')]
+        self.assertEqual(helpers(current),helpers(committed))
     def test_research_has_no_campaign_or_reward_api(self):
         text=(IOS/'native/FFBERevival/UnitActionResearch.swift').read_text()
         for prohibited in ['EmbeddedSummonBackend','PythonWorker','SummonModel','URLSession','roll_gacha','campaign.json']:

@@ -9,7 +9,7 @@ sys.dont_write_bytecode = True
 IOS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(IOS / 'prototype'))
 from demo_data import prepare
-from summon_service import SummonService
+from banner_menu import MenuSummonService as SummonService
 from summon_api import make_server
 
 

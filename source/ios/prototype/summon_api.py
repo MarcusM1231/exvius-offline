@@ -5,9 +5,10 @@ import json
 import logging
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
 
-from summon_service import SummonError, SummonService
+from summon_service import SummonError
+from banner_menu import MenuSummonService as SummonService
 
 MAX_BODY = 4096
 
@@ -57,6 +58,11 @@ def make_server(service, host='127.0.0.1', port=8765):
                                    if key in ('cost', 'draws', 'guarantee')})
                                 for offer in banner['offers']] if banner['supported'] else []
                         self.reply(200, {'banners': banners})
+                    elif path == '/v1/menu':
+                        self.reply(200, service.menu()) if hasattr(service, 'menu') else self.error(501, 'menu_unavailable', 'Update the HTTP facade for the banner menu')
+                    elif path == '/v1/quote':
+                        query = parse_qs(urlsplit(self.path).query)
+                        self.reply(200, service.quote(query.get('banner_id',[''])[0], query.get('offer',['primary'])[0]))
                     elif path in ('/v1/state', '/v1/units', '/v1/results'):
                         state = service.state()
                         # Names are a display projection, never a gameplay mutation.

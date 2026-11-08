@@ -10,7 +10,7 @@ sys.dont_write_bytecode = True
 IOS = Path(__file__).resolve().parents[2]
 SOURCE = IOS.parent
 RUNTIME = IOS / '.local/runtime/Python.xcframework'
-MODULES = ('data_paths', 'player_state', 'ffbe_config', 'ffbe_state', 'ffbe_gacha', 'season')
+MODULES = ('data_paths', 'player_state', 'ffbe_config', 'ffbe_state', 'ffbe_gacha', 'season', 'gacha_archive')
 
 
 def copy_tree(source, destination):
@@ -28,12 +28,12 @@ def package_code(destination):
     server = destination / 'source/server'
     for path in (prototype, embedded, server):
         path.mkdir(parents=True)
-    for name in ('summon_service.py', 'demo_data.py'):
+    for name in ('summon_service.py', 'demo_data.py', 'banner_menu.py'):
         shutil.copy2(IOS / 'prototype' / name, prototype / name)
     shutil.copy2(IOS / 'embedded/offline_entry.py', embedded / 'offline_entry.py')
     for module in MODULES:
         shutil.copy2(SOURCE / 'server' / (module + '.py'), server)
-    for name in ('gacha_authored.json', 'nv_vision_cards.json', 'seasons.json'):
+    for name in ('gacha_authored.json', 'gacha_catalogue.json', 'gacha_community.json', 'gacha_named.json', 'gacha_standard.json', 'nv_vision_cards.json', 'seasons.json'):
         shutil.copy2(SOURCE / 'server' / name, server)
     # Generate using the full repository before copying just the runtime subset.
     # Metadata is generated at build time, never written to the bundle on-device.
@@ -190,6 +190,21 @@ def main():
         shutil.copytree(action_output(), actions)
     except (OSError, ValueError):
         print('Optional Developer action research unavailable; production animation bundle is independent')
+    from import_banner_research import verify as verify_banner_research, output as banner_research_output
+    research = app / 'BannerResearch'
+    if research.exists(): shutil.rmtree(research)
+    try:
+        verify_banner_research()
+        shutil.copytree(banner_research_output(), research)
+    except (OSError, ValueError):
+        print('Optional banner research unavailable; run import_banner_research.py. Production offers are unchanged.')
+    from import_global_menu import verify as verify_menu, output as menu_output
+    from import_menu_art import verify as verify_menu_art, output as menu_art_output
+    for name, check, location in [('GlobalMenu', verify_menu, menu_output), ('BannerArt', verify_menu_art, menu_art_output)]:
+        check()
+        target = app / name
+        if target.exists(): shutil.rmtree(target)
+        shutil.copytree(location(), target)
     print('Packaged Python 3.13.11 for', platform, architectures, 'with', len(list(home.rglob('*.fwork'))), 'extension frameworks')
 
 

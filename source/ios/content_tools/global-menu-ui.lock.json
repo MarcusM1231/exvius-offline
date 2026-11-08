@@ -1,0 +1,337 @@
+{
+  "schema": 1,
+  "sources": {
+    "layout-top": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/layout.cpk",
+      "sha256": "f5fa4286c51ddec4edf722965442f218d3a42ad09442d0167a2d310b87cb30d4",
+      "member": "layout/gacha/layout_gachaTop_640x1136.csv",
+      "member_sha256": "047720eb2fcd510d197f0f0561a5bcd75bd006368c46d10c733450a7542bd64b",
+      "provenance": "original-global-ipa"
+    },
+    "layout-detail": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/layout.cpk",
+      "sha256": "f5fa4286c51ddec4edf722965442f218d3a42ad09442d0167a2d310b87cb30d4",
+      "member": "layout/gacha/layout_gachaDetail_640x1136.csv",
+      "member_sha256": "525cab650a893f33a4d34bc97057c916085786c5ec98985175b465034a5d2d7d",
+      "provenance": "original-global-ipa"
+    },
+    "layout-result": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/layout.cpk",
+      "sha256": "f5fa4286c51ddec4edf722965442f218d3a42ad09442d0167a2d310b87cb30d4",
+      "member": "layout/gacha/layout_gachaResultUnit_640x1136.csv",
+      "member_sha256": "681f0aa2a2588d5d22e87536ea10efb5767f9742e43bb4a3b171278f2cb3347f",
+      "provenance": "original-global-ipa"
+    },
+    "layout-confirm": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/layout.cpk",
+      "sha256": "f5fa4286c51ddec4edf722965442f218d3a42ad09442d0167a2d310b87cb30d4",
+      "member": "layout/gacha/layout_gachaConfirm.csv",
+      "member_sha256": "a70bb8f15e52f3b3206dc8249ae999f0adccd131bcf0341958277e44620b3aba",
+      "provenance": "original-global-ipa"
+    },
+    "layout-leftButton": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/layout.cpk",
+      "sha256": "f5fa4286c51ddec4edf722965442f218d3a42ad09442d0167a2d310b87cb30d4",
+      "member": "layout/gacha/layout_gachaButtonL.csv",
+      "member_sha256": "62b6d6da467a2aced9fc07a75941951aebfe2ede9f885d7dc7cfd01547c2e608",
+      "provenance": "original-global-ipa"
+    },
+    "layout-rightButton": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/layout.cpk",
+      "sha256": "f5fa4286c51ddec4edf722965442f218d3a42ad09442d0167a2d310b87cb30d4",
+      "member": "layout/gacha/layout_gachaButtonR.csv",
+      "member_sha256": "3a8959361af6ccf6548160f91aad55c5bad130ca8fc9ab0073857fcc9d6499d7",
+      "provenance": "original-global-ipa"
+    },
+    "lapis": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/icon/icon_lapis.png",
+      "member_sha256": "4b214236c0bd0ae518a1391ffa7f3252965d5d77f186780b4cdbbe42ef10108c",
+      "provenance": "original-global-ipa"
+    },
+    "window": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/window/window_base.png",
+      "member_sha256": "fed689dc2e52f629f197ca471e8f1049755d60de8c72663446d376c8b2d5a01b",
+      "provenance": "original-global-ipa"
+    },
+    "line": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common_lang/sd/resources/resources_common_pretutorial.cpk",
+      "sha256": "71e02c3a836555eb42bb4f32e713b96270d71a9106454a7deb1cb6bd3ece64c4",
+      "member": "image/ui/window/bottomline.png",
+      "member_sha256": "21bb4accaf9cca6991ecdd5c3affda4d42a7ea8cc31aff2cd4f4f1170b7e6cd8",
+      "provenance": "original-global-ipa"
+    },
+    "single": {
+      "cache_path": "preservation/extracted/Ver58_gacha1/gacha_btn_r_default_l_1.png",
+      "sha256": "b1063bde14d38ecacf2f1cba0a99a43c0ea20852105767a816ead8da34277698",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/gacha/Ver58_gacha1.cpk",
+      "resource_path": "gacha_btn_r_default_l_1.png"
+    },
+    "single-down": {
+      "cache_path": "preservation/extracted/Ver58_gacha1/gacha_btn_r_default_l_2.png",
+      "sha256": "41c5bb957e3694f3811e216b2f998df3084b495c41e249a20ad0b6125ae1a7e1",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/gacha/Ver58_gacha1.cpk",
+      "resource_path": "gacha_btn_r_default_l_2.png"
+    },
+    "eleven": {
+      "cache_path": "preservation/extracted/Ver58_gacha1/gacha_btn_r_multi_1.png",
+      "sha256": "eec282dedb0e12e30370724e95d84f2f39f054c83e117ad029a64ed5a39fe5ae",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/gacha/Ver58_gacha1.cpk",
+      "resource_path": "gacha_btn_r_multi_1.png"
+    },
+    "eleven-down": {
+      "cache_path": "preservation/extracted/Ver58_gacha1/gacha_btn_r_multi_2.png",
+      "sha256": "3b359deb42aad10172232149963204de8dedab924c2221049a305451b8799620",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/gacha/Ver58_gacha1.cpk",
+      "resource_path": "gacha_btn_r_multi_2.png"
+    },
+    "gacha-png": {
+      "cache_path": "preservation/extracted/Ver162_resources_tutorial/image/ui/gacha/gacha.png",
+      "sha256": "3e798c38efa36e060c259af73699aa29a85bea278701830c60c48cb8f5d85928",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/resources/Ver162_resources_tutorial.cpk",
+      "resource_path": "image/ui/gacha/gacha.png"
+    },
+    "gacha-plist": {
+      "cache_path": "preservation/extracted/Ver162_resources_tutorial/image/ui/gacha/gacha.plist",
+      "sha256": "83b335d7dd48dafc7127f8a6d54547afc850364b980aeadccaca2dac30fffe42",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/resources/Ver162_resources_tutorial.cpk",
+      "resource_path": "image/ui/gacha/gacha.plist"
+    },
+    "gacha2-png": {
+      "cache_path": "preservation/extracted/Ver162_resources_tutorial/image/ui/gacha/gacha2.png",
+      "sha256": "fac0fc1463fde2ca565d7a6cfb7fb091d6052a49312d1887c76b2d7049f73e85",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/resources/Ver162_resources_tutorial.cpk",
+      "resource_path": "image/ui/gacha/gacha2.png"
+    },
+    "gacha2-plist": {
+      "cache_path": "preservation/extracted/Ver162_resources_tutorial/image/ui/gacha/gacha2.plist",
+      "sha256": "a1d5437c49fb0653592c330122fee7249c6368d56a9b37ef45ff6f646e0bc784",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/resources/Ver162_resources_tutorial.cpk",
+      "resource_path": "image/ui/gacha/gacha2.plist"
+    },
+    "cosmos": {
+      "cache_path": "preservation/extracted/Ver162_resources_tutorial/image/ui/gacha/gacha_cosmos_bg.png",
+      "sha256": "0d8a7a0bc5879ea4c4fb92972ae902093019af665642f739b09b9ec4a8498be0",
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/resources/Ver162_resources_tutorial.cpk",
+      "resource_path": "image/ui/gacha/gacha_cosmos_bg.png"
+    },
+    "common-png": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/common/common.png",
+      "member_sha256": "973c0349d059e9e57199215c7935b085f820480e1dca5580e07b954eebb41988",
+      "provenance": "original-global-ipa-9.1.0"
+    },
+    "common-plist": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/common/common.plist",
+      "member_sha256": "9232c5dcd4e54c2620415edbe211018bcb6be04253e14d2c0a3c30eb32d096e5",
+      "provenance": "original-global-ipa-9.1.0"
+    },
+    "common3-png": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/common/common3.png",
+      "member_sha256": "7ade19ed62586a89bef7b169919ae669bebafe7e7df9892e4d51e958d0c820af",
+      "provenance": "original-global-ipa-9.1.0"
+    },
+    "common3-plist": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/common/common3.plist",
+      "member_sha256": "d455779c37927cec093904f22e32e631b4b9c72b3140e43d021a413cf5dc0278",
+      "provenance": "original-global-ipa-9.1.0"
+    },
+    "header-png": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/header/header.png",
+      "member_sha256": "35e415ab646ffe255a52f96598fb3acfba4b29211ab1d570b8098e7921377b61",
+      "provenance": "original-global-ipa-9.1.0"
+    },
+    "header-plist": {
+      "cache_path": "global/cpk/Payload/FF EXVIUS.app/cpk/common.cpk",
+      "sha256": "22e96bfe7b9c35bd39aa642b30c25b19cb426d7a814686f73f0081990213ebb2",
+      "member": "image/ui/header/header.plist",
+      "member_sha256": "2d02536b8e629c5e78f0f8edad0b4cd07b3abf79af481edb84c95ad880737486",
+      "provenance": "original-global-ipa-9.1.0"
+    }
+  },
+  "layouts": {
+    "top": "layout-top",
+    "detail": "layout-detail",
+    "result": "layout-result",
+    "confirm": "layout-confirm",
+    "leftButton": "layout-leftButton",
+    "rightButton": "layout-rightButton"
+  },
+  "assets": [
+    {
+      "id": "lapis",
+      "source": "lapis"
+    },
+    {
+      "id": "window",
+      "source": "window"
+    },
+    {
+      "id": "line",
+      "source": "line"
+    },
+    {
+      "id": "single",
+      "source": "single"
+    },
+    {
+      "id": "single-down",
+      "source": "single-down"
+    },
+    {
+      "id": "eleven",
+      "source": "eleven"
+    },
+    {
+      "id": "eleven-down",
+      "source": "eleven-down"
+    },
+    {
+      "id": "background-top",
+      "source": "gacha2-png",
+      "plist": "gacha2-plist",
+      "frame": "gacha_bg_top.png"
+    },
+    {
+      "id": "plate",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_plate_unit.png"
+    },
+    {
+      "id": "tabs",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_bg.png"
+    },
+    {
+      "id": "cosmos",
+      "source": "cosmos"
+    },
+    {
+      "id": "tab-pay-1",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_pay_1.png"
+    },
+    {
+      "id": "tab-pay-2",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_pay_2.png"
+    },
+    {
+      "id": "tab-free-1",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_free_1.png"
+    },
+    {
+      "id": "tab-free-2",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_free_2.png"
+    },
+    {
+      "id": "tab-limited-1",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_limited_1.png"
+    },
+    {
+      "id": "tab-limited-2",
+      "source": "gacha-png",
+      "plist": "gacha-plist",
+      "frame": "gacha_tab_limited_2.png"
+    },
+    {
+      "id": "background-bottom",
+      "source": "gacha2-png",
+      "plist": "gacha2-plist",
+      "frame": "gacha_bg_bottom.png"
+    },
+    {
+      "id": "small-button",
+      "source": "common-png",
+      "plist": "common-plist",
+      "frame": "button_mini_long1.png"
+    },
+    {
+      "id": "small-button-down",
+      "source": "common-png",
+      "plist": "common-plist",
+      "frame": "button_mini_long2.png"
+    },
+    {
+      "id": "confirm-button",
+      "source": "common-png",
+      "plist": "common-plist",
+      "frame": "button_middle1.png"
+    },
+    {
+      "id": "confirm-button-down",
+      "source": "common-png",
+      "plist": "common-plist",
+      "frame": "button_middle2.png"
+    },
+    {
+      "id": "header-decoration",
+      "source": "common3-png",
+      "plist": "common3-plist",
+      "frame": "header_DecoFrame.png"
+    },
+    {
+      "id": "header-background",
+      "source": "header-png",
+      "plist": "header-plist",
+      "frame": "mypage_header_bg.png"
+    }
+  ],
+  "fallbacks": {
+    "fonts": "System serif typography until exact English font mapping is recovered.",
+    "banner-art": "Exact-ID community-calendar images for two demos; other English preservation artwork individually pinned. Missing art uses a labeled frame.",
+    "header": "Original Global frames with reconstructed title/currency text; no unrelated account values.",
+    "archive": "Secondary revival filter, not an original tab.",
+    "dialogs": "Original window/button skins; native text and modal layout adapted for safe areas."
+  },
+  "render_bindings": {
+    "top.common_banner": "fallback:demo-banner/background-top",
+    "detail.gacha_banner": "fallback:demo-banner/background-top",
+    "detail.gacha_btn_left_offset": "single",
+    "detail.gacha_btn_right_offset": "eleven (only actual 11-draw Lapis offers)",
+    "result.gacha_result_area2": "fallback:adaptive-unit-grid",
+    "result.gacha_result_unit_next_btn1": "fallback:native-return-control",
+    "confirm.gacha_conf_window": "window",
+    "confirm.gacha_conf_btn": "fallback:native-confirm-control"
+  }
+}

@@ -5,7 +5,8 @@ import sys
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'prototype'))
-from summon_service import SummonError, SummonService
+from summon_service import SummonError
+from banner_menu import MenuSummonService as SummonService
 
 _service = None
 _storage = None
@@ -89,6 +90,20 @@ def dispatch(request_json):
             raise ValueError('Initialize offline storage first')
         elif operation == 'banners':
             value = banners()
+        elif operation == 'menu_diagnostics':
+            import copy, hashlib
+            with _service.lock:
+                before=copy.deepcopy(_service.player.data)
+                dirty=_service.player.dirty
+                saved=_service.save_path.read_bytes()
+                menu=_service.menu()
+                value={'unchanged':before==_service.player.data and dirty==_service.player.dirty,
+                       'no_save':saved==_service.save_path.read_bytes(), 'banners':len(menu['banners']),
+                       'save_sha256':hashlib.sha256(saved).hexdigest()}
+        elif operation == 'menu':
+            value = _service.menu()
+        elif operation == 'quote':
+            value = _service.quote(request['banner_id'], request.get('offer', 'primary'))
         elif operation == 'state':
             value = state()
         elif operation == 'diagnostics':

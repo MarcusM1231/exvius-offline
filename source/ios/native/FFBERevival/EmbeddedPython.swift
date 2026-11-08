@@ -80,6 +80,14 @@ actor EmbeddedSummonBackend: SummonBackend {
         }
         initialized = true
     }
+    func menu() async throws -> MenuCatalog {
+        try await initialize()
+        return try await PythonWorker.shared.call(["operation":"menu"])
+    }
+    func quote(bannerID: String, offer: String) async throws -> MenuQuote {
+        try await initialize()
+        return try await PythonWorker.shared.call(["operation":"quote","banner_id":bannerID,"offer":offer])
+    }
     func banners() async throws -> BannersResponse {
         try await initialize()
         return try await PythonWorker.shared.call(["operation": "banners"])

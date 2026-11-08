@@ -10,7 +10,10 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            GlobalSummonScreen(model: model, refresh: { await refresh() }) { banner, offer in
+            GlobalSummonScreen(model: model, refresh: { await refresh() }, quote: { banner, offer in
+                do { return await model.quote(banner.id, offer: offer.offer, using: try backend(), identity: identity) }
+                catch { model.error = error.localizedDescription; return nil }
+            }) { banner, offer in
                 await summon(banner, offer: offer)
             }.id(identity).tabItem { Label("Summon", systemImage: "sparkles") }
             NavigationStack {
@@ -26,6 +29,9 @@ struct ContentView: View {
             }.tabItem { Label("Collection", systemImage: "person.3") }
             NavigationStack {
                 List {
+                    Section("Summon banner research") {
+                        NavigationLink("Browse read-only banner catalog") { BannerResearchPreview() }
+                    }
                     Section("Character reveal research") {
                         NavigationLink("Original unit animations") { UnitAnimationGallery() }
                         NavigationLink("Inspect reveal artwork candidates") { RevealResearchPreview() }

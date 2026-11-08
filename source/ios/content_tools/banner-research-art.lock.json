@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "scope": "Developer-only banner research; no production offers enabled",
+  "provenance_warning": "Global-targeted preservation is not proof of retail Global CDN byte identity. Community-calendar images are kept separately labeled; no Memorial artwork.",
+  "artwork": [
+    {
+      "banner_id": "9100203",
+      "role": "banner",
+      "provenance": "community-calendar-preservation",
+      "entry": {
+        "name": "static/gacha_community/art/Gacha-SS Charlotte.png",
+        "size": 49284,
+        "compressed": 49284,
+        "offset": 403861796,
+        "crc32": 3130152691,
+        "method": 0,
+        "archive": "data-001",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+        "archive_size": 1215128698,
+        "sha256": "e8e05eb1baeb01c6703ffaa9c215e5961802d27ece4bc091553286f2d54d3ddc"
+      },
+      "index_path": ".local/phase6a/source-indexes/data-001-index.json",
+      "index_sha256": "20bd79df42d517652cdfe8bb3dca555bc5c6b6b364e0de8c3defb62dda1e6fdb",
+      "cache_path": ".local/phase7a/sources/9100203/banner.png",
+      "width": 640,
+      "height": 160
+    },
+    {
+      "banner_id": "49",
+      "role": "banner",
+      "provenance": "community-calendar-preservation",
+      "entry": {
+        "name": "static/gacha_community/art/Gacha-Summer Fina & Lid.png",
+        "size": 41638,
+        "compressed": 41638,
+        "offset": 405126771,
+        "crc32": 2244390484,
+        "method": 0,
+        "archive": "data-001",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+        "archive_size": 1215128698,
+        "sha256": "881df2d656f4c7c26d2e36463230ab1e3365521c9d9e85fd5cfb2f317d44ea41"
+      },
+      "index_path": ".local/phase6a/source-indexes/data-001-index.json",
+      "index_sha256": "20bd79df42d517652cdfe8bb3dca555bc5c6b6b364e0de8c3defb62dda1e6fdb",
+      "cache_path": ".local/phase7a/sources/49/banner.png",
+      "width": 640,
+      "height": 160
+    },
+    {
+      "banner_id": "9200001",
+      "role": "banner",
+      "provenance": "global-targeted-preservation-en-static-banner",
+      "entry": {
+        "name": "native/en/sd/static_banner/gacha/main/03ad8d03a1f090c6e70f1413e43c9c56.png",
+        "size": 63427,
+        "compressed": 63427,
+        "offset": 981507992,
+        "crc32": 1240222819,
+        "method": 0,
+        "archive": "data-010",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-010.zip",
+        "archive_size": 1456323327,
+        "sha256": "b2345d820ca13d6632928b1c620740ef5fea46a9d7f98e34fce2938ec3706255"
+      },
+      "index_path": ".local/phase6a/source-indexes/data-010-index.json",
+      "index_sha256": "ff7ce4df65c48c47dfbb0d240bdd15209fece2abe994efa360d4574d408d1bf1",
+      "cache_path": ".local/phase7a/sources/9200001/banner.png",
+      "width": 640,
+      "height": 240
+    },
+    {
+      "banner_id": "9200001",
+      "role": "detail_banner",
+      "provenance": "global-targeted-preservation-en-static-banner",
+      "entry": {
+        "name": "native/en/sd/static_banner/gacha/sub/03ad8d03a1f090c6e70f1413e43c9c56_01.png",
+        "size": 102488,
+        "compressed": 102488,
+        "offset": 983767155,
+        "crc32": 854282755,
+        "method": 0,
+        "archive": "data-010",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-010.zip",
+        "archive_size": 1456323327,
+        "sha256": "9921dadead32bdf22f679ebee27784580b9104cd2d904e633be95b1db30de772"
+      },
+      "index_path": ".local/phase6a/source-indexes/data-010-index.json",
+      "index_sha256": "ff7ce4df65c48c47dfbb0d240bdd15209fece2abe994efa360d4574d408d1bf1",
+      "cache_path": ".local/phase7a/sources/9200001/detail_banner.png",
+      "width": 640,
+      "height": 392
+    },
+    {
+      "banner_id": "9200023",
+      "role": "banner",
+      "provenance": "global-targeted-preservation-en-static-banner",
+      "entry": {
+        "name": "native/en/sd/static_banner/gacha/main/44ca2c0ff5f096ee4b3ada1a82f56cdc.png",
+        "size": 43216,
+        "compressed": 43216,
+        "offset": 982399326,
+        "crc32": 1766637837,
+        "method": 0,
+        "archive": "data-010",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-010.zip",
+        "archive_size": 1456323327,
+        "sha256": "5abbaeedf9433a0ec097cc35cffcc435da8bd2347679ac929ae922187542cae7"
+      },
+      "index_path": ".local/phase6a/source-indexes/data-010-index.json",
+      "index_sha256": "ff7ce4df65c48c47dfbb0d240bdd15209fece2abe994efa360d4574d408d1bf1",
+      "cache_path": ".local/phase7a/sources/9200023/banner.png",
+      "width": 640,
+      "height": 160
+    },
+    {
+      "banner_id": "9200023",
+      "role": "detail_banner",
+      "provenance": "global-targeted-preservation-en-static-banner",
+      "entry": {
+        "name": "native/en/sd/static_banner/gacha/sub/44ca2c0ff5f096ee4b3ada1a82f56cdc_01.png",
+        "size": 94718,
+        "compressed": 94718,
+        "offset": 986873210,
+        "crc32": 3829993570,
+        "method": 0,
+        "archive": "data-010",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-010.zip",
+        "archive_size": 1456323327,
+        "sha256": "afa05b126defe407c2661b70e41e7b24edb6f21778d91ebf3f38fa642cc5d101"
+      },
+      "index_path": ".local/phase6a/source-indexes/data-010-index.json",
+      "index_sha256": "ff7ce4df65c48c47dfbb0d240bdd15209fece2abe994efa360d4574d408d1bf1",
+      "cache_path": ".local/phase7a/sources/9200023/detail_banner.png",
+      "width": 640,
+      "height": 392
+    }
+  ]
+}

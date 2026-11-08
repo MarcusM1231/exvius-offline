@@ -6,6 +6,8 @@ import SwiftUI
     private(set) var requests = 0
     private(set) var commits = 0
     init(storage: URL,journal: URL) { base = EmbeddedSummonBackend(storage: storage); self.journal = journal }
+    func menu() async throws -> MenuCatalog { try await base.menu() }
+    func quote(bannerID: String,offer: String) async throws -> MenuQuote { try await base.quote(bannerID:bannerID,offer:offer) }
     func banners() async throws -> BannersResponse { try await base.banners() }
     func state() async throws -> Campaign { try await base.state() }
     func summon(bannerID: String,offer: String) async throws -> SummonResponse {

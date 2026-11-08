@@ -18,6 +18,12 @@ struct ClientSmoke {
         }
         precondition(banner.offer_details.map(\.draws) == [1, 11])
         let before: Campaign = try await api.request("v1/state")
+        let menu: MenuCatalog = try await api.request("v1/menu")
+        precondition(menu.banners.count >= 469 && menu.banners.filter(\.playable).count == 2)
+        let quote: MenuQuote = try await api.request("v1/quote",query:["banner_id":"9100203","offer":"secondary"])
+        precondition(quote.eligible && quote.draws == 11 && quote.cost.amount == 5000)
+        let afterBrowsing: Campaign = try await api.request("v1/state")
+        precondition(afterBrowsing.currencies == before.currencies && afterBrowsing.units.count == before.units.count)
         let response: SummonResponse = try await api.request("v1/summons",
             body: ["banner_id": banner.id, "offer": "primary"])
         precondition(response.state.units.count == before.units.count + 1)
