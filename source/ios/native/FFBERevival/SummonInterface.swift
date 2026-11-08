@@ -119,11 +119,16 @@ struct GlobalSummonScreen: View {
     @State private var showResults = false
     @State private var reliableResults = false
     @State private var requestInFlight = false
+    @State private var confirmationDismissed = true
+    @State private var pendingReveal: CommittedSummon?
+    @State private var crystalCover: CommittedSummon?
+    @State private var presentedAwards: [Award]?
     init(model: SummonModel, initialBanner: Banner? = nil, results: Bool = false,
          refresh: @escaping () async -> Void = {}, summon: @escaping (Banner, Offer) async -> Bool) {
         self.model = model; self.summon = summon; self.refresh = refresh
         _selected = State(initialValue: initialBanner)
         _showResults = State(initialValue: results)
+        _presentedAwards = State(initialValue: results ? model.results : nil)
     }
     var body: some View {
         VStack(spacing: 0) {
@@ -148,7 +153,7 @@ struct GlobalSummonScreen: View {
                 Text("Original UI assets unavailable · using accessible fallback controls.").font(.caption).padding(8)
             }
             if showResults {
-                GlobalSummonResults(awards: model.results, reliable: $reliableResults) {
+                GlobalSummonResults(awards: presentedAwards ?? model.results, reliable: $reliableResults) {
                     showResults = false; selected = nil
                 }
             } else {
@@ -165,23 +170,50 @@ struct GlobalSummonScreen: View {
                 }
             }
         }.background(ink).foregroundStyle(.white)
-            .sheet(item: $pending) { offer in
+            .sheet(item: $pending, onDismiss: { confirmationDismissed = true; presentCommittedIfReady() }) { offer in
                 if let banner = selected {
                     SummonConfirmation(banner: banner, offer: offer, balance: lapis, busy: model.busy) {
                         guard !requestInFlight else { return }
                         requestInFlight = true
+                        let priorReceipt = model.committedSummon?.id
                         pending = nil
                         Task {
                             defer { requestInFlight = false }
                             if await summon(banner, offer) {
-                                // Phase 6C insertion point: a successful committed response only.
-                                // Future playback failure must fall through to these saved awards.
-                                showResults = true
+                                guard let receipt = model.committedSummon,
+                                      receipt.id != priorReceipt, receipt.bannerID == banner.id,
+                                      receipt.offerID == offer.offer,
+                                      CommittedSummon.sameAwards(receipt.awards, model.results) else {
+                                    // Never invent a crystal for an uncorrelated callback.
+                                    // Saved-state recovery remains available; no automatic retry.
+                                    presentedAwards = model.campaign?.last_pull?.awards ?? model.results
+                                    showResults = true
+                                    return
+                                }
+                                pendingReveal = receipt
+                                presentCommittedIfReady()
                             }
                         }
                     }
                 }
             }
+            .fullScreenCover(item: $crystalCover, onDismiss: {
+                if let receipt = pendingReveal { reveal(receipt.id, awards: receipt.awards) }
+            }) { receipt in
+                CommittedSummonPresentation(receipt: receipt) { awards in
+                    reveal(receipt.id, awards: awards)
+                }.id(receipt.id)
+            }
+    }
+    private func presentCommittedIfReady() {
+        guard confirmationDismissed, let receipt = pendingReveal, crystalCover == nil else { return }
+        crystalCover = receipt
+    }
+    private func reveal(_ id: UUID, awards: [Award]) {
+        guard let receipt = pendingReveal, receipt.id == id else { return }
+        // Use the immutable receipt even if lifecycle refresh changed model.results.
+        presentedAwards = receipt.awards
+        pendingReveal = nil; crystalCover = nil; showResults = true
     }
     private var lapis: Int { (model.campaign?.currencies["lapis_free"] ?? 0)+(model.campaign?.currencies["lapis_paid"] ?? 0) }
     private var banners: some View {
@@ -196,9 +228,12 @@ struct GlobalSummonScreen: View {
                     .position(x: 320, y: (SummonUIResources.shared.anchor("top", "common_banner")?.y ?? 338)-172+80+Double(index)*190)
                     .accessibilityIdentifier("banner-\(banner.id)")
             }
-            Button("View latest saved summon") { showResults = true }
+            Button("View latest saved summon") {
+                if let receipt = pendingReveal { reveal(receipt.id,awards: receipt.awards) }
+                else { presentedAwards = model.results; showResults = true }
+            }
                 .font(.system(size: 23, weight: .semibold)).foregroundStyle(gold)
-                .disabled(model.busy || model.campaign == nil)
+                .disabled(model.busy || requestInFlight || model.campaign == nil)
                 .frame(width: 600, height: 70).position(x: 320, y: Double(model.banners.count)*190+210)
         }
     }
@@ -207,7 +242,7 @@ struct GlobalSummonScreen: View {
             BannerArtwork(banner: banner).modifier(GlobalAnchorPosition(anchor: anchor("detail", "gacha_banner", fallback: .init(x: 0,y: 250,width: 640,height: 392,texture: ""))))
             ForEach(Array(banner.offer_details.enumerated()), id: \.element.id) { index, offer in
                 let name = banner.offer_details.count == 1 ? "gacha_btn_center_offset" : index == 0 ? "gacha_btn_left_offset" : "gacha_btn_right_offset"
-                SummonOfferButton(offer: offer, enabled: banner.supported && !requestInFlight && !model.busy && !model.needsRefresh) { pending = offer }
+                SummonOfferButton(offer: offer, enabled: banner.supported && !requestInFlight && !model.busy && !model.needsRefresh && pendingReveal == nil) { confirmationDismissed = false; pending = offer }
                     .modifier(GlobalAnchorPosition(anchor: anchor("detail", name, fallback: .init(x: Double(index)*320,y: 653,width: 304,height: 136,texture: ""))))
             }
             Text("Confirm the cost before summoning.\nYour summoned allies are saved on this device.")

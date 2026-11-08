@@ -25,7 +25,7 @@ struct UnitRecord: Decodable, Identifiable {
     let granted_rarity: Int?
     var id: String { instance_id }
 }
-struct Award: Decodable, Identifiable {
+struct Award: Codable, Identifiable {
     let instance_id: String
     let unit_id: String
     let name: String?
@@ -50,11 +50,9 @@ extension KeyedDecodingContainer {
     func decodeLegacyRarity(forKey key: Key) throws -> Int? {
         if try !contains(key) || decodeNil(forKey: key) { return nil }
         if let number = try? decode(Int.self, forKey: key) { return number }
-        let text = try decode(String.self, forKey: key)
-        guard let number = Int(text) else {
-            throw DecodingError.dataCorruptedError(forKey: key, in: self, debugDescription: "Expected numeric rarity")
-        }
-        return number
+        // Rarity is presentation metadata, never grounds for rerolling a committed
+        // reward. Preserve the award; nil uses the documented blue visual fallback.
+        return (try? decode(String.self, forKey: key)).flatMap(Int.init)
     }
 }
 
@@ -69,7 +67,48 @@ extension UnitRecord {
         granted_rarity = try fields.decodeLegacyRarity(forKey: .granted_rarity)
     }
 }
-struct Pull: Decodable { let awards: [Award] }
+struct Pull: Decodable {
+    let awards: [Award]
+    let banner_id: String?
+    let count: Int?
+    init(awards: [Award], banner_id: String? = nil, count: Int? = nil) {
+        self.awards = awards; self.banner_id = banner_id; self.count = count
+    }
+}
+
+// Immutable frontend receipt, created only after one correlated committed response.
+// Recovery remains the backend's persisted last_pull, not a second reward store.
+struct CommittedSummon: Identifiable {
+    let id: UUID
+    let bannerID: String
+    let offerID: String
+    let backendIdentity: String
+    let awards: [Award]
+    static func sameAwards(_ a: [Award], _ b: [Award]) -> Bool {
+        a.count == b.count && zip(a,b).allSatisfy { pair in
+            pair.0.instance_id == pair.1.instance_id && pair.0.unit_id == pair.1.unit_id && pair.0.granted_rarity == pair.1.granted_rarity
+        }
+    }
+    static func validated(_ response: SummonResponse, banner: Banner, offer: Offer,
+                          identity: String, previousUnits: [UnitRecord]) throws -> CommittedSummon {
+        let awards = response.result.awards
+        let previous = Set(previousUnits.map(\.instance_id))
+        guard !awards.isEmpty, awards.count == offer.draws,
+              response.result.banner_id == banner.id,
+              response.result.count == offer.draws,
+              let saved = response.state.last_pull,
+              saved.banner_id == banner.id, saved.count == offer.draws,
+              sameAwards(awards,saved.awards),
+              Set(awards.map(\.instance_id)).count == awards.count,
+              awards.allSatisfy({ award in
+                  !award.instance_id.isEmpty && !award.unit_id.isEmpty && !previous.contains(award.instance_id) &&
+                  response.state.units.contains { $0.instance_id == award.instance_id && $0.master_id == award.unit_id }
+              }) else {
+            throw APIError(message: "Summon response could not be correlated with saved awards. Refresh saved state; do not retry automatically.")
+        }
+        return CommittedSummon(id: UUID(),bannerID: banner.id,offerID: offer.offer,backendIdentity: identity,awards: awards)
+    }
+}
 struct Campaign: Decodable {
     let demo_metadata: Bool
     let currencies: [String: Int]
@@ -144,6 +183,7 @@ final class SummonModel: ObservableObject {
     @Published var error: String?
     @Published var needsRefresh = false
     private var connectedIdentity: String?
+    private(set) var committedSummon: CommittedSummon?
 
     func refresh(using backend: any SummonBackend, identity: String) async {
         guard !busy else { return }
@@ -156,6 +196,7 @@ final class SummonModel: ObservableObject {
             banners = catalogue.banners
             campaign = state
             results = state.last_pull?.awards ?? []
+            if let receipt = committedSummon, receipt.backendIdentity != identity || !CommittedSummon.sameAwards(receipt.awards, results) { committedSummon = nil }
             connectedIdentity = identity
             needsRefresh = false
         } catch {
@@ -169,10 +210,15 @@ final class SummonModel: ObservableObject {
         busy = true
         defer { busy = false }
         error = nil
+        committedSummon = nil
+        let previousUnits = campaign?.units ?? []
         do {
             let response = try await backend.summon(bannerID: banner.id, offer: offer.offer)
+            guard connectedIdentity == identity else { throw APIError(message: "Backend changed during summon; refresh its saved state.") }
+            let receipt = try CommittedSummon.validated(response,banner: banner,offer: offer,identity: identity,previousUnits: previousUnits)
             campaign = response.state
-            results = response.result.awards
+            results = receipt.awards
+            committedSummon = receipt
             return true
         } catch {
             self.error = error.localizedDescription + " Refresh saved state before another summon."
@@ -194,6 +240,7 @@ final class SummonModel: ObservableObject {
         banners = []
         results = []
         connectedIdentity = nil
+        committedSummon = nil
         needsRefresh = true
     }
 }

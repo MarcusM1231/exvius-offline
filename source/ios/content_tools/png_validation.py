@@ -3,7 +3,8 @@ import struct
 import zlib
 
 
-def png_info(body, require_transparency=True):
+def png_info(body, require_transparency=True, raster=None, maximum_dimension=2048):
+    if maximum_dimension not in (2048,4096):raise ValueError('Unsupported PNG dimension budget')
     if not body.startswith(b'\x89PNG\r\n\x1a\n'):
         raise ValueError('Expected PNG signature')
     chunks = []
@@ -28,7 +29,7 @@ def png_info(body, require_transparency=True):
     if sum(k == b'IHDR' for k, _ in chunks) != 1 or len(chunks[0][1]) != 13:
         raise ValueError('Invalid PNG header')
     width, height, depth, color, compression, filtering, interlace = struct.unpack('>IIBBBBB', chunks[0][1])
-    if not 0 < width <= 2048 or not 0 < height <= 2048 or compression or filtering or interlace:
+    if not 0 < width <= maximum_dimension or not 0 < height <= maximum_dimension or compression or filtering or interlace:
         raise ValueError('Unsupported PNG dimensions/interlace')
     if color == 3 and depth in (1, 2, 4, 8):
         channels = 1
@@ -48,6 +49,17 @@ def png_info(body, require_transparency=True):
     raw = decoder.decompress(compressed, expected + 1)
     if len(raw) != expected or not decoder.eof or decoder.unused_data or decoder.unconsumed_tail:
         raise ValueError('Invalid PNG image-data length')
+    if raster is not None:
+        # Optional build-time accelerator: structural/CRC/zlib checks above stay
+        # identical. Pillow supplies the fully decoded scanlines in C.
+        if raster.size != (width,height) or any(raw[y*(row_size+1)]>4 for y in range(height)):
+            raise ValueError('Invalid decoded PNG dimensions/filter')
+        if color == 3 and (raster.mode != 'P' or any(count and index>=len(palette)//3 for index,count in enumerate(raster.histogram()))):
+            raise ValueError('PNG pixel exceeds palette')
+        histogram=raster.convert('RGBA').getchannel('A').histogram()
+        transparent=sum(histogram[:255])
+        if require_transparency and not transparent:raise ValueError('PNG has no actual transparent pixels')
+        return {'width':width,'height':height,'bit_depth':depth,'color_type':color,'transparent_pixels':transparent}
     previous = bytearray(row_size)
     transparent = 0
     def paeth(a, b, c):

@@ -66,3 +66,21 @@ Fixtures are created below the ignored `source/ios/.local/` directory and remove
 after each run. Keeping them on the checkout's drive avoids existing Windows
 cross-drive diagnostic-path limitations. Personal saves are never opened.
 
+
+The Developer tab also includes [the isolated original crystal-mesh diagnostic](docs/crystal-recovery.md). Original crystal animation playback is not yet recovered.
+
+Phase 6C-2 adds [bounded BMB structure and version analysis](docs/crystal-bmb-analysis.md). Original animation playback remains disabled.
+
+Phase 6C-3 adds [the isolated original-asset crystal reconstruction](docs/crystal-reconstruction.md), with Blue/Gold/Rainbow layers and authored arrival/opening motion. Production summons remain unchanged.
+
+Phase 6C-4 integrates [tap-to-break after a verified committed summon](docs/tap-to-break-summons.md), with indefinite idle, Skip/fallback and existing saved-result recovery.
+
+Phase 6D-1 adds an isolated [character reveal research gallery](docs/character-reveal-recovery.md). Production summons/results are unchanged; the remembered pedestal remains unconfirmed.
+
+Phase 6D-2 inserts [animated committed-award character reveals](docs/animated-character-reveal.md) after crystal opening. Validated on Simulator only; physical-device work awaits explicit approval.
+
+Phase 6D-3A: [falling crystal entrance and TOUCH SCREEN](docs/falling-crystal-entrance.md), including isolated device validation and rebuild commands.
+
+Phase 6D-4: [original unit animations and personal Lapis control](docs/unit-animations.md).
+
+Phase 6D-4B: [expanded animation recovery and searchable gallery](docs/unit-animation-expansion.md).

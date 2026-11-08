@@ -104,6 +104,26 @@ def dispatch(request_json):
                     rejected.append(True)
             value = {'network_rejected': all(rejected), 'save': str(_service.save_path),
                      'metadata': str(_service.data_root), 'platform': sys.platform}
+        elif operation == 'developer_add_lapis':
+            # Explicit personal-build tool, separate from summon mechanics.
+            import copy
+            amount_text = request.get('amount', '')
+            if not isinstance(amount_text, str) or not amount_text.isascii() or not amount_text.isdecimal():
+                raise ValueError('Expected a positive whole Lapis amount')
+            amount = int(amount_text)
+            if not 1 <= amount <= 100000:
+                raise ValueError('Developer grant must be between 1 and 100000 Lapis')
+            with _service.lock:
+                if _service.player.currencies.get('lapis_free', 0) + amount > 1000000000:
+                    raise ValueError('Developer Lapis limit reached')
+                before, dirty = copy.deepcopy(_service.player.data), _service.player.dirty
+                try:
+                    _service.player.add_currency('lapis_free', amount)
+                    _service._save()
+                except Exception:
+                    _service.player.data, _service.player.dirty = before, dirty
+                    raise
+                value = state()
         elif operation == 'summon':
             banner, offer = request.get('banner_id'), request.get('offer', 'primary')
             if not isinstance(banner, str) or not 0 < len(banner) <= 128:

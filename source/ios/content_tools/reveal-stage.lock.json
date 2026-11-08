@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "scope": "Stage dependency research only; not a verified character pedestal",
+  "range_sources": {
+    "Ver13_effectResource1_common": {
+      "name": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "size": 29181048,
+      "compressed": 29181048,
+      "offset": 921435457,
+      "crc32": 2603428041,
+      "method": 0,
+      "archive": "data-002",
+      "archive_size": 1461366379,
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-002.zip",
+      "zip_payload_start": 921435576,
+      "cpk_size": 29181048,
+      "index_sha256": "685f05b3546ba2858fd970299e9dc19cf8cbdfe29b74c3db1436b354a807f810",
+      "toc_sha256": "7d5d177b5f2f4cad0c0c270bf98f66d2bf001b6e0b3011d14b38792e67ebe1a0"
+    }
+  },
+  "members": [
+    {
+      "name": "deff_cape_001.png",
+      "offset_in_cpk": 1425568,
+      "size": 143961,
+      "unpacked": 143961,
+      "sha256_stored": "44ebb2cf401c2c7c92d2edef2a6cd32fab17c5973429be924740945b9028d972",
+      "sha256_decoded": "44ebb2cf401c2c7c92d2edef2a6cd32fab17c5973429be924740945b9028d972",
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "sources/deff_cape_001.png"
+    },
+    {
+      "name": "glow_014.png",
+      "offset_in_cpk": 3509072,
+      "size": 8166,
+      "unpacked": 8166,
+      "sha256_stored": "d8270077d4734b3752744207d0573474ffc1ab3dcad41aa23591cf9dd421190c",
+      "sha256_decoded": "d8270077d4734b3752744207d0573474ffc1ab3dcad41aa23591cf9dd421190c",
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "sources/glow_014.png"
+    },
+    {
+      "name": "model_aura_017.m3r",
+      "offset_in_cpk": 12013824,
+      "size": 5044,
+      "unpacked": 9096,
+      "sha256_stored": "2a54bb7cd8f948b2da25566bb1993d6ab7a20018f6b0cf4d69a4cf30142e0a69",
+      "sha256_decoded": "1ee0e949023ee551572aed82c37cca79f1dee6a79b3baeaf068669cadc2358c9",
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "sources/model_aura_017.m3r"
+    },
+    {
+      "name": "model_cape_001.m3r",
+      "offset_in_cpk": 15464584,
+      "size": 60312,
+      "unpacked": 60312,
+      "sha256_stored": "25251804f7a3d45aea3394f16b6f130c3a7224476c900d8cffe03a812e2cdf2e",
+      "sha256_decoded": "25251804f7a3d45aea3394f16b6f130c3a7224476c900d8cffe03a812e2cdf2e",
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "sources/model_cape_001.m3r"
+    },
+    {
+      "name": "model_cape_002.m3r",
+      "offset_in_cpk": 15524896,
+      "size": 26652,
+      "unpacked": 52088,
+      "sha256_stored": "f1b2d475e1fd22f591e355c42f854d09faaa5bb274b44da5cab21e029105dbdc",
+      "sha256_decoded": "cd69a7fa4a5472dcc0fae7c0c0f670275cab7aec3ffcf7236eb721714a83ed48",
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "sources/model_cape_002.m3r"
+    }
+  ]
+}

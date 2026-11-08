@@ -60,6 +60,24 @@
 				<string>00000000000000000000006C</string>
 				<string>00000000000000000000006D</string>
 				<string>00000000000000000000006E</string>
+				<string>00000000000000000000006F</string>
+				<string>000000000000000000000070</string>
+				<string>000000000000000000000071</string>
+				<string>000000000000000000000072</string>
+				<string>000000000000000000000073</string>
+				<string>000000000000000000000074</string>
+				<string>000000000000000000000075</string>
+				<string>000000000000000000000076</string>
+				<string>000000000000000000000077</string>
+				<string>000000000000000000000078</string>
+				<string>000000000000000000000079</string>
+				<string>00000000000000000000007A</string>
+				<string>00000000000000000000007B</string>
+				<string>00000000000000000000007C</string>
+				<string>00000000000000000000007D</string>
+				<string>00000000000000000000007E</string>
+				<string>00000000000000000000007F</string>
+				<string>000000000000000000000080</string>
 				<string>000000000000000000000012</string>
 				<string>00000000000000000000003D</string>
 				<string>000000000000000000000003</string>
@@ -139,6 +157,24 @@
 				<string>0000000000000000000000D0</string>
 				<string>0000000000000000000000D1</string>
 				<string>0000000000000000000000D2</string>
+				<string>0000000000000000000000D3</string>
+				<string>0000000000000000000000D4</string>
+				<string>0000000000000000000000D5</string>
+				<string>0000000000000000000000D6</string>
+				<string>0000000000000000000000D7</string>
+				<string>0000000000000000000000D8</string>
+				<string>0000000000000000000000D9</string>
+				<string>0000000000000000000000DA</string>
+				<string>0000000000000000000000DB</string>
+				<string>0000000000000000000000DC</string>
+				<string>0000000000000000000000DD</string>
+				<string>0000000000000000000000DE</string>
+				<string>0000000000000000000000DF</string>
+				<string>0000000000000000000000E0</string>
+				<string>0000000000000000000000E1</string>
+				<string>0000000000000000000000E2</string>
+				<string>0000000000000000000000E3</string>
+				<string>0000000000000000000000E4</string>
 			</array>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
@@ -197,7 +233,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/ContentView.swift</string>
+			<string>FFBERevival/CharacterRevealDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -215,7 +251,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/EmbeddedPython.swift</string>
+			<string>FFBERevival/CharacterRevealState.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -233,7 +269,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/FFBERevivalApp.swift</string>
+			<string>FFBERevival/ContentView.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -251,7 +287,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/PythonDiagnostics.swift</string>
+			<string>FFBERevival/CrystalEntrance.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -269,7 +305,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/SummonInterface.swift</string>
+			<string>FFBERevival/CrystalEntranceDiagnostics.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -287,7 +323,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/SummonInterfaceDiagnostics.swift</string>
+			<string>FFBERevival/CrystalEntranceResources.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -305,7 +341,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitArtworkView.swift</string>
+			<string>FFBERevival/CrystalPlayback.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -323,7 +359,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>FFBERevival/UnitContent.swift</string>
+			<string>FFBERevival/CrystalPreview.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -339,9 +375,9 @@
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>Bridge/PythonBridge.m</string>
+			<string>FFBERevival/CrystalReconstruction.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -351,6 +387,330 @@
 			<string>PBXBuildFile</string>
 			<key>fileRef</key>
 			<string>00000000000000000000006E</string>
+		</dict>
+		<key>00000000000000000000006F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/CrystalReconstructionDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000006F</string>
+		</dict>
+		<key>000000000000000000000070</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/EmbeddedPython.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D4</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000070</string>
+		</dict>
+		<key>000000000000000000000071</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/FFBERevivalApp.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D5</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000071</string>
+		</dict>
+		<key>000000000000000000000072</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/PythonDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000072</string>
+		</dict>
+		<key>000000000000000000000073</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/RevealResearchPreview.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D7</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000073</string>
+		</dict>
+		<key>000000000000000000000074</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/SummonCharacterReveal.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D8</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000074</string>
+		</dict>
+		<key>000000000000000000000075</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/SummonCrystalPresentation.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000D9</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000075</string>
+		</dict>
+		<key>000000000000000000000076</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/SummonInterface.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000DA</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000076</string>
+		</dict>
+		<key>000000000000000000000077</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/SummonInterfaceDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000DB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000077</string>
+		</dict>
+		<key>000000000000000000000078</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/TapSummonDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000DC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000078</string>
+		</dict>
+		<key>000000000000000000000079</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/TapSummonState.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000DD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000079</string>
+		</dict>
+		<key>00000000000000000000007A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitAnimationClock.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000DE</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000007A</string>
+		</dict>
+		<key>00000000000000000000007B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitAnimationDiagnostics.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000DF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000007B</string>
+		</dict>
+		<key>00000000000000000000007C</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitAnimationGallery.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000007C</string>
+		</dict>
+		<key>00000000000000000000007D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitAnimationView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E1</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000007D</string>
+		</dict>
+		<key>00000000000000000000007E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitArtworkView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E2</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000007E</string>
+		</dict>
+		<key>00000000000000000000007F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FFBERevival/UnitContent.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>00000000000000000000007F</string>
+		</dict>
+		<key>000000000000000000000080</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Bridge/PythonBridge.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0000000000000000000000E4</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>fileRef</key>
+			<string>000000000000000000000080</string>
 		</dict>
 		<key>00000000000000000000003D</key>
 		<dict>

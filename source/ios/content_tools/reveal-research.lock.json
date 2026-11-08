@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "scope": "Static research crops only; no recovered timeline or proven pedestal",
+  "provenance": "Global-targeted preservation; not proof of original retail Global CDN bytes",
+  "archive": "exvius-data-010.zip",
+  "sources": [
+    {
+      "cache_path": "preservation/extracted/Ver2_gachaeffect1/gacha_result_animation.ssbp",
+      "sha256_stored": "4dd49870c8c0b39dee3c9035b93e4872d97952ef9b47a130384c6f8ee44c9d25",
+      "sha256_decoded": "a3ac48ef7b95f43418d95c680049b139e98de2c5d3b556184b4255a8d29d8e0c"
+    },
+    {
+      "cache_path": "preservation/extracted/Ver2_gachaeffect1/gacha_result_animation.png",
+      "sha256_stored": "5a197dc9fd95f880be96be3c8541e0fd178bb26d3b1f127098a23ec93da57f67",
+      "sha256_decoded": "5a197dc9fd95f880be96be3c8541e0fd178bb26d3b1f127098a23ec93da57f67"
+    }
+  ],
+  "cells": [
+    "getglow",
+    "starglow",
+    "stLight_3",
+    "stLight_4",
+    "stLight_5",
+    "cosmos",
+    "star_3"
+  ],
+  "source_receipts": [
+    {
+      "name": "gacha_result_animation.ssbp",
+      "offset_in_cpk": 1186360,
+      "size": 74844,
+      "unpacked": 698796,
+      "provenance": "global-targeted-preservation",
+      "archive": "data-010",
+      "container": "native/en/sd/gacha/Ver2_gachaeffect1.cpk",
+      "archive_url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-010.zip",
+      "zip_payload_start": 842322102,
+      "verification": "stored-bytes-retrieved",
+      "sha256_stored": "4dd49870c8c0b39dee3c9035b93e4872d97952ef9b47a130384c6f8ee44c9d25",
+      "magic": "4352494c41594c41aca80a004c230100",
+      "decoded": false
+    }
+  ],
+  "container": "native/en/sd/gacha/Ver2_gachaeffect1.cpk"
+}

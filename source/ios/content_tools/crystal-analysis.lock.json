@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "scope": "Structural evidence only; no recovered animation",
+  "sources": {
+    "crystal-n1": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/gacha_crystal_n1_c1.bmb",
+      "stored_size": 2572,
+      "decoded_size": 29536,
+      "stored_sha256": "38deef9e7c2e01ae3a8b9d3ddcf6a2c599f9fbab4a5c21a33234e0905bf42ce0",
+      "decoded_sha256": "7e4c776d1cea64fa2139645d46389afeb417f5380f97d4107fc6c65ef7eb8b27",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "gacha_crystal_n1_c1.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "crystal-r1": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/gacha_crystal_r1_c1.bmb",
+      "stored_size": 2560,
+      "decoded_size": 29536,
+      "stored_sha256": "f0ab01e776018b859b02a280718157101b5f7fddcaa65712a2038387808c17cd",
+      "decoded_sha256": "0898e7546528f0f70d1a55aa94f749af0134cf8b01dc68f9f4b751090cc0085f",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "gacha_crystal_r1_c1.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "tutorial-n1": {
+      "stored_sha256": "c5618fb24d4000ed42505eabbe4b5d4e9de19582884a06358baecf6a660a2d4e",
+      "decoded_sha256": "e9bf3adaade01cf472cb6a47601a2b689fe7164c81a3420ba967f929971ea3e8",
+      "decoded_size": 106992,
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver12_gachaeffect1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "cache_path": "phase6a/preservation/extracted/Ver12_gachaeffect1_common_tutorial/gacha_n1_c1.bmb",
+      "stored_size": 8260,
+      "member": "gacha_n1_c1.bmb"
+    }
+  },
+  "reader_evidence": {
+    "provenance": "English-patched Memorial; not Global executable",
+    "sha256": "dad183a035088b3e12eec1941ccbf3f476aa42508d3cdff7eecd28e6b520844d",
+    "magic_version_check_va": "0x100eb6068",
+    "accepted_raw_tag_04": 16974081,
+    "node_fixup_va": "0x100eb6930",
+    "texture_table_accessor_va": "0x100eb6494",
+    "model_table_accessor_va": "0x100eb6554"
+  }
+}

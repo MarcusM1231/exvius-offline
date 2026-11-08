@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "sources": {
+    "Ver13_effectResource1_common": {
+      "name": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "size": 29181048,
+      "compressed": 29181048,
+      "offset": 921435457,
+      "crc32": 2603428041,
+      "method": 0,
+      "archive": "data-002",
+      "archive_size": 1461366379,
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-002.zip",
+      "zip_payload_start": 921435576,
+      "cpk_size": 29181048,
+      "index_sha256": "685f05b3546ba2858fd970299e9dc19cf8cbdfe29b74c3db1436b354a807f810",
+      "toc_sha256": "7d5d177b5f2f4cad0c0c270bf98f66d2bf001b6e0b3011d14b38792e67ebe1a0"
+    },
+    "Ver4_effectResource1_common_tutorial": {
+      "name": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "size": 892436,
+      "compressed": 892436,
+      "offset": 963691670,
+      "crc32": 463727479,
+      "method": 0,
+      "archive": "data-002",
+      "archive_size": 1461366379,
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-002.zip",
+      "zip_payload_start": 963691797,
+      "cpk_size": 892436,
+      "index_sha256": "840b7715bc3a92fd48d62529d7e9b56a3cb3185901d3c98928ef97cf6cfddc73",
+      "toc_sha256": "b06d422843442ba22bead10bb7c0f341d761a800331654882ae5716d68751334"
+    }
+  },
+  "members": [
+    {
+      "name": "deff_crystalparticle_001.png",
+      "offset_in_cpk": 1574184,
+      "size": 9262,
+      "unpacked": 9262,
+      "cache_path": "sources/Ver13_effectResource1_common/deff_crystalparticle_001.png",
+      "sha256_stored": "425f3e4c6cd8a0b18ff826006df7eb1670c4b9dc92f9a3e36f4287ade52cf2a2",
+      "sha256_decoded": "425f3e4c6cd8a0b18ff826006df7eb1670c4b9dc92f9a3e36f4287ade52cf2a2",
+      "source": "Ver13_effectResource1_common"
+    },
+    {
+      "name": "lightburst_011.png",
+      "offset_in_cpk": 7437272,
+      "size": 4768,
+      "unpacked": 4768,
+      "cache_path": "sources/Ver13_effectResource1_common/lightburst_011.png",
+      "sha256_stored": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa",
+      "sha256_decoded": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa",
+      "source": "Ver13_effectResource1_common"
+    },
+    {
+      "name": "model_crystalparticle_001.m3r",
+      "offset_in_cpk": 18061488,
+      "size": 1308,
+      "unpacked": 2552,
+      "cache_path": "sources/Ver13_effectResource1_common/model_crystalparticle_001.m3r",
+      "sha256_stored": "bf0649dbc1b3faa988217d5dd1f4ca8a4e87668e0c41be4cd2e85ffa9edfa926",
+      "sha256_decoded": "8fd45b2b07bd8e32ae62b962edb66a3fd6af07b80941b364b6b064065703ca10",
+      "source": "Ver13_effectResource1_common"
+    },
+    {
+      "name": "deffuse_soccerball_001.png",
+      "offset_in_cpk": 473192,
+      "size": 473,
+      "unpacked": 473,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/deffuse_soccerball_001.png",
+      "sha256_stored": "36f650438506628b52729749832c38eb4ca6bc5f04a13c66341f771c6f84be7d",
+      "sha256_decoded": "36f650438506628b52729749832c38eb4ca6bc5f04a13c66341f771c6f84be7d",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "deff_mothercrystal_001.png",
+      "offset_in_cpk": 313000,
+      "size": 815,
+      "unpacked": 815,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/deff_mothercrystal_001.png",
+      "sha256_stored": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "sha256_decoded": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "glow_003.png",
+      "offset_in_cpk": 348264,
+      "size": 3361,
+      "unpacked": 3361,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/glow_003.png",
+      "sha256_stored": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734",
+      "sha256_decoded": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "glow_008.png",
+      "offset_in_cpk": 307936,
+      "size": 2490,
+      "unpacked": 2490,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/glow_008.png",
+      "sha256_stored": "4dce4b8f6609dba76545313b22f480bbfb7fe75f089954b3b7a416161caa7adc",
+      "sha256_decoded": "4dce4b8f6609dba76545313b22f480bbfb7fe75f089954b3b7a416161caa7adc",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "glow_013.png",
+      "offset_in_cpk": 354232,
+      "size": 10700,
+      "unpacked": 10700,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/glow_013.png",
+      "sha256_stored": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895",
+      "sha256_decoded": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "model_glow_001.m3r",
+      "offset_in_cpk": 9384,
+      "size": 688,
+      "unpacked": 904,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/model_glow_001.m3r",
+      "sha256_stored": "441864dadf13d37d603ef1925fc1c8e12a440d745761f806c3bbb0fe297f9955",
+      "sha256_decoded": "1721ec239e3f65615ca0172c87beef400dba1241f65b1724f0fe2cd38d76749d",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "model_mothercrystal_001.m3r",
+      "offset_in_cpk": 13344,
+      "size": 20664,
+      "unpacked": 37944,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_001.m3r",
+      "sha256_stored": "f6a952d8ada1cb2490e111836f72c9a459dc66b2086b6c0a7adab9884431e12c",
+      "sha256_decoded": "44fcf3d9d3ae6cb1a80a4920777e5de44ff7d5f3ecb7e56974491147dd5fb203",
+      "source": "Ver4_effectResource1_common_tutorial"
+    },
+    {
+      "name": "model_mothercrystal_002.m3r",
+      "offset_in_cpk": 34008,
+      "size": 24308,
+      "unpacked": 37944,
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_002.m3r",
+      "sha256_stored": "1d94f014890f3a82377ba692402f7a9084683be21ef9b5bfb2167890eeee8e10",
+      "sha256_decoded": "1c29c28a11af5b241018c8d9ad8f4df00666c842ec19bcd3efea43a2dde21b96",
+      "source": "Ver4_effectResource1_common_tutorial"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+"""Bounded retrieval of six pinned original resources; refuses changed cache/index."""
+import json
+from pathlib import Path
+from import_content import IOS, sha
+from import_summon_ui import decode
+from range_client import RangeClient
+import expand_artwork as discovery
+
+LOCK=Path(__file__).with_name('crystal-reconstruction.lock.json')
+CACHE=IOS/'.local/phase6c3'
+
+def run(client=None,lock_path=None,cache=None):
+    cache=Path(cache or CACHE)
+    lock=json.loads(Path(lock_path or LOCK).read_text())
+    client=client or RangeClient(interval=1.1,max_bytes=512*1024,journal=cache/'recovery-journal.json')
+    indexes={}
+    previous=discovery.CACHE
+    try:
+        discovery.CACHE=cache
+        for key,source in lock['range_sources'].items():
+            index,record=discovery.read_index(source,client)
+            indexes[key]={r['name']:r for r in index['entries']}
+            if record['index_sha256']!=source['index_sha256'] or record['toc_sha256']!=source['toc_sha256']:
+                raise ValueError('Crystal archive index checksum changed')
+    finally:discovery.CACHE=previous
+    for row in lock['members']:
+        source=lock['range_sources'][row['source']]
+        indexed=indexes[row['source']].get(row['name'])
+        if not indexed or any(indexed[k]!=row[k] for k in ['name','offset_in_cpk','size','unpacked']):raise ValueError('Crystal member identity disagrees with index')
+        if row['size']<=0 or row['offset_in_cpk']<0 or row['offset_in_cpk']+row['size']>source['cpk_size']:
+            raise ValueError('Crystal member bounds')
+        path=cache/row['cache_path']
+        body=path.read_bytes() if path.exists() else client.read(source,source['zip_payload_start']+row['offset_in_cpk'],row['size'])
+        if len(body)!=row['size'] or sha(body)!=row['sha256_stored']:raise ValueError('Crystal stored checksum')
+        unpacked=decode(body)
+        if len(unpacked)!=row['unpacked'] or sha(unpacked)!=row['sha256_decoded']:raise ValueError('Crystal decoded checksum')
+        if not path.exists():
+            path.parent.mkdir(parents=True,exist_ok=True)
+            with path.open('xb') as f:f.write(body)
+    return {'members':len(lock['members']),'network_bytes':getattr(client,'transferred',0)}
+
+if __name__=='__main__':print(json.dumps(run(),indent=2))

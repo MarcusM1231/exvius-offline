@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "source": {
+    "archive": "data-008",
+    "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-008.zip",
+    "archive_size": 1462913449,
+    "archive_sha256": "b8aed747faab4f6565bb62dce14ee013f95c35ae8426b5c990b929f577415480",
+    "name": "native/common_lang/sd/unit/Ver24_unit1_common.cpk",
+    "size": 9949340,
+    "compressed": 9949340,
+    "offset": 212004578,
+    "crc32": 2279244855,
+    "method": 0,
+    "zip_payload_start": 212004677
+  },
+  "index_path": ".local/unit-content/discovery/data-008-Ver24_unit1_common.cpk.json",
+  "index_sha256": "f490fd83995b6913f21e3f3ba45b34687ef1cf9ec82d0dc82e6cb55d0faf2951",
+  "members": [
+    {
+      "name": "unit_anime_202000203.png",
+      "offset_in_cpk": 3721008,
+      "size": 16725,
+      "unpacked": 16725,
+      "sha256_stored": "2013de5ae2c642215643359fd4f244c95cc66c3efff2697a956ba06949e05f81",
+      "sha256_decoded": "2013de5ae2c642215643359fd4f244c95cc66c3efff2697a956ba06949e05f81"
+    },
+    {
+      "name": "unit_cgg_202000203.csv",
+      "offset_in_cpk": 9466232,
+      "size": 6464,
+      "unpacked": 58151,
+      "sha256_stored": "ce53efdc203fed178657007d09f02d76d15a766d3a679ce7ae733939653f147a",
+      "sha256_decoded": "8836dde209c246f22a1af0f4a884a0510544db6393c058784f94c5f7714aa447"
+    },
+    {
+      "name": "unit_idle_cgs_202000203.csv",
+      "offset_in_cpk": 9472728,
+      "size": 44,
+      "unpacked": 44,
+      "sha256_stored": "b790fe2c650824bb25752e6dceb91081f0df528b77f8c714dc8b58d7d2dcb8c9",
+      "sha256_decoded": "b790fe2c650824bb25752e6dceb91081f0df528b77f8c714dc8b58d7d2dcb8c9"
+    },
+    {
+      "name": "unit_standby_cgs_202000203.csv",
+      "offset_in_cpk": 9473216,
+      "size": 40,
+      "unpacked": 40,
+      "sha256_stored": "cbcaa7b3e9e00c699385978b506767e175f36dfb23ff19c77ca5d097effa93fa",
+      "sha256_decoded": "cbcaa7b3e9e00c699385978b506767e175f36dfb23ff19c77ca5d097effa93fa"
+    }
+  ]
+}

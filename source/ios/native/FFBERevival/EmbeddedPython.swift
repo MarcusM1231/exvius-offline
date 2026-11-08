@@ -88,6 +88,10 @@ actor EmbeddedSummonBackend: SummonBackend {
         try await initialize()
         return try await PythonWorker.shared.call(["operation": "state"])
     }
+    func developerAddLapis(amount: Int) async throws -> Campaign {
+        try await initialize()
+        return try await PythonWorker.shared.call(["operation": "developer_add_lapis", "amount": String(amount)])
+    }
     func summon(bannerID: String, offer: String) async throws -> SummonResponse {
         try await initialize()
         return try await PythonWorker.shared.call(["operation": "summon", "banner_id": bannerID, "offer": offer])

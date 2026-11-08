@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "sources": {
+    "ex-blue": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/EX16_2openblue.bmb",
+      "stored_size": 4692,
+      "decoded_size": 59584,
+      "stored_sha256": "d84401ece242d1c74e37234d6522bd8139608c1b1d4be7893abf80654c13f6d9",
+      "decoded_sha256": "be445d09cf270a85da9821fd647ded29901e7b2489362361d3b77ab850e7b847",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "EX16_2openblue.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "ex-gold": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/EX16_2opengold.bmb",
+      "stored_size": 4692,
+      "decoded_size": 59584,
+      "stored_sha256": "32bb55e365ce3f0cc76f22647292ecef7df28fa47771ad9f62e6766f387210e3",
+      "decoded_sha256": "75145e4a7cf077e1d9c48fcddae4844d36fde2572d53764c29d2eb5c0bebf21b",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "EX16_2opengold.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "ex-rainbow": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/EX16_2openraindow.bmb",
+      "stored_size": 4888,
+      "decoded_size": 62080,
+      "stored_sha256": "6534709d4d24275ab2fcd2acdcf4d1a5bd0f11d4b85d621cb2c672a16ec9c401",
+      "decoded_sha256": "2b62a2eb03a5b88554aff4bf3606e2e44eeaf1a944487bdbf7874c6a37253437",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "EX16_2openraindow.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "crystal-n1": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/gacha_crystal_n1_c1.bmb",
+      "stored_size": 2572,
+      "decoded_size": 29536,
+      "stored_sha256": "38deef9e7c2e01ae3a8b9d3ddcf6a2c599f9fbab4a5c21a33234e0905bf42ce0",
+      "decoded_sha256": "7e4c776d1cea64fa2139645d46389afeb417f5380f97d4107fc6c65ef7eb8b27",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "gacha_crystal_n1_c1.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "crystal-r1": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/gacha_crystal_r1_c1.bmb",
+      "stored_size": 2560,
+      "decoded_size": 29536,
+      "stored_sha256": "f0ab01e776018b859b02a280718157101b5f7fddcaa65712a2038387808c17cd",
+      "decoded_sha256": "0898e7546528f0f70d1a55aa94f749af0134cf8b01dc68f9f4b751090cc0085f",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "gacha_crystal_r1_c1.bmb",
+      "provenance": "global-targeted-preservation"
+    },
+    "cloud-model": {
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/model_cloud_002.m3r",
+      "stored_size": 23116,
+      "decoded_size": 42152,
+      "stored_sha256": "546d85adb3fb06a5b3e8e7f53b5a55002b1318ddefe07b5a8266ba8663f59221",
+      "decoded_sha256": "01e473ef75a77ad351d03489186e44cf5647626b7464eac909771a57015a081b",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "member": "model_cloud_002.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "mother-001": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_001.m3r",
+      "stored_size": 20664,
+      "decoded_size": 37944,
+      "stored_sha256": "f6a952d8ada1cb2490e111836f72c9a459dc66b2086b6c0a7adab9884431e12c",
+      "decoded_sha256": "44fcf3d9d3ae6cb1a80a4920777e5de44ff7d5f3ecb7e56974491147dd5fb203",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_001.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "mother-002": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_002.m3r",
+      "stored_size": 24308,
+      "decoded_size": 37944,
+      "stored_sha256": "1d94f014890f3a82377ba692402f7a9084683be21ef9b5bfb2167890eeee8e10",
+      "decoded_sha256": "1c29c28a11af5b241018c8d9ad8f4df00666c842ec19bcd3efea43a2dde21b96",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_002.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "mother-texture": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/deff_mothercrystal_001.png",
+      "stored_size": 815,
+      "decoded_size": 815,
+      "stored_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "decoded_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "deff_mothercrystal_001.png",
+      "provenance": "global-targeted-preservation"
+    }
+  },
+  "packaged": [
+    "mother-001",
+    "mother-texture"
+  ],
+  "scope": "Static geometry diagnostic only, no recovered crystal timeline",
+  "converter_revision": 3
+}

@@ -4,6 +4,7 @@ struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("backendAddress") private var address = "http://127.0.0.1:8765"
     @AppStorage("summonBackendMode") private var mode = "offline"
+    @State private var confirmsLapisGrant = false
     @State private var pythonProof = "Not run yet"
     @StateObject private var model = SummonModel()
 
@@ -25,6 +26,14 @@ struct ContentView: View {
             }.tabItem { Label("Collection", systemImage: "person.3") }
             NavigationStack {
                 List {
+                    Section("Character reveal research") {
+                        NavigationLink("Original unit animations") { UnitAnimationGallery() }
+                        NavigationLink("Inspect reveal artwork candidates") { RevealResearchPreview() }
+                    }
+                    Section("Crystal recovery") {
+                        NavigationLink("Inspect original crystal mesh") { CrystalPreview() }
+                        Text("Isolated diagnostic preview; no summon or currency cost.").font(.caption)
+                    }
                     Section("Embedded Python proof") {
                         Text(pythonProof).font(.caption)
                         Button("Run Python on this device") {
@@ -35,6 +44,12 @@ struct ContentView: View {
                                 } catch { pythonProof = error.localizedDescription }
                             }
                         }
+                    }
+                    Section("Personal campaign tools") {
+                        Button("Add 10,000 free Lapis…") { confirmsLapisGrant = true }
+                            .disabled(mode != "offline" || model.busy || model.needsRefresh)
+                        Text("Explicitly adds free Lapis to this device’s current campaign and saves it. Available in offline mode only.")
+                            .font(.caption).foregroundStyle(.secondary)
                     }
                     Section("Backend") {
                         Picker("Mode", selection: $mode) {
@@ -104,6 +119,18 @@ struct ContentView: View {
                     }
                 }.navigationTitle("Developer Tools")
             }.tabItem { Label("Developer", systemImage: "wrench.and.screwdriver") }
+        }
+        .confirmationDialog("Add 10,000 free Lapis to this campaign?", isPresented: $confirmsLapisGrant, titleVisibility: .visible) {
+            Button("Add and save 10,000 Lapis") {
+                Task {
+                    guard mode == "offline", !model.busy else { return }
+                    model.busy = true
+                    do { model.campaign = try await EmbeddedSummonBackend.shared.developerAddLapis(amount: 10000); model.error = nil }
+                    catch { model.error = error.localizedDescription; model.needsRefresh = true }
+                    model.busy = false
+                }
+            }
+            Button("Cancel", role: .cancel) {}
         }
         .preferredColorScheme(.dark)
         .task {

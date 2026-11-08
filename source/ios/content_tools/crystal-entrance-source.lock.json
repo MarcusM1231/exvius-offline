@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "scope": "One original shared TOUCH SCREEN PNG; exact bounded range only",
+  "range_sources": {
+    "Ver13_effectResource1_common": {
+      "name": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "size": 29181048,
+      "compressed": 29181048,
+      "offset": 921435457,
+      "crc32": 2603428041,
+      "method": 0,
+      "archive": "data-002",
+      "archive_size": 1461366379,
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-002.zip",
+      "zip_payload_start": 921435576,
+      "cpk_size": 29181048,
+      "index_sha256": "685f05b3546ba2858fd970299e9dc19cf8cbdfe29b74c3db1436b354a807f810",
+      "toc_sha256": "7d5d177b5f2f4cad0c0c270bf98f66d2bf001b6e0b3011d14b38792e67ebe1a0"
+    }
+  },
+  "members": [
+    {
+      "name": "touchscreen.png",
+      "offset_in_cpk": 11825512,
+      "size": 10454,
+      "unpacked": 10454,
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "common-touchscreen.png",
+      "sha256_stored": "90b01b97a2f392f77498ed64313204dcabf4a210c753bdff59fcd5802605fb33",
+      "sha256_decoded": "90b01b97a2f392f77498ed64313204dcabf4a210c753bdff59fcd5802605fb33"
+    }
+  ]
+}

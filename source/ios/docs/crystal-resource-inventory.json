@@ -1,0 +1,1845 @@
+{
+  "schema": 1,
+  "phase": "6C-1",
+  "branch": "ios-port",
+  "status": "Recovered static original crystal geometry; original animation not decoded",
+  "assets": [
+    {
+      "name": "EX16_2openblue.bmb",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "d84401ece242d1c74e37234d6522bd8139608c1b1d4be7893abf80654c13f6d9",
+      "decoded_sha256": "be445d09cf270a85da9821fd647ded29901e7b2489362361d3b77ab850e7b847",
+      "structure": {
+        "magic": "IBMB",
+        "bytes": 59584,
+        "raw_tag_04": 16974081,
+        "raw_tag_08": 65,
+        "raw_count_10": 7,
+        "raw_count_14": 5,
+        "name_region": [
+          51296,
+          51488
+        ],
+        "names": [
+          {
+            "offset": 51296,
+            "name": "D:/bishamon_lib/"
+          },
+          {
+            "offset": 51313,
+            "name": "EX16_chesttop"
+          },
+          {
+            "offset": 51327,
+            "name": "EX16_expbox"
+          },
+          {
+            "offset": 51339,
+            "name": "EX16_chestlock"
+          },
+          {
+            "offset": 51354,
+            "name": "EX16_chestbot"
+          },
+          {
+            "offset": 51368,
+            "name": "model_glow_005"
+          },
+          {
+            "offset": 51383,
+            "name": "tex_glow_004_rainbow_1"
+          },
+          {
+            "offset": 51406,
+            "name": "glow_001"
+          },
+          {
+            "offset": 51415,
+            "name": "glow_022"
+          },
+          {
+            "offset": 51424,
+            "name": "model_glow_004"
+          },
+          {
+            "offset": 51439,
+            "name": "_glow_006"
+          },
+          {
+            "offset": 51449,
+            "name": "EX16_chestglow"
+          },
+          {
+            "offset": 51464,
+            "name": "glow_001_03"
+          }
+        ],
+        "header_words": [
+          {
+            "offset": 0,
+            "value": 1112359497
+          },
+          {
+            "offset": 4,
+            "value": 16974081
+          },
+          {
+            "offset": 8,
+            "value": 65
+          },
+          {
+            "offset": 12,
+            "value": 0
+          },
+          {
+            "offset": 16,
+            "value": 7
+          },
+          {
+            "offset": 20,
+            "value": 5
+          },
+          {
+            "offset": 24,
+            "value": 0
+          },
+          {
+            "offset": 28,
+            "value": 0
+          },
+          {
+            "offset": 32,
+            "value": 7984
+          },
+          {
+            "offset": 36,
+            "value": 8040
+          },
+          {
+            "offset": 40,
+            "value": 4294967295
+          },
+          {
+            "offset": 44,
+            "value": 4294967295
+          },
+          {
+            "offset": 48,
+            "value": 4294967295
+          },
+          {
+            "offset": 52,
+            "value": 4294967295
+          },
+          {
+            "offset": 56,
+            "value": 4294967295
+          },
+          {
+            "offset": 60,
+            "value": 4294967295
+          },
+          {
+            "offset": 64,
+            "value": 8080
+          },
+          {
+            "offset": 68,
+            "value": 1
+          },
+          {
+            "offset": 72,
+            "value": 6000
+          },
+          {
+            "offset": 76,
+            "value": 1
+          },
+          {
+            "offset": 80,
+            "value": 0
+          },
+          {
+            "offset": 84,
+            "value": 1065353216
+          },
+          {
+            "offset": 88,
+            "value": 51296
+          },
+          {
+            "offset": 92,
+            "value": 51488
+          }
+        ],
+        "timeline_decoded": false,
+        "material_binding_decoded": false,
+        "note": "Raw tags/counts are observed fields, not a published BMB version/type specification."
+      }
+    },
+    {
+      "name": "EX16_2opengold.bmb",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "32bb55e365ce3f0cc76f22647292ecef7df28fa47771ad9f62e6766f387210e3",
+      "decoded_sha256": "75145e4a7cf077e1d9c48fcddae4844d36fde2572d53764c29d2eb5c0bebf21b",
+      "structure": {
+        "magic": "IBMB",
+        "bytes": 59584,
+        "raw_tag_04": 16974081,
+        "raw_tag_08": 65,
+        "raw_count_10": 7,
+        "raw_count_14": 5,
+        "name_region": [
+          51296,
+          51488
+        ],
+        "names": [
+          {
+            "offset": 51296,
+            "name": "D:/bishamon_lib/"
+          },
+          {
+            "offset": 51313,
+            "name": "EX16_chesttop"
+          },
+          {
+            "offset": 51327,
+            "name": "EX16_expbox"
+          },
+          {
+            "offset": 51339,
+            "name": "EX16_chestlock"
+          },
+          {
+            "offset": 51354,
+            "name": "EX16_chestbot"
+          },
+          {
+            "offset": 51368,
+            "name": "model_glow_005"
+          },
+          {
+            "offset": 51383,
+            "name": "tex_glow_004_rainbow_1"
+          },
+          {
+            "offset": 51406,
+            "name": "glow_001"
+          },
+          {
+            "offset": 51415,
+            "name": "glow_022"
+          },
+          {
+            "offset": 51424,
+            "name": "model_glow_004"
+          },
+          {
+            "offset": 51439,
+            "name": "_glow_006"
+          },
+          {
+            "offset": 51449,
+            "name": "EX16_chestglow"
+          },
+          {
+            "offset": 51464,
+            "name": "glow_001_03"
+          }
+        ],
+        "header_words": [
+          {
+            "offset": 0,
+            "value": 1112359497
+          },
+          {
+            "offset": 4,
+            "value": 16974081
+          },
+          {
+            "offset": 8,
+            "value": 65
+          },
+          {
+            "offset": 12,
+            "value": 0
+          },
+          {
+            "offset": 16,
+            "value": 7
+          },
+          {
+            "offset": 20,
+            "value": 5
+          },
+          {
+            "offset": 24,
+            "value": 0
+          },
+          {
+            "offset": 28,
+            "value": 0
+          },
+          {
+            "offset": 32,
+            "value": 7984
+          },
+          {
+            "offset": 36,
+            "value": 8040
+          },
+          {
+            "offset": 40,
+            "value": 4294967295
+          },
+          {
+            "offset": 44,
+            "value": 4294967295
+          },
+          {
+            "offset": 48,
+            "value": 4294967295
+          },
+          {
+            "offset": 52,
+            "value": 4294967295
+          },
+          {
+            "offset": 56,
+            "value": 4294967295
+          },
+          {
+            "offset": 60,
+            "value": 4294967295
+          },
+          {
+            "offset": 64,
+            "value": 8080
+          },
+          {
+            "offset": 68,
+            "value": 1
+          },
+          {
+            "offset": 72,
+            "value": 6000
+          },
+          {
+            "offset": 76,
+            "value": 1
+          },
+          {
+            "offset": 80,
+            "value": 0
+          },
+          {
+            "offset": 84,
+            "value": 1065353216
+          },
+          {
+            "offset": 88,
+            "value": 51296
+          },
+          {
+            "offset": 92,
+            "value": 51488
+          }
+        ],
+        "timeline_decoded": false,
+        "material_binding_decoded": false,
+        "note": "Raw tags/counts are observed fields, not a published BMB version/type specification."
+      }
+    },
+    {
+      "name": "EX16_2openraindow.bmb",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "6534709d4d24275ab2fcd2acdcf4d1a5bd0f11d4b85d621cb2c672a16ec9c401",
+      "decoded_sha256": "2b62a2eb03a5b88554aff4bf3606e2e44eeaf1a944487bdbf7874c6a37253437",
+      "structure": {
+        "magic": "IBMB",
+        "bytes": 62080,
+        "raw_tag_04": 16974081,
+        "raw_tag_08": 65,
+        "raw_count_10": 8,
+        "raw_count_14": 5,
+        "name_region": [
+          53200,
+          53408
+        ],
+        "names": [
+          {
+            "offset": 53200,
+            "name": "D:/bishamon_lib/"
+          },
+          {
+            "offset": 53217,
+            "name": "EX16_chesttop"
+          },
+          {
+            "offset": 53231,
+            "name": "EX16_expbox"
+          },
+          {
+            "offset": 53243,
+            "name": "EX16_chestlock"
+          },
+          {
+            "offset": 53258,
+            "name": "EX16_chestbot"
+          },
+          {
+            "offset": 53272,
+            "name": "model_glow_005"
+          },
+          {
+            "offset": 53287,
+            "name": "tex_glow_004_rainbow_1"
+          },
+          {
+            "offset": 53310,
+            "name": "glow_001"
+          },
+          {
+            "offset": 53319,
+            "name": "glow_022"
+          },
+          {
+            "offset": 53328,
+            "name": "model_glow_004"
+          },
+          {
+            "offset": 53343,
+            "name": "_glow_006"
+          },
+          {
+            "offset": 53353,
+            "name": "EX16_chestglow"
+          },
+          {
+            "offset": 53368,
+            "name": "EX16_chestraindow"
+          },
+          {
+            "offset": 53386,
+            "name": "glow_001_03"
+          }
+        ],
+        "header_words": [
+          {
+            "offset": 0,
+            "value": 1112359497
+          },
+          {
+            "offset": 4,
+            "value": 16974081
+          },
+          {
+            "offset": 8,
+            "value": 65
+          },
+          {
+            "offset": 12,
+            "value": 0
+          },
+          {
+            "offset": 16,
+            "value": 8
+          },
+          {
+            "offset": 20,
+            "value": 5
+          },
+          {
+            "offset": 24,
+            "value": 0
+          },
+          {
+            "offset": 28,
+            "value": 0
+          },
+          {
+            "offset": 32,
+            "value": 8552
+          },
+          {
+            "offset": 36,
+            "value": 8616
+          },
+          {
+            "offset": 40,
+            "value": 4294967295
+          },
+          {
+            "offset": 44,
+            "value": 4294967295
+          },
+          {
+            "offset": 48,
+            "value": 4294967295
+          },
+          {
+            "offset": 52,
+            "value": 4294967295
+          },
+          {
+            "offset": 56,
+            "value": 4294967295
+          },
+          {
+            "offset": 60,
+            "value": 4294967295
+          },
+          {
+            "offset": 64,
+            "value": 8656
+          },
+          {
+            "offset": 68,
+            "value": 1
+          },
+          {
+            "offset": 72,
+            "value": 6000
+          },
+          {
+            "offset": 76,
+            "value": 1
+          },
+          {
+            "offset": 80,
+            "value": 0
+          },
+          {
+            "offset": 84,
+            "value": 1065353216
+          },
+          {
+            "offset": 88,
+            "value": 53200
+          },
+          {
+            "offset": 92,
+            "value": 53408
+          }
+        ],
+        "timeline_decoded": false,
+        "material_binding_decoded": false,
+        "note": "Raw tags/counts are observed fields, not a published BMB version/type specification."
+      }
+    },
+    {
+      "name": "gacha_crystal_n1_c1.bmb",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "38deef9e7c2e01ae3a8b9d3ddcf6a2c599f9fbab4a5c21a33234e0905bf42ce0",
+      "decoded_sha256": "7e4c776d1cea64fa2139645d46389afeb417f5380f97d4107fc6c65ef7eb8b27",
+      "structure": {
+        "magic": "IBMB",
+        "bytes": 29536,
+        "raw_tag_04": 81,
+        "raw_tag_08": 65,
+        "raw_count_10": 8,
+        "raw_count_14": 3,
+        "name_region": [
+          25472,
+          25648
+        ],
+        "names": [
+          {
+            "offset": 25472,
+            "name": "../"
+          },
+          {
+            "offset": 25476,
+            "name": "model_glow_001"
+          },
+          {
+            "offset": 25491,
+            "name": "glow_001"
+          },
+          {
+            "offset": 25500,
+            "name": "lightburst_011"
+          },
+          {
+            "offset": 25515,
+            "name": "model_mothercrystal_001"
+          },
+          {
+            "offset": 25539,
+            "name": "deff_mothercrystal_001"
+          },
+          {
+            "offset": 25562,
+            "name": "glow_013"
+          },
+          {
+            "offset": 25571,
+            "name": "model_mothercrystal_002"
+          },
+          {
+            "offset": 25595,
+            "name": "deffuse_soccerball_001"
+          },
+          {
+            "offset": 25618,
+            "name": "glow_003"
+          },
+          {
+            "offset": 25627,
+            "name": "glow_008"
+          },
+          {
+            "offset": 25636,
+            "name": "star_003"
+          }
+        ],
+        "header_words": [
+          {
+            "offset": 0,
+            "value": 1112359497
+          },
+          {
+            "offset": 4,
+            "value": 81
+          },
+          {
+            "offset": 8,
+            "value": 65
+          },
+          {
+            "offset": 12,
+            "value": 0
+          },
+          {
+            "offset": 16,
+            "value": 8
+          },
+          {
+            "offset": 20,
+            "value": 3
+          },
+          {
+            "offset": 24,
+            "value": 0
+          },
+          {
+            "offset": 28,
+            "value": 0
+          },
+          {
+            "offset": 32,
+            "value": 3780
+          },
+          {
+            "offset": 36,
+            "value": 3844
+          },
+          {
+            "offset": 40,
+            "value": 4294967295
+          },
+          {
+            "offset": 44,
+            "value": 4294967295
+          },
+          {
+            "offset": 48,
+            "value": 4294967295
+          },
+          {
+            "offset": 52,
+            "value": 4294967295
+          },
+          {
+            "offset": 56,
+            "value": 4294967295
+          },
+          {
+            "offset": 60,
+            "value": 4294967295
+          },
+          {
+            "offset": 64,
+            "value": 3868
+          },
+          {
+            "offset": 68,
+            "value": 0
+          },
+          {
+            "offset": 72,
+            "value": 329
+          },
+          {
+            "offset": 76,
+            "value": 256
+          },
+          {
+            "offset": 80,
+            "value": 329
+          },
+          {
+            "offset": 84,
+            "value": 1065353216
+          },
+          {
+            "offset": 88,
+            "value": 25472
+          },
+          {
+            "offset": 92,
+            "value": 25648
+          }
+        ],
+        "timeline_decoded": false,
+        "material_binding_decoded": false,
+        "note": "Raw tags/counts are observed fields, not a published BMB version/type specification."
+      }
+    },
+    {
+      "name": "gacha_crystal_r1_c1.bmb",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "f0ab01e776018b859b02a280718157101b5f7fddcaa65712a2038387808c17cd",
+      "decoded_sha256": "0898e7546528f0f70d1a55aa94f749af0134cf8b01dc68f9f4b751090cc0085f",
+      "structure": {
+        "magic": "IBMB",
+        "bytes": 29536,
+        "raw_tag_04": 81,
+        "raw_tag_08": 65,
+        "raw_count_10": 8,
+        "raw_count_14": 3,
+        "name_region": [
+          25472,
+          25648
+        ],
+        "names": [
+          {
+            "offset": 25472,
+            "name": "../"
+          },
+          {
+            "offset": 25476,
+            "name": "model_glow_001"
+          },
+          {
+            "offset": 25491,
+            "name": "glow_001"
+          },
+          {
+            "offset": 25500,
+            "name": "lightburst_011"
+          },
+          {
+            "offset": 25515,
+            "name": "model_mothercrystal_001"
+          },
+          {
+            "offset": 25539,
+            "name": "deff_mothercrystal_001"
+          },
+          {
+            "offset": 25562,
+            "name": "glow_013"
+          },
+          {
+            "offset": 25571,
+            "name": "model_mothercrystal_002"
+          },
+          {
+            "offset": 25595,
+            "name": "deffuse_soccerball_001"
+          },
+          {
+            "offset": 25618,
+            "name": "glow_003"
+          },
+          {
+            "offset": 25627,
+            "name": "glow_008"
+          },
+          {
+            "offset": 25636,
+            "name": "star_003"
+          }
+        ],
+        "header_words": [
+          {
+            "offset": 0,
+            "value": 1112359497
+          },
+          {
+            "offset": 4,
+            "value": 81
+          },
+          {
+            "offset": 8,
+            "value": 65
+          },
+          {
+            "offset": 12,
+            "value": 0
+          },
+          {
+            "offset": 16,
+            "value": 8
+          },
+          {
+            "offset": 20,
+            "value": 3
+          },
+          {
+            "offset": 24,
+            "value": 0
+          },
+          {
+            "offset": 28,
+            "value": 0
+          },
+          {
+            "offset": 32,
+            "value": 3780
+          },
+          {
+            "offset": 36,
+            "value": 3844
+          },
+          {
+            "offset": 40,
+            "value": 4294967295
+          },
+          {
+            "offset": 44,
+            "value": 4294967295
+          },
+          {
+            "offset": 48,
+            "value": 4294967295
+          },
+          {
+            "offset": 52,
+            "value": 4294967295
+          },
+          {
+            "offset": 56,
+            "value": 4294967295
+          },
+          {
+            "offset": 60,
+            "value": 4294967295
+          },
+          {
+            "offset": 64,
+            "value": 3868
+          },
+          {
+            "offset": 68,
+            "value": 0
+          },
+          {
+            "offset": 72,
+            "value": 329
+          },
+          {
+            "offset": 76,
+            "value": 256
+          },
+          {
+            "offset": 80,
+            "value": 329
+          },
+          {
+            "offset": 84,
+            "value": 1065353216
+          },
+          {
+            "offset": 88,
+            "value": 25472
+          },
+          {
+            "offset": 92,
+            "value": 25648
+          }
+        ],
+        "timeline_decoded": false,
+        "material_binding_decoded": false,
+        "note": "Raw tags/counts are observed fields, not a published BMB version/type specification."
+      }
+    },
+    {
+      "name": "model_cloud_002.m3r",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "546d85adb3fb06a5b3e8e7f53b5a55002b1318ddefe07b5a8266ba8663f59221",
+      "decoded_sha256": "01e473ef75a77ad351d03489186e44cf5647626b7464eac909771a57015a081b",
+      "structure": {
+        "schema": 1,
+        "magic": "BR3M",
+        "raw_version": 34,
+        "vertices": 1024,
+        "triangles": 512,
+        "texture_names": [
+          "deff_cloud_002"
+        ],
+        "bounds": [
+          [
+            -7.968903064727783,
+            7.96890115737915
+          ],
+          [
+            0.0,
+            5.385830879211426
+          ],
+          [
+            -7.968900203704834,
+            7.968903064727783
+          ]
+        ],
+        "sections": {
+          "names": 64,
+          "material": 80,
+          "indices": 168,
+          "vertices": 3240,
+          "uninterpreted_tail": 40104
+        },
+        "uninterpreted_tail_bytes": 2048,
+        "material_words": [
+          4278190080,
+          4294967295,
+          4286545791,
+          4278190080,
+          1112014848,
+          0,
+          4294967295,
+          0,
+          36,
+          1024,
+          0,
+          1536,
+          0,
+          1131209946,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "appearance_verified": false,
+        "timeline_present_in_decoded_geometry": false
+      }
+    },
+    {
+      "name": "model_glow_009.m3r",
+      "archive": "data-003",
+      "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "fd95cbc8492f887af89e9bcfdf6ed2b1d085ecedbb147cdd75d15110072cb503",
+      "decoded_sha256": "6b0650e5e2a13c45bc1e3844e05d40228ff57f9819feb63d52fc8a96d4a749fb",
+      "structure": {
+        "schema": 1,
+        "magic": "BR3M",
+        "raw_version": 35,
+        "vertices": 56,
+        "triangles": 84,
+        "texture_names": [],
+        "bounds": [
+          [
+            -1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -2.0,
+            0.0
+          ]
+        ],
+        "sections": {
+          "names": 64,
+          "material": 64,
+          "indices": 152,
+          "vertices": 664,
+          "uninterpreted_tail": 2680
+        },
+        "uninterpreted_tail_bytes": 336,
+        "material_words": [
+          4278190080,
+          4288914339,
+          4282335039,
+          4278190080,
+          1112014848,
+          4294967295,
+          4294967295,
+          0,
+          36,
+          56,
+          0,
+          252,
+          0,
+          1075066812,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "appearance_verified": false,
+        "timeline_present_in_decoded_geometry": false
+      }
+    },
+    {
+      "name": "deff_crystalparticle_001.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "425f3e4c6cd8a0b18ff826006df7eb1670c4b9dc92f9a3e36f4287ade52cf2a2",
+      "decoded_sha256": "425f3e4c6cd8a0b18ff826006df7eb1670c4b9dc92f9a3e36f4287ade52cf2a2",
+      "stored_bytes": 9262,
+      "decoded_bytes": 9262,
+      "structure": {}
+    },
+    {
+      "name": "lightburst_011.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa",
+      "decoded_sha256": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa",
+      "stored_bytes": 4768,
+      "decoded_bytes": 4768,
+      "structure": {}
+    },
+    {
+      "name": "model_crystalparticle_001.m3r",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "bf0649dbc1b3faa988217d5dd1f4ca8a4e87668e0c41be4cd2e85ffa9edfa926",
+      "decoded_sha256": "8fd45b2b07bd8e32ae62b962edb66a3fd6af07b80941b364b6b064065703ca10",
+      "stored_bytes": 1308,
+      "decoded_bytes": 2552,
+      "structure": {
+        "schema": 1,
+        "magic": "BR3M",
+        "raw_version": 35,
+        "vertices": 60,
+        "triangles": 20,
+        "texture_names": [
+          "deff_crystalparticle_001"
+        ],
+        "bounds": [
+          [
+            -0.8122844099998474,
+            0.8944249749183655
+          ],
+          [
+            -1.6403069496154785,
+            1.5753860473632812
+          ],
+          [
+            -0.8506399989128113,
+            0.7818465232849121
+          ]
+        ],
+        "sections": {
+          "names": 64,
+          "material": 96,
+          "indices": 184,
+          "vertices": 312,
+          "uninterpreted_tail": 2472
+        },
+        "uninterpreted_tail_bytes": 80,
+        "material_words": [
+          4278190080,
+          4294967295,
+          4286545791,
+          4278190080,
+          1112014848,
+          0,
+          4294967295,
+          0,
+          36,
+          60,
+          0,
+          60,
+          0,
+          1094414624,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "appearance_verified": false,
+        "timeline_present_in_decoded_geometry": false
+      }
+    },
+    {
+      "name": "deffuse_soccerball_001.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "36f650438506628b52729749832c38eb4ca6bc5f04a13c66341f771c6f84be7d",
+      "decoded_sha256": "36f650438506628b52729749832c38eb4ca6bc5f04a13c66341f771c6f84be7d",
+      "stored_bytes": 473,
+      "decoded_bytes": 473,
+      "structure": {}
+    },
+    {
+      "name": "deff_mothercrystal_001.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "decoded_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "stored_bytes": 815,
+      "decoded_bytes": 815,
+      "structure": {}
+    },
+    {
+      "name": "glow_003.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734",
+      "decoded_sha256": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734",
+      "stored_bytes": 3361,
+      "decoded_bytes": 3361,
+      "structure": {}
+    },
+    {
+      "name": "glow_008.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "4dce4b8f6609dba76545313b22f480bbfb7fe75f089954b3b7a416161caa7adc",
+      "decoded_sha256": "4dce4b8f6609dba76545313b22f480bbfb7fe75f089954b3b7a416161caa7adc",
+      "stored_bytes": 2490,
+      "decoded_bytes": 2490,
+      "structure": {}
+    },
+    {
+      "name": "glow_013.png",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895",
+      "decoded_sha256": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895",
+      "stored_bytes": 10700,
+      "decoded_bytes": 10700,
+      "structure": {}
+    },
+    {
+      "name": "model_glow_001.m3r",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "441864dadf13d37d603ef1925fc1c8e12a440d745761f806c3bbb0fe297f9955",
+      "decoded_sha256": "1721ec239e3f65615ca0172c87beef400dba1241f65b1724f0fe2cd38d76749d",
+      "stored_bytes": 688,
+      "decoded_bytes": 904,
+      "structure": {
+        "schema": 1,
+        "magic": "BR3M",
+        "raw_version": 34,
+        "vertices": 16,
+        "triangles": 14,
+        "texture_names": [
+          "glow_001"
+        ],
+        "bounds": [
+          [
+            -0.9807853698730469,
+            0.9807854294776917
+          ],
+          [
+            -0.9807852506637573,
+            0.9807854294776917
+          ],
+          [
+            -4.350091487026475e-08,
+            4.350091487026475e-08
+          ]
+        ],
+        "sections": {
+          "names": 64,
+          "material": 80,
+          "indices": 168,
+          "vertices": 264,
+          "uninterpreted_tail": 840
+        },
+        "uninterpreted_tail_bytes": 64,
+        "material_words": [
+          4278190080,
+          4294967295,
+          4286545791,
+          4278190080,
+          1112014848,
+          0,
+          4294967295,
+          0,
+          36,
+          16,
+          0,
+          42,
+          0,
+          1078193943,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "appearance_verified": false,
+        "timeline_present_in_decoded_geometry": false
+      }
+    },
+    {
+      "name": "model_mothercrystal_001.m3r",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "f6a952d8ada1cb2490e111836f72c9a459dc66b2086b6c0a7adab9884431e12c",
+      "decoded_sha256": "44fcf3d9d3ae6cb1a80a4920777e5de44ff7d5f3ecb7e56974491147dd5fb203",
+      "stored_bytes": 20664,
+      "decoded_bytes": 37944,
+      "structure": {
+        "schema": 1,
+        "magic": "BR3M",
+        "raw_version": 35,
+        "vertices": 960,
+        "triangles": 320,
+        "texture_names": [
+          "deff_mothercrystal_001"
+        ],
+        "bounds": [
+          [
+            -5.315972328186035,
+            5.368839263916016
+          ],
+          [
+            -11.513121604919434,
+            13.63270092010498
+          ],
+          [
+            -5.5052103996276855,
+            5.536879062652588
+          ]
+        ],
+        "sections": {
+          "names": 64,
+          "material": 96,
+          "indices": 184,
+          "vertices": 2104,
+          "uninterpreted_tail": 36664
+        },
+        "uninterpreted_tail_bytes": 1280,
+        "material_words": [
+          4278190080,
+          4294967295,
+          4286545791,
+          4278190080,
+          1112014848,
+          0,
+          4294967295,
+          0,
+          36,
+          960,
+          0,
+          960,
+          0,
+          1140911202,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "appearance_verified": false,
+        "timeline_present_in_decoded_geometry": false
+      }
+    },
+    {
+      "name": "model_mothercrystal_002.m3r",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "provenance": "global-targeted-preservation",
+      "stored_sha256": "1d94f014890f3a82377ba692402f7a9084683be21ef9b5bfb2167890eeee8e10",
+      "decoded_sha256": "1c29c28a11af5b241018c8d9ad8f4df00666c842ec19bcd3efea43a2dde21b96",
+      "stored_bytes": 24308,
+      "decoded_bytes": 37944,
+      "structure": {
+        "schema": 1,
+        "magic": "BR3M",
+        "raw_version": 35,
+        "vertices": 960,
+        "triangles": 320,
+        "texture_names": [
+          "deffuse_cloud_001"
+        ],
+        "bounds": [
+          [
+            -5.315972328186035,
+            5.368839263916016
+          ],
+          [
+            -11.513121604919434,
+            13.63270092010498
+          ],
+          [
+            -5.5052103996276855,
+            5.536879062652588
+          ]
+        ],
+        "sections": {
+          "names": 64,
+          "material": 96,
+          "indices": 184,
+          "vertices": 2104,
+          "uninterpreted_tail": 36664
+        },
+        "uninterpreted_tail_bytes": 1280,
+        "material_words": [
+          4278190080,
+          4294967295,
+          4286545791,
+          4278190080,
+          1112014848,
+          0,
+          4294967295,
+          0,
+          36,
+          960,
+          0,
+          960,
+          0,
+          1140911202,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "appearance_verified": false,
+        "timeline_present_in_decoded_geometry": false
+      }
+    }
+  ],
+  "n1_literal_dependency_matches": [
+    {
+      "symbol": "model_glow_001",
+      "matches": [
+        {
+          "name": "model_glow_001.m3r",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "1721ec239e3f65615ca0172c87beef400dba1241f65b1724f0fe2cd38d76749d"
+        }
+      ]
+    },
+    {
+      "symbol": "glow_001",
+      "matches": [
+        {
+          "name": "glow_001.png",
+          "archive": "data-003",
+          "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+          "decoded_sha256": "f3c8d62dd42f7dae8fa19c455bfb7b3273923f769accf32be1b72103f87c9881"
+        }
+      ]
+    },
+    {
+      "symbol": "lightburst_011",
+      "matches": [
+        {
+          "name": "lightburst_011.png",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+          "decoded_sha256": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa"
+        }
+      ]
+    },
+    {
+      "symbol": "model_mothercrystal_001",
+      "matches": [
+        {
+          "name": "model_mothercrystal_001.m3r",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "44fcf3d9d3ae6cb1a80a4920777e5de44ff7d5f3ecb7e56974491147dd5fb203"
+        }
+      ]
+    },
+    {
+      "symbol": "deff_mothercrystal_001",
+      "matches": [
+        {
+          "name": "deff_mothercrystal_001.png",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c"
+        }
+      ]
+    },
+    {
+      "symbol": "glow_013",
+      "matches": [
+        {
+          "name": "glow_013.png",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895"
+        }
+      ]
+    },
+    {
+      "symbol": "model_mothercrystal_002",
+      "matches": [
+        {
+          "name": "model_mothercrystal_002.m3r",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "1c29c28a11af5b241018c8d9ad8f4df00666c842ec19bcd3efea43a2dde21b96"
+        }
+      ]
+    },
+    {
+      "symbol": "deffuse_soccerball_001",
+      "matches": [
+        {
+          "name": "deffuse_soccerball_001.png",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "36f650438506628b52729749832c38eb4ca6bc5f04a13c66341f771c6f84be7d"
+        }
+      ]
+    },
+    {
+      "symbol": "glow_003",
+      "matches": [
+        {
+          "name": "glow_003.png",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734"
+        }
+      ]
+    },
+    {
+      "symbol": "glow_008",
+      "matches": [
+        {
+          "name": "glow_008.png",
+          "archive": "data-002",
+          "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+          "decoded_sha256": "4dce4b8f6609dba76545313b22f480bbfb7fe75f089954b3b7a416161caa7adc"
+        }
+      ]
+    },
+    {
+      "symbol": "star_003",
+      "matches": [
+        {
+          "name": "star_003.png",
+          "archive": "data-003",
+          "container": "native/common_lang/sd/gacha/Ver31_gachaeffect1_common.cpk",
+          "decoded_sha256": "c1245b8df8725d610b37e0d3aeed38156c234e307f035098799c81ea21565eea"
+        }
+      ]
+    }
+  ],
+  "n1_r1_differing_words": [
+    {
+      "offset": 12752,
+      "n1_hex": "00000000",
+      "r1_hex": "0000803f",
+      "n1_float_candidate": 0.0,
+      "r1_float_candidate": 1.0
+    },
+    {
+      "offset": 12756,
+      "n1_hex": "de81253f",
+      "r1_hex": "f7be4b3f",
+      "n1_float_candidate": 0.6465128660202026,
+      "r1_float_candidate": 0.7958826422691345
+    },
+    {
+      "offset": 12760,
+      "n1_hex": "0000803f",
+      "r1_hex": "9f72633e",
+      "n1_float_candidate": 1.0,
+      "r1_float_candidate": 0.22211693227291107
+    },
+    {
+      "offset": 18608,
+      "n1_hex": "0eea203f",
+      "r1_hex": "0000803f",
+      "n1_float_candidate": 0.6285713911056519,
+      "r1_float_candidate": 1.0
+    },
+    {
+      "offset": 18612,
+      "n1_hex": "25275c3f",
+      "r1_hex": "e9bf6a3f",
+      "n1_float_candidate": 0.8599722981452942,
+      "r1_float_candidate": 0.9169908165931702
+    },
+    {
+      "offset": 18616,
+      "n1_hex": "0000803f",
+      "r1_hex": "3471033f",
+      "n1_float_candidate": 1.0,
+      "r1_float_candidate": 0.5134460926055908
+    },
+    {
+      "offset": 20560,
+      "n1_hex": "0e3eda3e",
+      "r1_hex": "0000803f",
+      "n1_float_candidate": 0.4262546896934509,
+      "r1_float_candidate": 1.0
+    },
+    {
+      "offset": 20564,
+      "n1_hex": "6cc4513f",
+      "r1_hex": "bc924d3f",
+      "n1_float_candidate": 0.8194034099578857,
+      "r1_float_candidate": 0.8030202388763428
+    },
+    {
+      "offset": 20568,
+      "n1_hex": "0000803f",
+      "r1_hex": "c32b593e",
+      "n1_float_candidate": 1.0,
+      "r1_float_candidate": 0.21208100020885468
+    },
+    {
+      "offset": 29084,
+      "n1_hex": "00000000",
+      "r1_hex": "0000803f",
+      "n1_float_candidate": 0.0,
+      "r1_float_candidate": 1.0
+    },
+    {
+      "offset": 29088,
+      "n1_hex": "9a99193f",
+      "r1_hex": "cdcc4c3f",
+      "n1_float_candidate": 0.6000000238418579,
+      "r1_float_candidate": 0.800000011920929
+    },
+    {
+      "offset": 29092,
+      "n1_hex": "0000803f",
+      "r1_hex": "9a99993e",
+      "n1_float_candidate": 1.0,
+      "r1_float_candidate": 0.30000001192092896
+    },
+    {
+      "offset": 29136,
+      "n1_hex": "00000000",
+      "r1_hex": "cdcc4c3f",
+      "n1_float_candidate": 0.0,
+      "r1_float_candidate": 0.800000011920929
+    },
+    {
+      "offset": 29140,
+      "n1_hex": "9a99993e",
+      "r1_hex": "9a99193f",
+      "n1_float_candidate": 0.30000001192092896,
+      "r1_float_candidate": 0.6000000238418579
+    },
+    {
+      "offset": 29144,
+      "n1_hex": "cdcc4c3f",
+      "r1_hex": "00000000",
+      "n1_float_candidate": 0.800000011920929,
+      "r1_float_candidate": 0.0
+    },
+    {
+      "offset": 29300,
+      "n1_hex": "9a99993e",
+      "r1_hex": "0000803f",
+      "n1_float_candidate": 0.30000001192092896,
+      "r1_float_candidate": 1.0
+    },
+    {
+      "offset": 29304,
+      "n1_hex": "3333333f",
+      "r1_hex": "cdcc4c3f",
+      "n1_float_candidate": 0.699999988079071,
+      "r1_float_candidate": 0.800000011920929
+    },
+    {
+      "offset": 29308,
+      "n1_hex": "0000803f",
+      "r1_hex": "9a99993e",
+      "n1_float_candidate": 1.0,
+      "r1_float_candidate": 0.30000001192092896
+    },
+    {
+      "offset": 29352,
+      "n1_hex": "00000000",
+      "r1_hex": "cdcc4c3f",
+      "n1_float_candidate": 0.0,
+      "r1_float_candidate": 0.800000011920929
+    },
+    {
+      "offset": 29356,
+      "n1_hex": "0000003f",
+      "r1_hex": "9a99193f",
+      "n1_float_candidate": 0.5,
+      "r1_float_candidate": 0.6000000238418579
+    },
+    {
+      "offset": 29360,
+      "n1_hex": "0000803f",
+      "r1_hex": "00000000",
+      "n1_float_candidate": 1.0,
+      "r1_float_candidate": 0.0
+    }
+  ],
+  "color_field_semantics_verified": false,
+  "shader_evidence": [
+    {
+      "provenance": "original-global-ipa",
+      "member": "Payload/FF EXVIUS.app/bishamon/bmshaderpack.bin",
+      "size": 777024,
+      "sha256": "2f36d1839cad4ede93764b4237a05d4cbe4085392a9a2b6f93c5833e14d7dd0b",
+      "magic": "7e000000f0050000602e0200000000000000000000000000d102000001000000",
+      "packaged_in_prototype": false
+    },
+    {
+      "provenance": "memorial-english-patched-ipa",
+      "member": "Payload/FF EXVIUS.app/bishamon/bmshaderpack.bin",
+      "size": 777024,
+      "sha256": "2f36d1839cad4ede93764b4237a05d4cbe4085392a9a2b6f93c5833e14d7dd0b",
+      "magic": "7e000000f0050000602e0200000000000000000000000000d102000001000000",
+      "packaged_in_prototype": false
+    },
+    {
+      "provenance": "memorial-english-patched-ipa",
+      "member": "Payload/FF EXVIUS.app/bishamon/bmshaderpack_gl2.bin",
+      "size": 687408,
+      "sha256": "90cdbdee63950026ba9031f9a04fed98dbefbb199610a32a438003b119ee2f6c",
+      "magic": "7e000000f0050000802a0200000000000000000000000000c802000001000000",
+      "packaged_in_prototype": false
+    }
+  ],
+  "network": {
+    "bytes": 304733,
+    "requests": [
+      {
+        "archive": "data-002",
+        "start": 921435457,
+        "length": 4096,
+        "received": 4096,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 921437624,
+        "length": 100000,
+        "received": 100000,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 923009760,
+        "length": 9262,
+        "received": 9262,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 928872848,
+        "length": 4768,
+        "received": 4768,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 939497064,
+        "length": 1308,
+        "received": 1308,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 950616624,
+        "length": 4096,
+        "received": 4096,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 950618791,
+        "length": 39152,
+        "received": 39152,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 957920271,
+        "length": 4096,
+        "received": 4096,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 957922438,
+        "length": 36480,
+        "received": 36480,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 963691670,
+        "length": 4096,
+        "received": 4096,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 963693845,
+        "length": 6224,
+        "received": 6224,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 964164989,
+        "length": 473,
+        "received": 473,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 964004797,
+        "length": 815,
+        "received": 815,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 964040061,
+        "length": 3361,
+        "received": 3361,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 963999733,
+        "length": 2490,
+        "received": 2490,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 964046029,
+        "length": 10700,
+        "received": 10700,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 963701181,
+        "length": 688,
+        "received": 688,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 963705141,
+        "length": 20664,
+        "received": 20664,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 963725805,
+        "length": 24308,
+        "received": 24308,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 964584233,
+        "length": 4096,
+        "received": 4096,
+        "http_status": "206"
+      },
+      {
+        "archive": "data-002",
+        "start": 964586402,
+        "length": 23560,
+        "received": 23560,
+        "http_status": "206"
+      }
+    ]
+  },
+  "blockers": [
+    "No complete BMB node/curve schema or compatible runtime implementation in repository",
+    "Original BISHAMON material/texture override semantics not decoded",
+    "Particle emission, transforms, random seeds and draw order not decoded",
+    "Original camera/timing, tap/upgrade/skip behavior not established"
+  ],
+  "preview": {
+    "technology": "SceneKit",
+    "original_parts": [
+      "960 vertex positions",
+      "320 indexed triangles",
+      "normals",
+      "UVs",
+      "grayscale texture"
+    ],
+    "diagnostic_parts": [
+      "orthographic camera",
+      "Lambert lighting",
+      "double-sided material",
+      "interactive camera inspection",
+      "normalized RGBA mapping of packed per-vertex attributes"
+    ],
+    "animation_play_disabled": true,
+    "production_summon_flow_changed": false
+  },
+  "validation": {
+    "python_tests_passed": 29,
+    "signed_arm64_build": true,
+    "simulator_build": true,
+    "normal_iphone_campaign_byte_identical": true,
+    "original_animation_recovered": false,
+    "physical_viewport_callbacks_per_second": 30.03732753466642,
+    "physical_snapshot_median_ms": 6.793041713535786,
+    "simulator_pixel_identical_restart": false,
+    "physical_pixel_identical_restart": true
+  }
+}

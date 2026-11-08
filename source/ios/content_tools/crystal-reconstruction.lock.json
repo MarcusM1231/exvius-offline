@@ -1,0 +1,233 @@
+{
+  "schema": 1,
+  "converter_revision": 1,
+  "scope": "Original geometry/textures; reconstructed layered appearance and timing; no original BISHAMON playback",
+  "range_sources": {
+    "Ver13_effectResource1_common": {
+      "name": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "size": 29181048,
+      "compressed": 29181048,
+      "offset": 921435457,
+      "crc32": 2603428041,
+      "method": 0,
+      "archive": "data-002",
+      "archive_size": 1461366379,
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-002.zip",
+      "zip_payload_start": 921435576,
+      "cpk_size": 29181048,
+      "index_sha256": "685f05b3546ba2858fd970299e9dc19cf8cbdfe29b74c3db1436b354a807f810",
+      "toc_sha256": "7d5d177b5f2f4cad0c0c270bf98f66d2bf001b6e0b3011d14b38792e67ebe1a0"
+    },
+    "Ver4_effectResource1_common_tutorial": {
+      "name": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "size": 892436,
+      "compressed": 892436,
+      "offset": 963691670,
+      "crc32": 463727479,
+      "method": 0,
+      "archive": "data-002",
+      "archive_size": 1461366379,
+      "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-002.zip",
+      "zip_payload_start": 963691797,
+      "cpk_size": 892436,
+      "index_sha256": "840b7715bc3a92fd48d62529d7e9b56a3cb3185901d3c98928ef97cf6cfddc73",
+      "toc_sha256": "b06d422843442ba22bead10bb7c0f341d761a800331654882ae5716d68751334"
+    }
+  },
+  "members": [
+    {
+      "name": "model_mothercrystal_003.m3r",
+      "offset_in_cpk": 58320,
+      "size": 9184,
+      "unpacked": 17896,
+      "source": "Ver4_effectResource1_common_tutorial",
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_003.m3r",
+      "sha256_stored": "c7f8c6711cf7b56f444f1021466104abbaad9bd184cfaefa1131506fa986d651",
+      "sha256_decoded": "7880beaa73d5f4878e8e232def4f2d1d1d611fd3e892f25ff9c8167a63f667c1"
+    },
+    {
+      "name": "model_mothercrystal_004.m3r",
+      "offset_in_cpk": 143752,
+      "size": 20712,
+      "unpacked": 37880,
+      "source": "Ver4_effectResource1_common_tutorial",
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_004.m3r",
+      "sha256_stored": "6165797e47ca0eddcf989674223a5788498c5df7438b3427e4c91673c836b193",
+      "sha256_decoded": "671eea5d95542b82d876159a33d758de474d509f1cccb7b02241c6a8b38965c4"
+    },
+    {
+      "name": "model_mothercrystal_005.m3r",
+      "offset_in_cpk": 118968,
+      "size": 24784,
+      "unpacked": 37944,
+      "source": "Ver4_effectResource1_common_tutorial",
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_005.m3r",
+      "sha256_stored": "4104a4c5e2686818a0be6d574b0f4b1568458348c381f0da1c02a0005ae1aad0",
+      "sha256_decoded": "a2bcc460910e4e9ca1927e579b6dcfe89a3a01ddf1d793880f1f955908c74607"
+    },
+    {
+      "name": "deff_mothercrystal_004.png",
+      "offset_in_cpk": 726792,
+      "size": 628,
+      "unpacked": 628,
+      "source": "Ver4_effectResource1_common_tutorial",
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/deff_mothercrystal_004.png",
+      "sha256_stored": "2a573897c3f2fe1b899f86301fb5bc475b5dffc18f0aad9c133ca3a0ac7332c8",
+      "sha256_decoded": "2a573897c3f2fe1b899f86301fb5bc475b5dffc18f0aad9c133ca3a0ac7332c8"
+    },
+    {
+      "name": "prismatic_01.png",
+      "offset_in_cpk": 845600,
+      "size": 7744,
+      "unpacked": 7744,
+      "source": "Ver4_effectResource1_common_tutorial",
+      "cache_path": "sources/Ver4_effectResource1_common_tutorial/prismatic_01.png",
+      "sha256_stored": "790ed038e09652944ae52fc86c7d0b9dd73344187f80c3116eb8f32a342527fe",
+      "sha256_decoded": "790ed038e09652944ae52fc86c7d0b9dd73344187f80c3116eb8f32a342527fe"
+    },
+    {
+      "name": "deff_mothercrystal_002.png",
+      "offset_in_cpk": 1651616,
+      "size": 2841,
+      "unpacked": 2841,
+      "source": "Ver13_effectResource1_common",
+      "cache_path": "sources/Ver13_effectResource1_common/deff_mothercrystal_002.png",
+      "sha256_stored": "5cba7c70701d11a97e325bb8be74158a675e563702cd6a6c84102e8b692aa064",
+      "sha256_decoded": "5cba7c70701d11a97e325bb8be74158a675e563702cd6a6c84102e8b692aa064"
+    }
+  ],
+  "sources": {
+    "model001": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_001.m3r",
+      "stored_size": 20664,
+      "decoded_size": 37944,
+      "stored_sha256": "f6a952d8ada1cb2490e111836f72c9a459dc66b2086b6c0a7adab9884431e12c",
+      "decoded_sha256": "44fcf3d9d3ae6cb1a80a4920777e5de44ff7d5f3ecb7e56974491147dd5fb203",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_001.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "model002": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_002.m3r",
+      "stored_size": 24308,
+      "decoded_size": 37944,
+      "stored_sha256": "1d94f014890f3a82377ba692402f7a9084683be21ef9b5bfb2167890eeee8e10",
+      "decoded_sha256": "1c29c28a11af5b241018c8d9ad8f4df00666c842ec19bcd3efea43a2dde21b96",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_002.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "texture001": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/deff_mothercrystal_001.png",
+      "stored_size": 815,
+      "decoded_size": 815,
+      "stored_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "decoded_sha256": "f38368035c610e8067dc8c50a5ca3083a148e26a8b8096b44518cf2ee1e59a5c",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "deff_mothercrystal_001.png",
+      "provenance": "global-targeted-preservation"
+    },
+    "model003": {
+      "cache_path": "phase6c3/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_003.m3r",
+      "stored_size": 9184,
+      "decoded_size": 17896,
+      "stored_sha256": "c7f8c6711cf7b56f444f1021466104abbaad9bd184cfaefa1131506fa986d651",
+      "decoded_sha256": "7880beaa73d5f4878e8e232def4f2d1d1d611fd3e892f25ff9c8167a63f667c1",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_003.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "model004": {
+      "cache_path": "phase6c3/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_004.m3r",
+      "stored_size": 20712,
+      "decoded_size": 37880,
+      "stored_sha256": "6165797e47ca0eddcf989674223a5788498c5df7438b3427e4c91673c836b193",
+      "decoded_sha256": "671eea5d95542b82d876159a33d758de474d509f1cccb7b02241c6a8b38965c4",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_004.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "model005": {
+      "cache_path": "phase6c3/sources/Ver4_effectResource1_common_tutorial/model_mothercrystal_005.m3r",
+      "stored_size": 24784,
+      "decoded_size": 37944,
+      "stored_sha256": "4104a4c5e2686818a0be6d574b0f4b1568458348c381f0da1c02a0005ae1aad0",
+      "decoded_sha256": "a2bcc460910e4e9ca1927e579b6dcfe89a3a01ddf1d793880f1f955908c74607",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "model_mothercrystal_005.m3r",
+      "provenance": "global-targeted-preservation"
+    },
+    "texture004": {
+      "cache_path": "phase6c3/sources/Ver4_effectResource1_common_tutorial/deff_mothercrystal_004.png",
+      "stored_size": 628,
+      "decoded_size": 628,
+      "stored_sha256": "2a573897c3f2fe1b899f86301fb5bc475b5dffc18f0aad9c133ca3a0ac7332c8",
+      "decoded_sha256": "2a573897c3f2fe1b899f86301fb5bc475b5dffc18f0aad9c133ca3a0ac7332c8",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "deff_mothercrystal_004.png",
+      "provenance": "global-targeted-preservation"
+    },
+    "prismatic": {
+      "cache_path": "phase6c3/sources/Ver4_effectResource1_common_tutorial/prismatic_01.png",
+      "stored_size": 7744,
+      "decoded_size": 7744,
+      "stored_sha256": "790ed038e09652944ae52fc86c7d0b9dd73344187f80c3116eb8f32a342527fe",
+      "decoded_sha256": "790ed038e09652944ae52fc86c7d0b9dd73344187f80c3116eb8f32a342527fe",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "prismatic_01.png",
+      "provenance": "global-targeted-preservation"
+    },
+    "texture002": {
+      "cache_path": "phase6c3/sources/Ver13_effectResource1_common/deff_mothercrystal_002.png",
+      "stored_size": 2841,
+      "decoded_size": 2841,
+      "stored_sha256": "5cba7c70701d11a97e325bb8be74158a675e563702cd6a6c84102e8b692aa064",
+      "decoded_sha256": "5cba7c70701d11a97e325bb8be74158a675e563702cd6a6c84102e8b692aa064",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "member": "deff_mothercrystal_002.png",
+      "provenance": "global-targeted-preservation"
+    },
+    "glow": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/glow_003.png",
+      "stored_size": 3361,
+      "decoded_size": 3361,
+      "stored_sha256": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734",
+      "decoded_sha256": "36ea8676e61d5c4291170271b1bdc85603681e3bdb9858232c0262e525245734",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "glow_003.png",
+      "provenance": "global-targeted-preservation"
+    },
+    "halo": {
+      "cache_path": "phase6c1/sources/Ver4_effectResource1_common_tutorial/glow_013.png",
+      "stored_size": 10700,
+      "decoded_size": 10700,
+      "stored_sha256": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895",
+      "decoded_sha256": "c455352d39380165cb4c68a1e61bb08f86d3eb6f746e9db612328ad11ab57895",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver4_effectResource1_common_tutorial.cpk",
+      "member": "glow_013.png",
+      "provenance": "global-targeted-preservation"
+    },
+    "burst": {
+      "cache_path": "phase6c1/sources/Ver13_effectResource1_common/lightburst_011.png",
+      "stored_size": 4768,
+      "decoded_size": 4768,
+      "stored_sha256": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa",
+      "decoded_sha256": "96c6968009275021f5db40f2e3d5a7853b1f1124493b335b2843a806d21439fa",
+      "archive": "data-002",
+      "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk",
+      "member": "lightburst_011.png",
+      "provenance": "global-targeted-preservation"
+    }
+  }
+}

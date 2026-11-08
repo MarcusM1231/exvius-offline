@@ -132,6 +132,56 @@ def main():
         except (OSError, ValueError) as error:
             raise RuntimeError('Run python3 source/ios/content_tools/import_summon_ui.py first, or use FFBE_SUMMON_UI=fallback') from error
         shutil.copytree(output(), ui)
+    from import_crystal_preview import verify as verify_crystal, output as crystal_output
+    crystal = app / 'CrystalPreview'
+    if crystal.exists(): shutil.rmtree(crystal)
+    try:
+        verify_crystal()
+        shutil.copytree(crystal_output(), crystal)
+    except (OSError, ValueError):
+        # Optional Developer diagnostic. Missing resources must not break normal play.
+        print('Crystal diagnostic unavailable; run import_crystal_preview.py to enable it')
+    from import_crystal_reconstruction import verify as verify_reconstruction, output as reconstruction_output
+    reconstructed = app / 'CrystalReconstruction'
+    if reconstructed.exists(): shutil.rmtree(reconstructed)
+    try:
+        verify_reconstruction()
+        shutil.copytree(reconstruction_output(), reconstructed)
+    except (OSError, ValueError):
+        print('Crystal reconstruction unavailable; run import_crystal_reconstruction.py to enable it')
+    from import_reveal_research import verify as verify_reveal, output as reveal_output
+    reveal = app / 'RevealResearch'
+    if reveal.exists(): shutil.rmtree(reveal)
+    try:
+        verify_reveal()
+        shutil.copytree(reveal_output(), reveal)
+    except (OSError, ValueError):
+        print('Optional reveal research unavailable; run import_reveal_research.py')
+    from import_character_reveal import verify as verify_character, output as character_output
+    character = app / 'CharacterReveal'
+    if character.exists(): shutil.rmtree(character)
+    try:
+        verify_character()
+        shutil.copytree(character_output(), character)
+    except (OSError, ValueError):
+        # Missing reveal art preserves the committed-award results-grid fallback.
+        print('Character reveal unavailable; run import_character_reveal.py; results grid remains available')
+    from import_crystal_entrance import verify as verify_entrance, output as entrance_output
+    entrance = app / 'CrystalEntrance'
+    if entrance.exists(): shutil.rmtree(entrance)
+    try:
+        verify_entrance()
+        shutil.copytree(entrance_output(), entrance)
+    except (OSError, ValueError):
+        print('Optional entrance prompt/cloud unavailable; native prompt and existing crystal remain usable')
+    from import_unit_animations import verify as verify_animations, output as animation_output
+    animations = app / 'UnitAnimations'
+    if animations.exists(): shutil.rmtree(animations)
+    try:
+        verify_animations()
+        shutil.copytree(animation_output(), animations)
+    except (OSError, ValueError):
+        print('Optional unit animations unavailable; exact-ID static artwork remains the fallback')
     print('Packaged Python 3.13.11 for', platform, architectures, 'with', len(list(home.rglob('*.fwork'))), 'extension frameworks')
 
 

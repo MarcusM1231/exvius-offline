@@ -44,6 +44,27 @@ def initialize():
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         return result.stdout
 
+    def test_explicit_developer_lapis_grant(self):
+        self.run_code("""
+initialize()
+before = call('state')['value']
+for invalid in ('0','-1','100001','1.5','abc'):
+    assert not call('developer_add_lapis', amount=invalid)['ok']
+assert call('state')['value'] == before
+result = call('developer_add_lapis', amount='10000')
+assert result['ok'], result
+after = result['value']
+assert after['currencies']['lapis_free'] == before['currencies']['lapis_free'] + 10000
+assert after['units'] == before['units'] and after['last_pull'] == before['last_pull']
+assert json.loads((storage/'campaign.json').read_text())['currencies']['lapis_free'] == after['currencies']['lapis_free']
+original = entry._service._save
+def fail(): raise OSError('injected failure')
+entry._service._save = fail
+assert not call('developer_add_lapis', amount='10')['ok']
+assert call('state')['value'] == after
+entry._service._save = original
+""")
+
     def test_hello_and_single_real_summon(self):
         self.run_code('''
 proof = call('hello')['value']

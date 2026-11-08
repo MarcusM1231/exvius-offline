@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "provenance": "Global-targeted preservation; not proof of retail Global CDN identity",
+  "scope": "Original common TOUCH SCREEN/cloud pixels; reconstructed placement/movement",
+  "members": [
+    {
+      "id": "touchscreen",
+      "cache_path": "phase6d3a/common-touchscreen.png",
+      "sha256": "90b01b97a2f392f77498ed64313204dcabf4a210c753bdff59fcd5802605fb33",
+      "archive": "exvius-data-002.zip",
+      "container": "native/common_lang/sd/effectResource/Ver13_effectResource1_common.cpk"
+    },
+    {
+      "id": "cloud",
+      "cache_path": "phase6a/preservation/extracted/Ver31_gachaeffect1_common/deff_cloud_002.png",
+      "sha256": "f3fac072b7d41c0546bebeaadf7579e52b0e8f0bc69fe20c09815320fdaecaae"
+    }
+  ]
+}
