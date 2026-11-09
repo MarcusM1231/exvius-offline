@@ -28,7 +28,7 @@ def package_code(destination):
     server = destination / 'source/server'
     for path in (prototype, embedded, server):
         path.mkdir(parents=True)
-    for name in ('summon_service.py', 'demo_data.py', 'banner_menu.py'):
+    for name in ('summon_service.py', 'demo_data.py', 'banner_menu.py', 'banner_eligibility.py'):
         shutil.copy2(IOS / 'prototype' / name, prototype / name)
     shutil.copy2(IOS / 'embedded/offline_entry.py', embedded / 'offline_entry.py')
     for module in MODULES:
@@ -40,6 +40,11 @@ def package_code(destination):
     sys.path.insert(0, str(IOS / 'prototype'))
     from demo_data import prepare
     prepare(destination / 'metadata/demo')
+    sys.path.insert(0,str(IOS/'content_tools'))
+    from build_summon_catalog import verify as verify_catalog, output as catalog_output
+    verify_catalog()
+    shutil.copytree(catalog_output(), destination/'metadata/demo', dirs_exist_ok=True)
+    shutil.copy2(IOS/'content_tools/summon-catalog.lock.json',prototype/'summon-catalog.lock.json')
 
 
 def package_content(destination, mode='preservation'):
@@ -199,12 +204,17 @@ def main():
     except (OSError, ValueError):
         print('Optional banner research unavailable; run import_banner_research.py. Production offers are unchanged.')
     from import_global_menu import verify as verify_menu, output as menu_output
-    from import_menu_art import verify as verify_menu_art, output as menu_art_output
+    from import_banner_library import verify as verify_menu_art, output as menu_art_output
     for name, check, location in [('GlobalMenu', verify_menu, menu_output), ('BannerArt', verify_menu_art, menu_art_output)]:
         check()
         target = app / name
         if target.exists(): shutil.rmtree(target)
         shutil.copytree(location(), target)
+    from import_extra_unit_art import verify as verify_extra, output as extra_output
+    verify_extra()
+    extra = app/'ExtraUnitArt'
+    if extra.exists(): shutil.rmtree(extra)
+    shutil.copytree(extra_output(),extra)
     print('Packaged Python 3.13.11 for', platform, architectures, 'with', len(list(home.rglob('*.fwork'))), 'extension frameworks')
 
 

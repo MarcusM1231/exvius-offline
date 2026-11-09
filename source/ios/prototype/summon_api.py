@@ -52,6 +52,7 @@ def make_server(service, host='127.0.0.1', port=8765):
                     if path == '/v1/banners':
                         banners = service.banners()
                         for banner in banners:
+                            if 'offer_details' in banner: continue
                             banner['offer_details'] = [dict(
                                 offer=offer,
                                 **{key: value for key, value in service.details(banner['id'], offer).items()
@@ -96,21 +97,22 @@ def make_server(service, host='127.0.0.1', port=8765):
                     return
                 raw = self.rfile.read(length)
                 body = json.loads(raw)
-                if (not isinstance(body, dict) or set(body) - {'banner_id', 'offer'}
+                if (not isinstance(body, dict) or set(body) - {'banner_id', 'offer', 'quote_token'}
                         or not isinstance(body.get('banner_id'), str)
                         or not 0 < len(body['banner_id']) <= 128
+                        or ('quote_token' in body and (not isinstance(body['quote_token'],str) or len(body['quote_token'])!=64))
                         or body.get('offer', 'primary') not in ('primary', 'secondary')):
                     raise ValueError('Expected banner_id string and primary/secondary offer')
             except (ValueError, UnicodeError, TimeoutError) as error:
                 self.error(400, 'invalid_request', str(error))
                 return
             try:
-                response = service.summon(body['banner_id'], body.get('offer', 'primary'))
+                response = service.summon(body['banner_id'], body.get('offer', 'primary'), **({'quote_token':body['quote_token']} if 'quote_token' in body else {}))
                 self.reply(200, response)
             except SummonError as error:
                 status = {'unknown_banner': 404, 'invalid_offer': 400,
                           'unsupported_banner': 422, 'summon_refused': 409,
-                          'save_failed': 500}.get(error.code, 500)
+                          'save_failed': 500, 'stale_quote':409}.get(error.code, 500)
                 self.error(status, error.code, str(error))
             except Exception:
                 logging.exception('Summon failed')

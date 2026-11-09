@@ -42,10 +42,12 @@ struct SummonInterfaceDiagnostics: View {
             let pair = await (first, duplicate)
             let one = [pair.0, pair.1].filter { $0 }.count == 1
             guard one, model.results.count == 1, model.campaign?.currencies["lapis_free"] == 9500 else { throw APIError(message: "Single transaction failed") }
-            let many = await model.summon(banner,offer: multi,using: engine,identity: "diagnostic")
+            let refreshedMulti = try await engine.quote(bannerID:banner.id,offer:"secondary").transactionOffer
+            let many = await model.summon(banner,offer: refreshedMulti,using: engine,identity: "diagnostic")
             guard many, model.results.count == 11, model.campaign?.currencies["lapis_free"] == 4500 else { throw APIError(message: "Multi transaction failed") }
             let saved = model.results.map(\.instance_id)
-            let rejected = await model.summon(banner,offer: multi,using: engine,identity: "diagnostic")
+            let insufficientOffer = try await engine.quote(bannerID:banner.id,offer:"secondary").transactionOffer
+            let rejected = await model.summon(banner,offer: insufficientOffer,using: engine,identity: "diagnostic")
             guard !rejected, model.results.map(\.instance_id) == saved, model.needsRefresh else { throw APIError(message: "Failure displayed new rewards") }
             await model.refresh(using: engine,identity: "diagnostic")
             guard model.results.map(\.instance_id) == saved else { throw APIError(message: "Saved results changed") }

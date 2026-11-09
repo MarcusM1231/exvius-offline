@@ -11,9 +11,12 @@ import SwiftUI
     func banners() async throws -> BannersResponse { try await base.banners() }
     func state() async throws -> Campaign { try await base.state() }
     func summon(bannerID: String,offer: String) async throws -> SummonResponse {
+        try await summon(bannerID:bannerID,offer:offer,quoteToken:nil)
+    }
+    func summon(bannerID: String,offer: String,quoteToken: String?) async throws -> SummonResponse {
         requests += 1
         defer { try? JSONSerialization.data(withJSONObject: ["requests":requests,"successful_responses":commits],options: [.sortedKeys]).write(to: journal,options: .atomic) }
-        let result = try await base.summon(bannerID: bannerID,offer: offer)
+        let result = try await base.summon(bannerID: bannerID,offer: offer,quoteToken:quoteToken)
         commits += 1; return result
     }
 }
@@ -107,7 +110,8 @@ struct TapSummonDiagnostics: View {
             var gate = SummonRevealGate(receipt: receipt)
             try require(gate.finish()?.map(\.instance_id) == receipt.awards.map(\.instance_id) && gate.finish() == nil,"Skip/fallback changed awards or completed twice")
             status = "Checking committed 11-pull and recovery…"
-            let many = await model.summon(banner,offer: multi,using: engine,identity: "tap-diagnostic")
+            let refreshedMulti = try await engine.quote(bannerID:banner.id,offer:"secondary").transactionOffer
+            let many = await model.summon(banner,offer: refreshedMulti,using: engine,identity: "tap-diagnostic")
             try require(many && model.results.count == 11 && engine.requests == 2 && engine.commits == 2,"Multi created duplicate requests")
             guard let multiReceipt = model.committedSummon else { throw CheckFailure(text: "Missing multi receipt") }
             try require(model.campaign?.currencies["lapis_free"] == 4500,"Multi cost changed")
@@ -117,7 +121,8 @@ struct TapSummonDiagnostics: View {
             missing.startTapPresentation(); missing.startTapPresentation()
             try require(!missing.ready && fallbackCount == 1,"Unavailable renderer fallback repeated")
             let saved = model.results.map(\.instance_id)
-            let refused = await model.summon(banner,offer: multi,using: engine,identity: "tap-diagnostic")
+            let insufficientOffer = try await engine.quote(bannerID:banner.id,offer:"secondary").transactionOffer
+            let refused = await model.summon(banner,offer: insufficientOffer,using: engine,identity: "tap-diagnostic")
             try require(!refused && model.committedSummon == nil && engine.commits == 2 && model.results.map(\.instance_id) == saved,"Refusal produced rewards")
             await model.refresh(using: engine,identity: "tap-diagnostic")
             try require(model.results.map(\.instance_id) == saved,"Saved recovery changed awards")

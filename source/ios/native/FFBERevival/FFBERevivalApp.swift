@@ -4,7 +4,9 @@ import SwiftUI
 struct FFBERevivalApp: App {
     var body: some Scene {
         WindowGroup {
-            if ProcessInfo.processInfo.arguments.contains("--banner-menu-test") {
+            if ProcessInfo.processInfo.arguments.contains("--extra-unit-art-check") {
+                ExtraUnitArtDiagnostics()
+            } else if ProcessInfo.processInfo.arguments.contains("--banner-menu-test") {
                 BannerMenuDiagnostics()
             } else if ProcessInfo.processInfo.arguments.contains("--banner-research-preview") {
                 NavigationStack { BannerResearchPreview() }

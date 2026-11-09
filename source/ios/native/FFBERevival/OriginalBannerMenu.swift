@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 import CryptoKit
+import ImageIO
 
 // Width-scaled original regions, not a stretched 640x1136 screenshot. SwiftUI
 // supplies safe areas; only decorative art can extend beyond the content region.
@@ -9,7 +10,7 @@ final class OriginalMenuResources {
     static let shared = OriginalMenuResources()
     let ui = SummonUIResources(directory: Bundle.main.resourceURL?.appendingPathComponent("GlobalMenu"))
     struct Art: Decodable { let file: String, provenance: String; let width: Int, height: Int }
-    private let root = Bundle.main.resourceURL?.appendingPathComponent("BannerArt")
+    private let root = Bundle.main.resourceURL?.appendingPathComponent(ProcessInfo.processInfo.arguments.contains("--banner-art-missing") ? "BannerArt-Missing":"BannerArt")
     private let cache = NSCache<NSString,UIImage>()
     private var files: [String:String] = [:]
     private(set) var catalog: [String:[String:Art]] = [:]
@@ -20,22 +21,32 @@ final class OriginalMenuResources {
               receipt["lock_sha256"] as? String == Self.artLock,
               let hashes=receipt["files"] as? [String:String] else { return }
         files=hashes
-        if let body=checked("catalog.json",limit:200_000) { catalog=(try? JSONDecoder().decode([String:[String:Art]].self,from:body)) ?? [:] }
+        if let body=checked("catalog.json",limit:2_000_000) { catalog=(try? JSONDecoder().decode([String:[String:Art]].self,from:body)) ?? [:] }
     }
     // Replaced only after a checksum-verified import, never a runtime URL.
-    static let artLock = "b3be0abafa34de978bc823c6f10a6ed8ad6c8d208825167c1814a1042d9cd8c0"
+    static let artLock = "170dd21741a3c6eb29d0021a77f988ec1009d92f9a0b8e4aeed705c6a93c6e1a"
     private func checked(_ file: String,limit:Int) -> Data? {
         guard let root,!file.contains(".."),let data=try? Data(contentsOf:root.appendingPathComponent(file)),data.count<=limit,
               files[file]==SHA256.hash(data:data).map({String(format:"%02x",$0)}).joined() else {return nil}
         return data
     }
     func art(_ id:String,detail:Bool)->Art? { catalog[id]?[detail ? "detail_banner":"banner"] ?? catalog[id]?["banner"] }
-    func image(_ id:String,detail:Bool)->UIImage? {
-        guard id.allSatisfy({$0.isASCII && $0.isNumber}),let a=art(id,detail:detail),["images/\(id)-banner.png","images/\(id)-detail_banner.png"].contains(a.file),max(a.width,a.height)<=2048 else {return nil}
+    func image(_ id:String,detail:Bool,role:String?=nil)->UIImage? {
+        guard !id.isEmpty,id.count<=10,id.allSatisfy({$0.isASCII && $0.isNumber}),
+              let a=role.flatMap({catalog[id]?[$0]}) ?? art(id,detail:detail),
+              let expected=files[a.file],expected.count==64,a.file=="images/\(expected).png",
+              a.width>0,a.height>0,max(a.width,a.height)<=4096 else {return nil}
         if let im=cache.object(forKey:a.file as NSString) {return im}
-        guard let data=checked(a.file,limit:512_000),let im=UIImage(data:data),let cg=im.cgImage,cg.width==a.width,cg.height==a.height else {return nil}
+        guard let data=checked(a.file,limit:2_000_000),let source=CGImageSourceCreateWithData(data as CFData,nil),
+              let properties=CGImageSourceCopyPropertiesAtIndex(source,0,nil) as? [CFString:Any],
+              properties[kCGImagePropertyPixelWidth] as? Int==a.width,properties[kCGImagePropertyPixelHeight] as? Int==a.height else {return nil}
+        let options:[CFString:Any]=[kCGImageSourceCreateThumbnailFromImageAlways:true,kCGImageSourceCreateThumbnailWithTransform:true,kCGImageSourceThumbnailMaxPixelSize:min(1024,max(a.width,a.height)),kCGImageSourceShouldCacheImmediately:true]
+        guard let cg=CGImageSourceCreateThumbnailAtIndex(source,0,options as CFDictionary) else {return nil}
+        let im=UIImage(cgImage:cg)
         cache.setObject(im,forKey:a.file as NSString,cost:cg.bytesPerRow*cg.height);return im
     }
+    func extraRoles(_ id:String)->[String] {(catalog[id]?.keys.filter {$0.hasPrefix("detail_extra_")} ?? []).sorted()}
+
 }
 struct OriginalMenuArt:View {
     let id:String
@@ -59,6 +70,7 @@ struct ExactBannerArt:View {
     let id:String
     let name:String
     var detail=false
+    var role:String? = nil
     @State private var image:UIImage?
     var body:some View {
         Group {
@@ -69,7 +81,7 @@ struct ExactBannerArt:View {
                     VStack(spacing:8) {Text(name).font(.system(size:23,weight:.bold,design:.serif));Text("Banner artwork unavailable").font(.system(size:16))}.multilineTextAlignment(.center).padding(20)
                 }.aspectRatio(4,contentMode:.fit)
             }
-        }.task(id:id+String(detail)) {image=OriginalMenuResources.shared.image(id,detail:detail)}
+        }.task(id:id+String(detail)+(role ?? "")) {image=OriginalMenuResources.shared.image(id,detail:detail,role:role)}.onDisappear {image=nil}
     }
 }
 struct OriginalBannerMenu:View {
@@ -136,14 +148,15 @@ struct OriginalBannerMenu:View {
             if let initialID {selectedID=initialID}
             let args=ProcessInfo.processInfo.arguments
             for tab in ["rare","standard","limited"] where args.contains("--menu-"+tab) {category=tab}
-            if let i=args.firstIndex(of:"--menu-banner"),args.count>i+1 {selectedID=args[i+1]}
+            if model.results.isEmpty, let i=args.firstIndex(of:"--menu-banner"),args.count>i+1 {selectedID=args[i+1]}
         }
     }
     private func detail(_ b:MenuBanner,width:Double)->some View {
         ScrollView {
-            VStack(spacing:14) {
+            LazyVStack(spacing:14) {
                 ExactBannerArt(id:b.id,name:b.name,detail:true)
                 Text(b.name).font(.system(size:23,weight:.bold,design:.serif)).multilineTextAlignment(.center).padding(.horizontal,12)
+                if b.playable {Text("Historical artwork · unit rewards only. Available offline offers are shown below.").font(.caption).multilineTextAlignment(.center).padding(.horizontal,16)}
                 if !b.playable {Text(b.availability).font(.callout).foregroundStyle(.yellow).padding(.horizontal,16)}
                 if !b.description.isEmpty {Text(b.description).padding(.horizontal,16)}
                 if b.playable,let banner=model.banners.first(where:{$0.id==b.id}) {
@@ -176,6 +189,9 @@ struct OriginalBannerMenu:View {
                         let unit=UnitCatalog.display(masterID:id,backendName:nil,rarity:nil,isAward:false)
                         HStack {UnitArtworkView(unit:unit).frame(width:64,height:70);Text(unit.name);Spacer()}.padding(.horizontal,20)
                     }
+                }
+                ForEach(OriginalMenuResources.shared.extraRoles(b.id),id:\.self) {role in
+                    ExactBannerArt(id:b.id,name:b.name,detail:true,role:role)
                 }
                 Text("SUMMON RATES").font(.system(.headline,design:.serif))
                 ForEach(Array(b.rates.enumerated()),id:\.offset) {_,r in Text("\(r.rarity)★ pool weight: \(String(format:"%.3g",r.weight*100))%").font(.callout)}

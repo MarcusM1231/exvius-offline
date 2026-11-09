@@ -74,7 +74,7 @@ struct SummonOfferButton: View {
     var body: some View {
         Button(action: action) {
             ZStack {
-                if art == nil { RoundedRectangle(cornerRadius: 10).fill(ink).overlay(RoundedRectangle(cornerRadius: 10).stroke(gold)); Text("Summon ×\(offer.draws)").offset(y: -16) }
+                if art == nil { OriginalMenuArt(id:"confirm-button"); Text("Summon ×\(offer.draws)").offset(y: -16) }
                 Text(art != nil ? String(offer.cost?.amount ?? 0) : (offer.cost?.label ?? "Free"))
                     .font(.system(size: 21, weight: .bold))
                     .foregroundStyle(.white).shadow(color: .black, radius: 1).offset(x: art == nil ? 0 : 20, y: 24)
@@ -274,7 +274,7 @@ struct SummonConfirmation: View {
                     Text(banner.name).font(.headline).multilineTextAlignment(.center)
                     Text("Summon ×\(offer.draws)").font(.title2)
                     Text("Cost: \(offer.cost?.label ?? "Free")").font(.title3.bold())
-                    Text("Lapis balance: \(balance)").monospacedDigit()
+                    Text("\(offer.cost?.kind == "lapis" ? "Lapis balance":"Available balance"): \(balance)").monospacedDigit()
                     if let quote {Text(quote.guarantee).font(.callout);if !quote.reason.isEmpty {Text(quote.reason).foregroundStyle(gold)}}
                     OriginalMenuButton(title:"Confirm · \(offer.cost?.label ?? "Free")",enabled:!busy && (quote?.eligible ?? ((offer.cost?.amount ?? 0)<=balance)),action:confirm)
                         .accessibilityIdentifier("confirm-summon")

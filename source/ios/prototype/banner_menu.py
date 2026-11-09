@@ -1,5 +1,8 @@
 """Read-only native menu and live quotes. Historical definitions never authorize a roll."""
 import copy
+import json, hashlib
+from pathlib import Path
+from banner_eligibility import digest
 from summon_service import SummonService, SummonError
 
 VALIDATED = frozenset(('9100203', '49'))
@@ -11,6 +14,61 @@ def text_guarantee(value):
     return 'Special guaranteed pool; see rates.'
 
 class MenuSummonService(SummonService):
+    def __init__(self, data, save, **kwargs):
+        root=Path(data).resolve()
+        self._expanded_policy=None
+        if (root/'catalog-policy.json').exists():
+            lockfile=Path(__file__).with_name('summon-catalog.lock.json')
+            if not lockfile.exists():lockfile=Path(__file__).resolve().parents[1]/'content_tools/summon-catalog.lock.json'
+            lock=json.loads(lockfile.read_text())
+            for name,pin in lock['files'].items():
+                if Path(name).is_absolute() or '..' in Path(name).parts or hashlib.sha256((root/name).read_bytes()).hexdigest()!=pin:
+                    raise ValueError('Expanded summon metadata checksum failed: '+name)
+            raw=(root/'catalog-policy.json').read_bytes()
+            if hashlib.sha256(raw).hexdigest()!=lock['policy_sha256']:raise ValueError('Summon policy identity')
+            self._expanded_policy=json.loads(raw)
+            engine_path=Path(__file__).resolve().parents[2]/'server/player_state.py'
+            if hashlib.sha256(engine_path.read_bytes()).hexdigest()!=self._expanded_policy['engine_sha256']:raise ValueError('Engine changed since catalog validation')
+        legacy_roster=None
+        if self._expanded_policy and Path(save).is_file():
+            saved=json.loads(Path(save).read_text())
+            if not isinstance(saved,dict) or not isinstance(saved.get('roster'),list):raise ValueError('Invalid campaign; preserve it rather than resetting progress')
+            legacy_roster=copy.deepcopy(saved['roster'])
+        super().__init__(data,save,**kwargs)
+        if legacy_roster is not None:
+            # Real LB tables cause the legacy loader to "repair" old fixture LB
+            # levels. Metadata expansion is not permission for a save migration.
+            # Retain existing owned rows verbatim; new grants use real metadata.
+            prior_ids=[str(r.get('instance_id','')) for r in legacy_roster]
+            if len(set(prior_ids))!=len(prior_ids) or any(not v for v in prior_ids):raise ValueError('Invalid owned-unit identities; preserve campaign')
+            if any(not self.engine.unit_mst(r.get('master_id')) for r in legacy_roster):raise ValueError('Existing owned unit missing from expanded metadata; preserve campaign')
+            self.player.data['roster']=legacy_roster
+        self.playable_ids=set(self._expanded_policy['enabled']) if self._expanded_policy else set(VALIDATED)
+        if self._expanded_policy:
+            definitions=self._definitions()
+            for uid,pin in self._expanded_policy['enabled'].items():
+                if uid not in definitions or digest(definitions[uid])!=pin:raise ValueError('Banner changed since validation: '+uid)
+            self.catalogue={uid:copy.deepcopy(definitions[uid]) for uid in self.playable_ids}
+
+    def _supported(self,banner):
+        if self._expanded_policy:return str(banner['id']) in self._expanded_policy['enabled']
+        return super()._supported(banner)
+
+    def state(self):
+        result=super().state()
+        if self._expanded_policy:result['demo_metadata']=False
+        return result
+
+    def banners(self):
+        if not self._expanded_policy:return super().banners()
+        with self.lock:
+            rows=[]
+            for uid,b in sorted(self.catalogue.items(),key=lambda r:int(r[0])):
+                offers=['primary']+(['secondary'] if b.get('secondary_offer') else [])
+                quotes=[self.quote(uid,o) for o in offers]
+                rows.append({'id':uid,'name':b.get('name',uid),'supported':True,'cost':b.get('cost'),'draws':b.get('draws',1),'offers':offers,'offer_details':[dict(offer=q['offer'],cost=q['cost'],draws=q['draws'],quote_token=q['quote_token']) for q in quotes]})
+            return rows
+
     def _definitions(self):
         # No gacha_archive.menu/player access: catalogue is a pure definition projection.
         if hasattr(self, '_menu_definitions'): return self._menu_definitions
@@ -43,13 +101,14 @@ class MenuSummonService(SummonService):
             if kind in ('item','important'):
                 inventory=self.player.data.get('inventory',{})
                 balance=sum(int(r.get('count',0)) for r in inventory.get('items',[]) if str(r.get('item_id'))==item and int(r.get('item_type',0))==(20 if kind=='item' else 23))
-            reason='';supported=str(b['id']) in VALIDATED and str(b['id']) in self.catalogue and self._supported(b)
+            reason='';supported=str(b['id']) in self.playable_ids and str(b['id']) in self.catalogue and self._supported(b)
             if not supported:
                 reason=('Step-up summons are not yet enabled.' if steps else 'Ticket/box/selection handling is not yet enabled.' if b.get('boxes') or b.get('selection') or kind in ('item','important','unsupported') or not b.get('cost') and b.get('ticket_group_id') else 'Historical banner: complete unit data and transaction validation required.')
+                if self._expanded_policy:reason=' '.join(self._expanded_policy['reasons'].get(str(b['id']),[reason]))
             elif self.player.mode=='frozen':reason='Campaign is read-only.'
             else:
-                pool=self.engine.expand_pool(b)
-                if not pool or any(not self.engine.unit_mst(r['unit_id']) for r in pool): supported=False;reason='Required unit metadata is unavailable.'
+                pool=[] if self._expanded_policy else self.engine.expand_pool(b)
+                if not self._expanded_policy and (not pool or any(not self.engine.unit_mst(r['unit_id']) for r in pool)): supported=False;reason='Required unit metadata is unavailable.'
                 elif balance<amount:reason='Insufficient ' + ('Lapis' if kind=='lapis' else kind) + '.'
                 cap=int(b.get('purchase_limit') or 0)
                 used=int(g.get('user_banners',{}).get(sid,{}).get('total_exe_count',0))
@@ -60,7 +119,8 @@ class MenuSummonService(SummonService):
                 if limit and daily.get('date')==period and int(daily.get('count',0))>=limit:reason='Usage limit reached.'
             guarantee=chosen.get('guarantee',b.get('guarantee',{}))
             slots=chosen.get('guarantee_slots',b.get('guarantee_slots',[]))
-            return {'banner_id':str(b['id']),'offer':offer,'detail_id':str(chosen.get('detail_id',b.get('detail_id',''))),'draws':int(chosen.get('draws',b.get('draws',1))), 'cost':cost,'balance':balance,'supported':supported,'eligible':supported and not reason,'reason':reason,'guarantee':text_guarantee(guarantee),'guarantee_slots':copy.deepcopy(slots),'step':step+1 if steps else 0,'steps':len(steps),'lap':int(g.get('completed_laps',{}).get(sid,0))+1 if steps else 0,'ticket_group':str(b.get('ticket_group_id') or ''),'tickets':self._tickets(b),'usage':int(g.get('user_banners',{}).get(sid,{}).get('total_exe_count',0)),'purchase_limit':int(b.get('purchase_limit') or 0)}
+            token=digest({'definition':digest(b),'offer':offer,'cost':cost,'balance':balance,'step':step,'gacha':{k:g.get(k,{}) for k in ('step','completed_laps','user_banners','daily')},'period':self.engine.gacha_period(b)[0]})
+            return {'quote_token':token,'banner_id':str(b['id']),'offer':offer,'detail_id':str(chosen.get('detail_id',b.get('detail_id',''))),'draws':int(chosen.get('draws',b.get('draws',1))), 'cost':cost,'balance':balance,'supported':supported,'eligible':supported and not reason,'reason':reason,'guarantee':text_guarantee(guarantee),'guarantee_slots':copy.deepcopy(slots),'step':step+1 if steps else 0,'steps':len(steps),'lap':int(g.get('completed_laps',{}).get(sid,0))+1 if steps else 0,'ticket_group':str(b.get('ticket_group_id') or ''),'tickets':self._tickets(b),'usage':int(g.get('user_banners',{}).get(sid,{}).get('total_exe_count',0)),'purchase_limit':int(b.get('purchase_limit') or 0)}
 
     def _tickets(self,b):
         if not b.get('ticket_group_id'):return []
@@ -97,16 +157,26 @@ class MenuSummonService(SummonService):
                 rates=[]
                 if isinstance(pool,dict):
                     rates=[{'rarity':int(t.get('rarity',0)),'weight':float(t.get('rate',0))} for t in pool.get('tiers',[])]
-                records.append({'id':uid,'name':b.get('name',uid),'category':tab,'groups':memberships[uid],'playable':uid in VALIDATED and uid in self.catalogue,'offers':offers,'featured':featured,'rates':rates,'notice':b.get('rate_notice') or b.get('historical_notice') or 'Repository-defined rates; guaranteed slots may alter final probabilities.','description':b.get('description') if isinstance(b.get('description'),str) else '', 'availability':'Available' if uid in VALIDATED else offers[0]['reason']})
+                if self._expanded_policy and uid in self.playable_ids:
+                    # Display the actual expanded Python base pool, including the
+                    # engine's existing named-unit filter and normalization.
+                    base_pool=self.engine.expand_pool(b);total=sum(float(r['rate']) for r in base_pool)
+                    weights={}
+                    for row in base_pool:
+                        rarity=int(row['rarity']);weights[rarity]=weights.get(rarity,0)+float(row['rate'])
+                    rates=[{'rarity':rarity,'weight':weight/total} for rarity,weight in sorted(weights.items())] if total else []
+                records.append({'id':uid,'name':b.get('name',uid),'category':tab,'groups':memberships[uid],'playable':uid in self.playable_ids and uid in self.catalogue,'offers':offers,'featured':featured,'rates':rates,'notice':b.get('rate_notice') or b.get('historical_notice') or 'Offline base-pool probabilities before guaranteed slots. These are not verified original-server odds; historical artwork may show unavailable features.','description':b.get('description') if isinstance(b.get('description'),str) else '', 'availability':'Available' if uid in self.playable_ids else offers[0]['reason']})
             return {'banners':sorted(records,key=lambda r:(not r['playable'],int(r['id']))),'groups':[{'id':g['id'],'label':g['label']} for g in groups]}
 
-    def summon(self,banner_id,offer='primary'):
+    def summon(self,banner_id,offer='primary',quote_token=None):
         # Preserve the pre-existing full-data HTTP development facade. The new
         # native menu still only enables VALIDATED; embedded iOS always uses demo.
-        if not self.demo:
+        if not self.demo and not self._expanded_policy:
             return super().summon(banner_id,offer)
         with self.lock:
             q=self.quote(banner_id,offer)
+            if quote_token is not None and quote_token!=q['quote_token']:raise SummonError('stale_quote','This quote changed; refresh the menu before confirming again')
+            if self._expanded_policy and str(banner_id) not in VALIDATED and quote_token is None:raise SummonError('stale_quote','A current quote is required for this banner')
             if not q['supported']:raise SummonError('unsupported_banner',q['reason'])
             if not q['eligible']:raise SummonError('summon_refused',q['reason'])
             return super().summon(banner_id,offer)

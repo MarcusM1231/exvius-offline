@@ -101,7 +101,12 @@ actor EmbeddedSummonBackend: SummonBackend {
         return try await PythonWorker.shared.call(["operation": "developer_add_lapis", "amount": String(amount)])
     }
     func summon(bannerID: String, offer: String) async throws -> SummonResponse {
+        try await summon(bannerID:bannerID,offer:offer,quoteToken:nil)
+    }
+    func summon(bannerID: String, offer: String, quoteToken: String?) async throws -> SummonResponse {
         try await initialize()
-        return try await PythonWorker.shared.call(["operation": "summon", "banner_id": bannerID, "offer": offer])
+        var request=["operation":"summon","banner_id":bannerID,"offer":offer]
+        if let quoteToken {request["quote_token"]=quoteToken}
+        return try await PythonWorker.shared.call(request)
     }
 }

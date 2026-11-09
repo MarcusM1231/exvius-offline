@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "scope": "Global-targeted preservation decoded master tables; observed SHA pins after exact ZIP member/CRC verification",
+  "sources": [
+    {
+      "entry": {
+        "name": "static/mst_decoded/F_TICKET_MST.ndjson",
+        "size": 3121,
+        "compressed": 409,
+        "offset": 430788872,
+        "crc32": 878175524,
+        "method": 8,
+        "archive": "data-001",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+        "archive_size": 1215128698,
+        "sha256": "b0d084e455b6771e80f76ec65636e8a4942ead16a5233efa7459038f240759da"
+      },
+      "cache_path": ".local/phase7c/masters/F_TICKET_MST.ndjson",
+      "index_sha256": "20bd79df42d517652cdfe8bb3dca555bc5c6b6b364e0de8c3defb62dda1e6fdb",
+      "rows": 17
+    },
+    {
+      "entry": {
+        "name": "static/mst_decoded/F_IMPORTANT_ITEM_MST.ndjson",
+        "size": 91962,
+        "compressed": 8107,
+        "offset": 425345557,
+        "crc32": 810382846,
+        "method": 8,
+        "archive": "data-001",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+        "archive_size": 1215128698,
+        "sha256": "955fcd8815e7037ba1204c3016c57e7dffcd43090131aceaf2d8ea759a28ffb6"
+      },
+      "cache_path": ".local/phase7c/masters/F_IMPORTANT_ITEM_MST.ndjson",
+      "index_sha256": "20bd79df42d517652cdfe8bb3dca555bc5c6b6b364e0de8c3defb62dda1e6fdb",
+      "rows": 606
+    },
+    {
+      "entry": {
+        "name": "static/mst_decoded/F_ITEM_MST.ndjson",
+        "size": 2091902,
+        "compressed": 122700,
+        "offset": 425534397,
+        "crc32": 1665706824,
+        "method": 8,
+        "archive": "data-001",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+        "archive_size": 1215128698,
+        "sha256": "b233de9d6af717d62dec5d2158006cdbc92f5f78eadeb000334b901952d86e5b"
+      },
+      "cache_path": ".local/phase7c/masters/F_ITEM_MST.ndjson",
+      "index_sha256": "20bd79df42d517652cdfe8bb3dca555bc5c6b6b364e0de8c3defb62dda1e6fdb",
+      "rows": 4729
+    },
+    {
+      "entry": {
+        "name": "static/mst_decoded/F_LIMITBURST_MST.ndjson",
+        "size": 2660688,
+        "compressed": 274631,
+        "offset": 426664567,
+        "crc32": 3173601050,
+        "method": 8,
+        "archive": "data-001",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-001.zip",
+        "archive_size": 1215128698,
+        "sha256": "071029d90e0cc06d1c292e067af29db323290d0e4a1c9c234327d95a8202cff7"
+      },
+      "cache_path": ".local/phase7c/masters/F_LIMITBURST_MST.ndjson",
+      "index_sha256": "20bd79df42d517652cdfe8bb3dca555bc5c6b6b364e0de8c3defb62dda1e6fdb",
+      "rows": 3584
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "scope": "Exact original static form files, separately supplementing the immutable 423-ID library. No animation data. Global-targeted preservation, not retail CDN attestation.",
+  "artwork": [
+    {
+      "unit_id": "206000504",
+      "entry": {
+        "name": "unit_ills_206000504.png",
+        "offset_in_cpk": 7014928,
+        "size": 1671,
+        "unpacked": 1671
+      },
+      "source": {
+        "archive": "data-008",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-008.zip",
+        "archive_size": 1462913449,
+        "archive_sha256": "b8aed747faab4f6565bb62dce14ee013f95c35ae8426b5c990b929f577415480",
+        "name": "native/common_lang/sd/unit/Ver24_unit1_common.cpk",
+        "size": 9949340,
+        "compressed": 9949340,
+        "offset": 212004578,
+        "crc32": 2279244855,
+        "method": 0,
+        "zip_payload_start": 212004677,
+        "cpk_size": 9949340,
+        "index_sha256": "f490fd83995b6913f21e3f3ba45b34687ef1cf9ec82d0dc82e6cb55d0faf2951",
+        "index_provenance": "Reused Phase 5 read-only CPK index; PNG bytes checked individually."
+      },
+      "index_path": ".local/unit-content/discovery/data-008-Ver24_unit1_common.cpk.json",
+      "sha256": "8c684367e96a5c472d485071f91a617b1ba912758a9d71e879e2d5af922f69e3",
+      "cache_path": ".local/phase7c/extra-units/206000504.png"
+    },
+    {
+      "unit_id": "100004104",
+      "entry": {
+        "name": "unit_ills_100004104.png",
+        "offset_in_cpk": 1233864,
+        "size": 1446,
+        "unpacked": 1446
+      },
+      "source": {
+        "archive": "data-008",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-008.zip",
+        "archive_size": 1462913449,
+        "archive_sha256": "b8aed747faab4f6565bb62dce14ee013f95c35ae8426b5c990b929f577415480",
+        "name": "native/common_lang/sd/unit/Ver39_unit2_common.cpk",
+        "size": 13317164,
+        "compressed": 13317164,
+        "offset": 414301264,
+        "crc32": 3444163479,
+        "method": 0,
+        "zip_payload_start": 414301363,
+        "cpk_size": 13317164,
+        "index_sha256": "1cc623ca93bcf334bf5e1b89dafd0b7d6f2797c77a5e981ed0c8b277ee17f202",
+        "toc_sha256": "50c7a1da056b25942e1e4f278c322abcaec9401fc4485ba94a013dec8adc3b86"
+      },
+      "index_path": ".local/unit-content/discovery/data-008-Ver39_unit2_common.cpk.json",
+      "sha256": "45cf9ddab88733649c757fb5defe7a0086d1ca91bdfb13a4050cdae0af5c7d05",
+      "cache_path": ".local/phase7c/extra-units/100004104.png"
+    },
+    {
+      "unit_id": "100004105",
+      "entry": {
+        "name": "unit_ills_100004105.png",
+        "offset_in_cpk": 1287336,
+        "size": 1665,
+        "unpacked": 1665
+      },
+      "source": {
+        "archive": "data-008",
+        "url": "https://github.com/Elvlin/exvius-offline/releases/download/v0.1.0/exvius-data-008.zip",
+        "archive_size": 1462913449,
+        "archive_sha256": "b8aed747faab4f6565bb62dce14ee013f95c35ae8426b5c990b929f577415480",
+        "name": "native/common_lang/sd/unit/Ver39_unit2_common.cpk",
+        "size": 13317164,
+        "compressed": 13317164,
+        "offset": 414301264,
+        "crc32": 3444163479,
+        "method": 0,
+        "zip_payload_start": 414301363,
+        "cpk_size": 13317164,
+        "index_sha256": "1cc623ca93bcf334bf5e1b89dafd0b7d6f2797c77a5e981ed0c8b277ee17f202",
+        "toc_sha256": "50c7a1da056b25942e1e4f278c322abcaec9401fc4485ba94a013dec8adc3b86"
+      },
+      "index_path": ".local/unit-content/discovery/data-008-Ver39_unit2_common.cpk.json",
+      "sha256": "b1bb9eec535bbd32e4d512304732e76c9bc6b01a80e79f9a375ecf1e6fdff24b",
+      "cache_path": ".local/phase7c/extra-units/100004105.png"
+    }
+  ]
+}

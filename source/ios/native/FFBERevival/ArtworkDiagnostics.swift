@@ -12,10 +12,11 @@ enum ArtworkDiagnostics {
             let baseline = ["100004203": "Ludmille", "100000102": "Rain", "100000202": "Lasswell"]
             let ids = catalog.units.keys.sorted().filter { catalog.artworkURL(masterID: $0) != nil }
             let declaredImages = catalog.units.values.filter { $0.artwork != nil }.count
-            guard ids.count == declaredImages, declaredImages >= 3 else {
+            let expectedIDs=Set(catalog.units.filter {$0.value.artwork != nil}.map(\.key)).union(ExtraUnitArtwork.availableIDs)
+            guard Set(ids)==expectedIDs, declaredImages >= 3 else {
                 throw APIError(message: "Bundled sprite count does not match the catalog")
             }
-            let renderIDs = Set(Array(baseline.keys) + Array(ids.filter { baseline[$0] == nil }.prefix(4)))
+            let renderIDs = Set(Array(baseline.keys) + Array(ExtraUnitArtwork.availableIDs) + Array(ids.filter { baseline[$0] == nil }.prefix(4)))
             var decoded = 0
             for id in ids {
                 let row = catalog.display(masterID: id, backendName: nil, rarity: nil, isAward: false)
@@ -49,5 +50,19 @@ enum ArtworkDiagnostics {
         } catch { return "Could not save artwork validation: " + error.localizedDescription }
         print("Artwork validation: \(report)")
         return String(describing: report["status"] ?? "failed")
+    }
+}
+
+struct ExtraUnitArtDiagnostics:View {
+    @State private var status="Checking exact static forms…"
+    var body:some View {
+        VStack(spacing:12) {
+            Text("READ-ONLY STATIC FORM CHECK").font(.headline)
+            Text(status).font(.caption)
+            ForEach(["206000504","100004104","100004105"],id:\.self) {id in
+                UnitRowView(unit:UnitCatalog.display(masterID:id,backendName:nil,rarity:nil,isAward:false),inventoryDetail:"Exact master ID \(id)")
+            }
+            Text("Original static artwork only · no animation or summon transaction").font(.caption)
+        }.padding().preferredColorScheme(.dark).task {status=ArtworkDiagnostics.run()}
     }
 }

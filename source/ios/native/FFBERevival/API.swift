@@ -3,12 +3,13 @@ import Foundation
 struct Cost: Decodable {
     let kind: String
     let amount: Int?
-    var label: String { if kind == "ticket" { return "Ticket required" }; return "\(amount ?? 0) \(["lapis":"Lapis","lapis_free":"Free Lapis","lapis_paid":"Paid Lapis","friend_point":"Friend Points","gil":"Gil","item":"items","important":"tickets","free":"Free"][kind] ?? kind)" }
+    var label: String { if kind == "ticket" { return "Ticket required" }; if kind == "free" { return "Free" }; return "\(amount ?? 0) \(["lapis":"Lapis","lapis_free":"Free Lapis","lapis_paid":"Paid Lapis","friend_point":"Friend Points","gil":"Gil","item":"items","important":"tickets","free":"Free"][kind] ?? kind)" }
 }
 struct Offer: Decodable, Identifiable {
     let offer: String
     let cost: Cost?
     let draws: Int
+    var quote_token: String? = nil
     var id: String { offer }
 }
 struct Banner: Decodable, Identifiable {
@@ -166,6 +167,7 @@ protocol SummonBackend {
     func banners() async throws -> BannersResponse
     func state() async throws -> Campaign
     func summon(bannerID: String, offer: String) async throws -> SummonResponse
+    func summon(bannerID: String, offer: String, quoteToken: String?) async throws -> SummonResponse
 }
 
 struct HTTPBackend: SummonBackend {
@@ -176,7 +178,12 @@ struct HTTPBackend: SummonBackend {
     func banners() async throws -> BannersResponse { try await api.request("v1/banners") }
     func state() async throws -> Campaign { try await api.request("v1/state") }
     func summon(bannerID: String, offer: String) async throws -> SummonResponse {
-        try await api.request("v1/summons", body: ["banner_id": bannerID, "offer": offer])
+        try await summon(bannerID:bannerID,offer:offer,quoteToken:nil)
+    }
+    func summon(bannerID: String, offer: String, quoteToken: String?) async throws -> SummonResponse {
+        var body=["banner_id":bannerID,"offer":offer]
+        if let quoteToken {body["quote_token"]=quoteToken}
+        return try await api.request("v1/summons",body:body)
     }
 }
 
@@ -223,7 +230,7 @@ final class SummonModel: ObservableObject {
         committedSummon = nil
         let previousUnits = campaign?.units ?? []
         do {
-            let response = try await backend.summon(bannerID: banner.id, offer: offer.offer)
+            let response = try await backend.summon(bannerID: banner.id, offer: offer.offer, quoteToken: offer.quote_token)
             guard connectedIdentity == identity else { throw APIError(message: "Backend changed during summon; refresh its saved state.") }
             let receipt = try CommittedSummon.validated(response,banner: banner,offer: offer,identity: identity,previousUnits: previousUnits)
             campaign = response.state
@@ -274,8 +281,9 @@ struct MenuQuote: Decodable, Identifiable {
     let supported: Bool, eligible: Bool
     let reason: String, guarantee: String, ticket_group: String
     let tickets: [MenuTicket]
+    let quote_token: String?
     var id: String { offer }
-    var transactionOffer: Offer { Offer(offer: offer,cost: cost,draws: draws) }
+    var transactionOffer: Offer { Offer(offer: offer,cost: cost,draws: draws,quote_token:quote_token) }
 }
 struct MenuBanner: Decodable, Identifiable {
     let id: String, name: String, category: String, notice: String, description: String, availability: String
@@ -285,6 +293,10 @@ struct MenuBanner: Decodable, Identifiable {
 struct MenuCatalog: Decodable { let banners: [MenuBanner]; let groups: [MenuGroup] }
 
 extension SummonBackend {
+    func summon(bannerID: String, offer: String, quoteToken: String?) async throws -> SummonResponse {
+        guard quoteToken == nil else {throw APIError(message:"Backend does not support validated quotes.")}
+        return try await summon(bannerID:bannerID,offer:offer)
+    }
     func menu() async throws -> MenuCatalog { throw APIError(message: "Update the development backend for banner browsing.") }
     func quote(bannerID: String, offer: String) async throws -> MenuQuote { throw APIError(message: "Live offer quotes are unavailable.") }
 }

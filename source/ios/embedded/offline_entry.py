@@ -53,6 +53,7 @@ def banners():
     with _service.lock:
         rows = _service.banners()
         for banner in rows:
+            if 'offer_details' in banner: continue
             banner['offer_details'] = []
             if banner['supported']:
                 for offer in banner['offers']:
@@ -145,7 +146,7 @@ def dispatch(request_json):
                 raise ValueError('Expected banner_id string')
             if offer not in ('primary', 'secondary'):
                 raise ValueError('Expected primary or secondary offer')
-            value = _service.summon(banner, offer)
+            value = _service.summon(banner, offer, quote_token=request.get('quote_token'))
         else:
             raise ValueError('Unknown offline operation')
         return json.dumps({'ok': True, 'value': value}, allow_nan=False)
