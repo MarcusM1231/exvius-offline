@@ -28,7 +28,7 @@ def package_code(destination):
     server = destination / 'source/server'
     for path in (prototype, embedded, server):
         path.mkdir(parents=True)
-    for name in ('summon_service.py', 'demo_data.py', 'banner_menu.py', 'banner_eligibility.py'):
+    for name in ('summon_service.py', 'demo_data.py', 'banner_menu.py', 'banner_eligibility.py', 'summon_rates.py'):
         shutil.copy2(IOS / 'prototype' / name, prototype / name)
     shutil.copy2(IOS / 'embedded/offline_entry.py', embedded / 'offline_entry.py')
     for module in MODULES:
@@ -215,6 +215,11 @@ def main():
     extra = app/'ExtraUnitArt'
     if extra.exists(): shutil.rmtree(extra)
     shutil.copytree(extra_output(),extra)
+    from expanded_unit_art import verify as verify_expanded_art, output as expanded_art_output
+    verify_expanded_art()
+    target=app/'ExpandedUnitArt'
+    if target.exists(): shutil.rmtree(target)
+    shutil.copytree(expanded_art_output(),target)
     print('Packaged Python 3.13.11 for', platform, architectures, 'with', len(list(home.rglob('*.fwork'))), 'extension frameworks')
 
 

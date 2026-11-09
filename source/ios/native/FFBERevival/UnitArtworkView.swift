@@ -5,7 +5,7 @@ struct UnitArtworkView: View {
     let unit: UnitDisplay
     var body: some View {
         Group {
-            if let url = unit.artworkURL, let image = UIImage(contentsOfFile: url.path) {
+            if let url = unit.artworkURL, let image = StaticUnitImageCache.image(url) {
                 Image(uiImage: image).resizable().interpolation(.none).scaledToFit()
                     .accessibilityLabel("\(unit.name) pixel artwork")
                     .accessibilityIdentifier("unit-art-\(unit.masterID)")
@@ -61,5 +61,15 @@ struct UnitArtworkPreview: View {
             }.navigationTitle("Artwork verification")
                 .task { validation = ArtworkDiagnostics.run() }
         }
+    }
+}
+
+// Decoded images are loaded only when a row appears; no whole-catalog warmup.
+private enum StaticUnitImageCache {
+    static let cache:NSCache<NSURL,UIImage> = {let c=NSCache<NSURL,UIImage>();c.countLimit=64;c.totalCostLimit=8*1024*1024;return c}()
+    static func image(_ url:URL)->UIImage? {
+        if let image=cache.object(forKey:url as NSURL) {return image}
+        guard let image=UIImage(contentsOfFile:url.path),let cg=image.cgImage else {return nil}
+        cache.setObject(image,forKey:url as NSURL,cost:cg.bytesPerRow*cg.height);return image
     }
 }

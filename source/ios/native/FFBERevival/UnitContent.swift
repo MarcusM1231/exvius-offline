@@ -51,7 +51,7 @@ final class UnitCatalog {
             let url=directory.appendingPathComponent("sprites/\(masterID).png")
             if FileManager.default.fileExists(atPath:url.path) {return url}
         }
-        return ExtraUnitArtwork.url(masterID)
+        return ExtraUnitArtwork.url(masterID) ?? ExpandedUnitArtwork.url(masterID)
     }
 
     static func rarityLabel(_ code: Int?) -> String {
@@ -96,5 +96,31 @@ enum ExtraUnitArtwork {
               let data=try? Data(contentsOf:root.appendingPathComponent("sprites/\(id).png")),data.count<=128*1024,
               row["sha256"]==SHA256.hash(data:data).map({String(format:"%02x",$0)}).joined() else {return nil}
         return root.appendingPathComponent("sprites/\(id).png")
+    }
+}
+
+// Phase 7D exact-form supplement. Original animation selection remains independent.
+enum ExpandedUnitArtwork {
+    static let expectedLock="173af349b6a9ca646ebfeb96f982c7bf6e378bd2c03d2253315cb5b4535ca4d1"
+    private static let root=Bundle.main.resourceURL?.appendingPathComponent("ExpandedUnitArt")
+    private static let verified=NSCache<NSString,NSURL>()
+    private static let manifest:[String:[String:String]] = {
+        verified.countLimit=64
+        guard let root,let raw=try? Data(contentsOf:root.appendingPathComponent("receipt.json")),raw.count<200_000,
+              let receipt=try? JSONSerialization.jsonObject(with:raw) as? [String:Any],receipt["lock_sha256"] as? String==expectedLock,
+              let files=receipt["files"] as? [String:String],let data=try? Data(contentsOf:root.appendingPathComponent("catalog.json")),data.count<200_000,
+              files["catalog.json"]==SHA256.hash(data:data).map({String(format:"%02x",$0)}).joined(),
+              let rows=try? JSONSerialization.jsonObject(with:data) as? [String:[String:String]],rows.count<=1000 else {return [:]}
+        return rows
+    }()
+    static var availableIDs:Set<String> {Set(manifest.keys)}
+    static func url(_ id:String)->URL? {
+        guard !id.isEmpty,id.count<=10,id.allSatisfy({$0.isASCII && $0.isNumber}),let row=manifest[id],let hash=row["sha256"],hash.count==64,
+              row["file"]=="images/\(hash).png",let root else {return nil}
+        if let cached=verified.object(forKey:id as NSString) {return cached as URL}
+        let url=root.appendingPathComponent("images/\(hash).png")
+        guard let data=try? Data(contentsOf:url),data.count<=128*1024,
+              hash==SHA256.hash(data:data).map({String(format:"%02x",$0)}).joined() else {return nil}
+        verified.setObject(url as NSURL,forKey:id as NSString);return url
     }
 }

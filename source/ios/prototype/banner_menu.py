@@ -3,6 +3,7 @@ import copy
 import json, hashlib
 from pathlib import Path
 from banner_eligibility import digest
+from summon_rates import details as rate_details, featured_ids
 from summon_service import SummonService, SummonError
 
 VALIDATED = frozenset(('9100203', '49'))
@@ -17,6 +18,7 @@ class MenuSummonService(SummonService):
     def __init__(self, data, save, **kwargs):
         root=Path(data).resolve()
         self._expanded_policy=None
+        self._rate_cache={}
         if (root/'catalog-policy.json').exists():
             lockfile=Path(__file__).with_name('summon-catalog.lock.json')
             if not lockfile.exists():lockfile=Path(__file__).resolve().parents[1]/'content_tools/summon-catalog.lock.json'
@@ -154,6 +156,7 @@ class MenuSummonService(SummonService):
                     for t in pool.get('tiers',[]):
                         for mid in t.get('featured',[]):
                             if str(mid) not in featured:featured.append(str(mid))
+                if self._expanded_policy and uid in self.playable_ids:featured=featured_ids(b)
                 rates=[]
                 if isinstance(pool,dict):
                     rates=[{'rarity':int(t.get('rarity',0)),'weight':float(t.get('rate',0))} for t in pool.get('tiers',[])]
@@ -165,7 +168,16 @@ class MenuSummonService(SummonService):
                     for row in base_pool:
                         rarity=int(row['rarity']);weights[rarity]=weights.get(rarity,0)+float(row['rate'])
                     rates=[{'rarity':rarity,'weight':weight/total} for rarity,weight in sorted(weights.items())] if total else []
-                records.append({'id':uid,'name':b.get('name',uid),'category':tab,'groups':memberships[uid],'playable':uid in self.playable_ids and uid in self.catalogue,'offers':offers,'featured':featured,'rates':rates,'notice':b.get('rate_notice') or b.get('historical_notice') or 'Offline base-pool probabilities before guaranteed slots. These are not verified original-server odds; historical artwork may show unavailable features.','description':b.get('description') if isinstance(b.get('description'),str) else '', 'availability':'Available' if uid in self.playable_ids else offers[0]['reason']})
+                summaries=[]
+                if self._expanded_policy and uid in self.playable_ids:
+                    for key in ['primary']+(['secondary'] if b.get('secondary_offer') else []):
+                        cachekey=(uid,key)
+                        if cachekey not in self._rate_cache:
+                            exact=rate_details(b,b.get('secondary_offer',{}) if key=='secondary' else {},self.engine)
+                            for row in exact['featured']:row['name']=self.gacha.unit_name(row['unit_id']) or row['unit_id']
+                            self._rate_cache[cachekey]={'offer':key,'draws':exact['draws'],'model':exact['model'],'featured':exact['featured'],'guarantee':text_guarantee(exact['guarantee'])}
+                        summaries.append(copy.deepcopy(self._rate_cache[cachekey]))
+                records.append({'id':uid,'name':b.get('name',uid),'category':tab,'groups':memberships[uid],'playable':uid in self.playable_ids and uid in self.catalogue,'offers':offers,'featured':featured,'rate_details':summaries,'rates':rates,'notice':b.get('rate_notice') or b.get('historical_notice') or 'Offline base-pool probabilities before guaranteed slots. These are not verified original-server odds; historical artwork may show unavailable features.','description':b.get('description') if isinstance(b.get('description'),str) else '', 'availability':'Available' if uid in self.playable_ids else offers[0]['reason']})
             return {'banners':sorted(records,key=lambda r:(not r['playable'],int(r['id']))),'groups':[{'id':g['id'],'label':g['label']} for g in groups]}
 
     def summon(self,banner_id,offer='primary',quote_token=None):

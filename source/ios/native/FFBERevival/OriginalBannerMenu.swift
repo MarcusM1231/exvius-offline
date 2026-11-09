@@ -151,6 +151,7 @@ struct OriginalBannerMenu:View {
             if model.results.isEmpty, let i=args.firstIndex(of:"--menu-banner"),args.count>i+1 {selectedID=args[i+1]}
         }
     }
+    private func percent(_ probability:Double)->String {String(format:"%.4g%%",probability*100)}
     private func detail(_ b:MenuBanner,width:Double)->some View {
         ScrollView {
             LazyVStack(spacing:14) {
@@ -192,6 +193,31 @@ struct OriginalBannerMenu:View {
                 }
                 ForEach(OriginalMenuResources.shared.extraRoles(b.id),id:\.self) {role in
                     ExactBannerArt(id:b.id,name:b.name,detail:true,role:role)
+                }
+                ForEach(b.rate_details ?? []) {detail in
+                    DisclosureGroup("Drop Rates · \(detail.draws) summon(s)") {
+                        VStack(alignment:.leading,spacing:12) {
+                            Text("Offline configured rates · historical server rates unverified").font(.caption).foregroundStyle(.yellow)
+                            Text(detail.guarantee).font(.caption)
+                            ForEach(detail.featured) {rate in
+                                HStack(alignment:.top,spacing:10) {
+                                    UnitArtworkView(unit:UnitCatalog.display(masterID:rate.unit_id,backendName:rate.name,rarity:rate.rarity,isAward:false))
+                                    VStack(alignment:.leading,spacing:4) {
+                                        Text("\(rate.name) · \(rate.rarity)★").font(.headline)
+                                        Text(rate.eligible ? "In this pool":"Not in this pool").font(.caption)
+                                        Text("Base draw: \(percent(rate.base_probability))").font(.caption)
+                                        Text(rate.boosted ? "Higher chance within this rarity":"No extra chance within this rarity").font(.caption).foregroundStyle(rate.boosted ? .yellow:.secondary)
+                                        if detail.draws>1 {
+                                            Text("Including guarantee · average per draw: \(percent(rate.per_draw_average))").font(.caption)
+                                            Text("At least one in \(detail.draws): \(percent(rate.at_least_one))").font(.caption)
+                                        }
+                                    }
+                                }
+                            }
+                            if detail.featured.isEmpty {Text("No featured unit IDs configured.").font(.caption)}
+                            Text("Compared with equal chances for the same eligible forms within each rarity. Artwork alone does not establish a boost.").font(.caption2)
+                        }.padding(.vertical,8)
+                    }.padding(.horizontal,20).tint(.white)
                 }
                 Text("SUMMON RATES").font(.system(.headline,design:.serif))
                 ForEach(Array(b.rates.enumerated()),id:\.offset) {_,r in Text("\(r.rarity)★ pool weight: \(String(format:"%.3g",r.weight*100))%").font(.callout)}

@@ -96,6 +96,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    Section("Static artwork") {NavigationLink("Expanded exact-form sprite gallery") {ExpandedArtDiagnostics()}}
                     Section("Summon banners") {
                         ForEach(model.banners) { banner in
                             VStack(alignment: .leading, spacing: 10) {

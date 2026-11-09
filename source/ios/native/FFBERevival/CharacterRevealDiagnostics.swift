@@ -74,7 +74,8 @@ struct CharacterRevealDiagnostics: View {
             var report: [String: Any] = ["normal_campaign_accessed":false,"physical_device_used":!Self.isSimulator,"timing":"reconstructed","ui_input_scope":"Shared production views/controllers; controller taps are automatic. Touch-event tests are separate."]
             for (name,offer,count,balance) in [("single",single,1,9500),("multi",multi,11,4500)] {
                 status = "Committing isolated " + name
-                let ok = await model.summon(banner,offer: offer,using: backend,identity: "character-diagnostic")
+                let freshOffer = try await backend.quote(bannerID:banner.id,offer:offer.offer).transactionOffer
+                let ok = await model.summon(banner,offer: freshOffer,using: backend,identity: "character-diagnostic")
                 try require(ok,"Isolated summon failed")
                 guard let committed = model.committedSummon else { throw Failure(text: "Missing receipt") }
                 try require(committed.awards.count == count,"Incorrect award count")

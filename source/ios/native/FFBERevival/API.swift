@@ -285,7 +285,21 @@ struct MenuQuote: Decodable, Identifiable {
     var id: String { offer }
     var transactionOffer: Offer { Offer(offer: offer,cost: cost,draws: draws,quote_token:quote_token) }
 }
+struct FeaturedRate: Decodable, Identifiable {
+    let unit_id:String, name:String, configuration_kind:String, comparison_basis:String
+    let rarity:Int
+    let eligible:Bool, boosted:Bool, historically_verified:Bool
+    let base_probability:Double, equal_weight_probability:Double, per_draw_average:Double, at_least_one:Double
+    var id:String {unit_id}
+}
+struct MenuRateDetail: Decodable, Identifiable {
+    let offer:String, model:String, guarantee:String
+    let draws:Int
+    let featured:[FeaturedRate]
+    var id:String {offer}
+}
 struct MenuBanner: Decodable, Identifiable {
+    let rate_details:[MenuRateDetail]?
     let id: String, name: String, category: String, notice: String, description: String, availability: String
     let groups: [String], featured: [String], offers: [MenuQuote], rates: [MenuRate]
     let playable: Bool

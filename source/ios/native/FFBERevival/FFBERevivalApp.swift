@@ -4,7 +4,9 @@ import SwiftUI
 struct FFBERevivalApp: App {
     var body: some Scene {
         WindowGroup {
-            if ProcessInfo.processInfo.arguments.contains("--extra-unit-art-check") {
+            if ProcessInfo.processInfo.arguments.contains("--expanded-unit-art-check") {
+                ExpandedArtDiagnostics()
+            } else if ProcessInfo.processInfo.arguments.contains("--extra-unit-art-check") {
                 ExtraUnitArtDiagnostics()
             } else if ProcessInfo.processInfo.arguments.contains("--banner-menu-test") {
                 BannerMenuDiagnostics()
